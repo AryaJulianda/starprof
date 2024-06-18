@@ -7,11 +7,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Demo Education | Porto - Multipurpose Website Template</title>
+  <title>Starprof</title>
 
-  <meta name="keywords" content="WebSite Template" />
-  <meta name="description" content="Porto - Multipurpose Website Template">
-  <meta name="author" content="okler.net">
+  <meta name="keywords" content="Starprof" />
+  <meta name="description" content="Starprof">
+  <meta name="author" content="Starprof">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ url('') }}/img/favicon.ico" type="image/x-icon" />
