@@ -30,7 +30,7 @@
               <div class="col-md-4 mb-4 pb-1">
                 <div class="card custom-card-courses border-radius-0 hover-effect-1">
                   <div class="p-relative">
-                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                    <a href="{{url('courses-details')}}" class="text-color-secondary" title="">
                       <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-1.jpg" alt="" />
                     </a>
                     <div class="custom-card-courses-author">
@@ -41,7 +41,7 @@
                   </div>
                   <div class="card-body">
                     <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+                    <h4 class="mb-3 text-color-secondary"><a href="{{url('courses-details')}}" class="text-color-secondary" title="">Course Name Example</a></h4>
 
                     <div class="float-end">
                       <strong class="text-primary text-5">$79</strong>
@@ -57,7 +57,7 @@
               <div class="col-md-4 mb-4 pb-1">
                 <div class="card custom-card-courses border-radius-0 hover-effect-1">
                   <div class="p-relative">
-                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                    <a href="{{url('courses-details')}}" class="text-color-secondary" title="">
                       <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-2.jpg" alt="" />
                     </a>
                     <div class="custom-card-courses-author">
@@ -68,7 +68,7 @@
                   </div>
                   <div class="card-body">
                     <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+                    <h4 class="mb-3 text-color-secondary"><a href="{{url('courses-details')}}" class="text-color-secondary" title="">Course Name Example</a></h4>
 
                     <div class="float-end">
                       <strong class="text-primary text-5">$59</strong>
@@ -84,7 +84,7 @@
               <div class="col-md-4 mb-4 pb-1">
                 <div class="card custom-card-courses border-radius-0 hover-effect-1">
                   <div class="p-relative">
-                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                    <a href="{{url('courses-details')}}" class="text-color-secondary" title="">
                       <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-3.jpg" alt="" />
                     </a>
                     <div class="custom-card-courses-author">
@@ -95,7 +95,7 @@
                   </div>
                   <div class="card-body">
                     <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+                    <h4 class="mb-3 text-color-secondary"><a href="{{url('courses-details')}}" class="text-color-secondary" title="">Course Name Example</a></h4>
 
                     <div class="float-end">
                       <strong class="text-primary text-5">$29</strong>
@@ -111,7 +111,7 @@
               <div class="col-md-4 mb-4 pb-1">
                 <div class="card custom-card-courses border-radius-0 hover-effect-1">
                   <div class="p-relative">
-                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                    <a href="{{url('courses-details')}}" class="text-color-secondary" title="">
                       <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-4.jpg" alt="" />
                     </a>
                     <div class="custom-card-courses-author">
@@ -122,7 +122,7 @@
                   </div>
                   <div class="card-body">
                     <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+                    <h4 class="mb-3 text-color-secondary"><a href="{{url('courses-details')}}" class="text-color-secondary" title="">Course Name Example</a></h4>
 
                     <div class="float-end">
                       <strong class="text-primary text-5">$19</strong>
@@ -138,7 +138,7 @@
               <div class="col-md-4 mb-4 pb-1">
                 <div class="card custom-card-courses border-radius-0 hover-effect-1">
                   <div class="p-relative">
-                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                    <a href="{{url('courses-details')}}" class="text-color-secondary" title="">
                       <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-1.jpg" alt="" />
                     </a>
                     <div class="custom-card-courses-author">
@@ -149,7 +149,7 @@
                   </div>
                   <div class="card-body">
                     <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+                    <h4 class="mb-3 text-color-secondary"><a href="{{url('courses-details')}}" class="text-color-secondary" title="">Course Name Example</a></h4>
 
                     <div class="float-end">
                       <strong class="text-primary text-5">$79</strong>
@@ -165,7 +165,7 @@
               <div class="col-md-4 mb-4 pb-1">
                 <div class="card custom-card-courses border-radius-0 hover-effect-1">
                   <div class="p-relative">
-                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                    <a href="{{url('courses-details')}}" class="text-color-secondary" title="">
                       <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-2.jpg" alt="" />
                     </a>
                     <div class="custom-card-courses-author">
@@ -176,7 +176,7 @@
                   </div>
                   <div class="card-body">
                     <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+                    <h4 class="mb-3 text-color-secondary"><a href="{{url('courses-details')}}" class="text-color-secondary" title="">Course Name Example</a></h4>
 
                     <div class="float-end">
                       <strong class="text-primary text-5">$59</strong>
@@ -192,7 +192,7 @@
               <div class="col-md-4 mb-4 pb-1">
                 <div class="card custom-card-courses border-radius-0 hover-effect-1">
                   <div class="p-relative">
-                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                    <a href="{{url('courses-details')}}" class="text-color-secondary" title="">
                       <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-3.jpg" alt="" />
                     </a>
                     <div class="custom-card-courses-author">
@@ -203,7 +203,7 @@
                   </div>
                   <div class="card-body">
                     <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+                    <h4 class="mb-3 text-color-secondary"><a href="{{url('courses-details')}}" class="text-color-secondary" title="">Course Name Example</a></h4>
 
                     <div class="float-end">
                       <strong class="text-primary text-5">$29</strong>
@@ -219,7 +219,7 @@
               <div class="col-md-4 mb-4 pb-1">
                 <div class="card custom-card-courses border-radius-0 hover-effect-1">
                   <div class="p-relative">
-                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                    <a href="{{url('courses-details')}}" class="text-color-secondary" title="">
                       <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-4.jpg" alt="" />
                     </a>
                     <div class="custom-card-courses-author">
@@ -230,7 +230,7 @@
                   </div>
                   <div class="card-body">
                     <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+                    <h4 class="mb-3 text-color-secondary"><a href="{{url('courses-details')}}" class="text-color-secondary" title="">Course Name Example</a></h4>
 
                     <div class="float-end">
                       <strong class="text-primary text-5">$19</strong>
@@ -246,7 +246,7 @@
               <div class="col-md-4 mb-4 pb-1">
                 <div class="card custom-card-courses border-radius-0 hover-effect-1">
                   <div class="p-relative">
-                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                    <a href="{{url('courses-details')}}" class="text-color-secondary" title="">
                       <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-1.jpg" alt="" />
                     </a>
                     <div class="custom-card-courses-author">
@@ -257,7 +257,7 @@
                   </div>
                   <div class="card-body">
                     <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+                    <h4 class="mb-3 text-color-secondary"><a href="{{url('courses-details')}}" class="text-color-secondary" title="">Course Name Example</a></h4>
 
                     <div class="float-end">
                       <strong class="text-primary text-5">$79</strong>
