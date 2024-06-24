@@ -4,12 +4,12 @@
     <div class="col-md-6 col-xl-12">
       <div class="card">
         <div class="card-body">
-          <form id="form-courses-category" method="{{ isset($dataForm) ? 'PUT' : 'POST' }}" class="needs-validation" action="{{ isset($dataForm) ? url("adm/courses-category/$dataForm->id") : url('adm/courses-category') }}" novalidate>
+          <form id="form-programs-category" method="{{ isset($dataForm) ? 'PUT' : 'POST' }}" class="needs-validation" action="{{ isset($dataForm) ? url("adm/programs-category/$dataForm->id") : url('adm/programs-category') }}" novalidate>
             <div class="d-flex justify-content-end">
               @if ($type != 'view')
                 <button class="btn btn-primary me-2" type="submit">{{ isset($dataForm) ? 'Save' : 'Create' }}</button>
               @endif
-              <a class="btn btn-secondary" href="{{ url('adm/courses-category') }}">Cancel</a>
+              <a class="btn btn-secondary" href="{{ url('adm/programs-category') }}">Cancel</a>
             </div>
             <div class="row">
               <div class="col-md-6 col-xl-3">
@@ -55,5 +55,5 @@
   <!-- end row -->
 
 
-  <script src="{{ url('admin/js/pages/courses-category/form.js') }}"></script>
+  <script src="{{ url('admin/js/pages/programs-category/form.js') }}"></script>
 </x-admin-layout>

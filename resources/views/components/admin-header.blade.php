@@ -24,6 +24,25 @@
   {{-- Global Script --}}
   <script>
     var base_url = "{{ url('') }}";
+
+    function getSegmentBeforeAdm() {
+      var currentUrl = window.location.href;
+      var parser = document.createElement('a');
+      parser.href = currentUrl;
+
+      var pathSegments = parser.pathname.split('/').filter(function(segment) {
+        return segment.length > 0;
+      });
+
+      var admIndex = pathSegments.indexOf('adm');
+      if (admIndex !== -1 && admIndex + 1 < pathSegments.length) {
+        return pathSegments[admIndex + 1];
+      }
+      return null;
+    }
+
+    var module_path = getSegmentBeforeAdm();
+
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

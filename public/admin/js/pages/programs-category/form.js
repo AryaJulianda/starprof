@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var form = $('#form-courses-category');
+    var form = $('#form-programs-category');
 
     form.on('submit', function(event) {
         event.preventDefault();
@@ -30,7 +30,7 @@ $(document).ready(function() {
                         data: formData,
                         success: function(response) {
                             showAlert('success','Success!',null, () => {
-                                window.location.href = `${base_url}/adm/courses-category`;
+                                window.location.href = `${base_url}/adm/programs-category`;
                             });
                         },
                         error: function(xhr, status, error) {

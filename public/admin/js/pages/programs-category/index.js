@@ -3,7 +3,7 @@ $(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: {
-            url: `${base_url}/adm/courses-category`,
+            url: `${base_url}/adm/${module_path}`,
         },
         columns: [
             {
@@ -28,9 +28,9 @@ $(document).ready(function() {
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-dots-vertical-rounded'></i></button>
                         <div class="dropdown-menu" style="">
-                            <a class="dropdown-item text-info" href="${base_url}/adm/courses-category/${data.id}"><span class="mdi mdi-eye me-2"></span>View</a>
-                            <a class="dropdown-item text-warning" href="${base_url}/adm/courses-category/${data.id}/edit"><i class='bx bx-pencil me-2'></i>Edit</a>
-                            <a class="dropdown-item text-danger delete-button" href=${base_url}/adm/courses-category/${data.id}"><i class='bx bx-trash me-2'></i>Delete</a>
+                            <a class="dropdown-item text-info" href="${base_url}/adm/${module_path}/${data.id}"><span class="mdi mdi-eye me-2"></span>View</a>
+                            <a class="dropdown-item text-warning" href="${base_url}/adm/${module_path}/${data.id}/edit"><i class='bx bx-pencil me-2'></i>Edit</a>
+                            <a class="dropdown-item text-danger delete-button" href=${base_url}/adm/${module_path}/${data.id}"><i class='bx bx-trash me-2'></i>Delete</a>
                         </div>
                     </div>
                     `;

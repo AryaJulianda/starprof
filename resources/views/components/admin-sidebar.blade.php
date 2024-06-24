@@ -14,14 +14,14 @@
         <li>
           <a href="javascript: void(0);" class="has-arrow waves-effect">
             <i class=""></i>
-            <span key="t-menus">Courses</span>
+            <span key="t-menus">Programs</span>
           </a>
           <ul class="sub-menu" aria-expanded="false">
             <li>
-              <a href="{{ url('adm/courses') }}" key="t-list-courses">List Courses</a>
+              <a href="{{ url('adm/programs') }}" key="t-list-programs">List Programs</a>
             </li>
             <li>
-              <a href="{{ url('adm/courses-category') }}" key="t-courses-category">Courses Category</a>
+              <a href="{{ url('adm/programs-category') }}" key="t-programs-category">Programs Category</a>
             </li>
           </ul>
         </li>

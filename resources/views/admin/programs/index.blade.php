@@ -5,9 +5,9 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between mb-3">
-            <h4>List Courses</h4>
+            <h4>List Programs</h4>
             <div class="d-flex" style="gap:5px;">
-              <a href="{{ url('adm/courses/create') }}" class="btn btn-primary waves-effect btn-label waves-light">
+              <a href="{{ url('adm/programs/create') }}" class="btn btn-primary waves-effect btn-label waves-light">
                 <i class="bx bx-plus label-icon"></i> Create
               </a>
             </div>

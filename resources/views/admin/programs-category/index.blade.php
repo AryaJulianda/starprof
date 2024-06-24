@@ -5,9 +5,9 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between mb-3">
-            <h4>List Courses Category</h4>
+            <h4>List Programs Category</h4>
             <div class="d-flex" style="gap:5px;">
-              <a href="{{ url('adm/courses-category/create') }}" class="btn btn-primary waves-effect btn-label waves-light">
+              <a href="{{ url('adm/programs-category/create') }}" class="btn btn-primary waves-effect btn-label waves-light">
                 <i class="bx bx-plus label-icon"></i> Create
               </a>
             </div>
@@ -34,5 +34,5 @@
     </div> <!-- end col -->
   </div> <!-- end row -->
 
-  <script src="{{ url('admin/js/pages/courses-category/index.js') }}"></script>
+  <script src="{{ url('admin/js/pages/programs-category/index.js') }}"></script>
 </x-admin-layout>

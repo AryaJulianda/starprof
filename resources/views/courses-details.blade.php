@@ -67,7 +67,7 @@
 
               <div class="pb-5">
                 <div class="ratio ratio-16x9">
-                  <iframe src="{{ url('') }}///player.vimeo.com/video/67957799" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                  <iframe src="http://player.vimeo.com/video/67957799" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
               </div>
 
