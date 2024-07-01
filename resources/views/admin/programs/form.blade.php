@@ -1,13 +1,13 @@
 <x-admin-layout>
   <x-slot:title>{{ $title }}</x-slot:title>
-  @php
-    $module_path = 'programs';
-  @endphp
   <div class="row">
     <div class="col-md-6 col-xl-12">
       <div class="card">
         <div class="card-body">
-          <form id="form-department" method="{{ isset($dataForm) ? 'PUT' : 'POST' }}" class="needs-validation" action="{{ isset($dataForm) ? url("$module_path/$dataForm->id") : url("$module_path") }}" novalidate>
+          <form id="form-programs" enctype="multipart/form-data" class="needs-validation" action="{{ isset($dataForm) ? url("adm/$module_path/$dataForm->id") : url("adm/$module_path") }}" novalidate>
+            @if (isset($dataForm))
+              @method('PUT')
+            @endif
             <div class="d-flex justify-content-end">
               @if ($type != 'view')
                 <button class="btn btn-primary me-2" type="submit">{{ isset($dataForm) ? 'Save' : 'Create' }}</button>
@@ -17,30 +17,38 @@
             <div class="row">
               <div class="col-12">
                 <div class="mt-3">
-                  <label for="program_name" class="form-label">Program Name</label>
-                  <input type="text" class="form-control" id="program_name" placeholder="Program Name" value="{{ isset($dataForm) ? $dataForm->program_name : '' }}">
+                  <label for="prog_name" class="form-label">Program Name</label>
+                  <input type="text" class="form-control" id="prog_name" placeholder="Program Name" name="prog_name" value="{{ isset($dataForm) ? $dataForm->prog_name : '' }}" {{ $type == 'view' ? 'disabled' : 'required' }}>
                 </div>
               </div>
               <div class="col-4">
                 <div class="mt-3">
-                  <label for="program_category" class="form-label">Program Category</label>
-                  <select class="form-select" id="program_category">
-                    <option>-- Select Program Category --</option>
-                    <option>Large select</option>
-                    <option>Small select</option>
+                  <label for="prog_category" class="form-label">Program Category</label>
+                  <select class="form-select" name="prog_category" id="prog_category" {{ $type == 'view' ? 'disabled' : 'required' }}>
+                    <option value="">-- Select Program Category --</option>
+                    @foreach ($select_programs_category as $item)
+                      <option value="{{ $item->id }}" {{ isset($dataForm) && $item->id == $dataForm->prog_category ? 'selected' : '' }}>{{ $item->category_name }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
               <div class="col-12">
                 <div class="mt-3">
-                  <label for="banner" class="form-label">Banner</label>
-                  <input type="file" class="form-control" id="banner" placeholder="Banner" value="{{ isset($dataForm) ? $dataForm->banner : '' }}">
+                  <label for="prog_image_file" class="form-label d-block">Image</label>
+                  <img id="image-preview" src="{{ isset($dataForm) && $dataForm->prog_image ? asset('storage/' . $dataForm->prog_image) : '#' }}" alt="Program Image" class="img-thumbnail mb-3" style="max-width: 200px; {{ isset($dataForm) && $dataForm->prog_image ? '' : 'display:none;' }}">
+                  <input type="file" class="form-control" id="prog_image_file" placeholder="prog_image_file" name="prog_image_file" value="" onchange="previewImage(event)" {{ $type == 'view' ? 'disabled' : '' }}>
                 </div>
               </div>
               <div class="col-12">
                 <div class="mt-3">
                   <label for="desc" class="form-label">Description</label>
-                  <textarea id="textarea" class="form-control" id="desc" rows="3" placeholder="Description">{{ isset($dataForm) ? $dataForm->desc : '' }}</textarea>
+                  @if ($type == 'view')
+                    <div id="desc-view" class="form-control" style="height: 200px; overflow-y: auto;">
+                      {!! $dataForm->desc !!}
+                    </div>
+                  @else
+                    <textarea id="textarea" class="form-control" name="desc" rows="3" placeholder="Description" {{ $type == 'view' ? 'disabled' : 'required' }}>{{ isset($dataForm) ? $dataForm->desc : '' }}</textarea>
+                  @endif
                 </div>
               </div>
               <div class="col-md-6 col-xl-3">
@@ -76,6 +84,23 @@
   </div>
   <!-- end row -->
 
-
-  <script src="{{ url("js/pages/$module_path/form.js") }}"></script>
+  <script src="{{ url("admin/js/pages/$module_path/form.js") }}"></script>
+  <script>
+    function previewImage(event) {
+      var reader = new FileReader();
+      reader.onload = function() {
+        var output = document.getElementById('image-preview');
+        output.src = reader.result;
+        output.style.display = 'block';
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>
+  @if ($type == 'view')
+    <script>
+      $(document).ready(function() {
+        tinymce.EditorManager.execCommand('mceRemoveEditor', true, 'textarea');
+      });
+    </script>
+  @endif
 </x-admin-layout>

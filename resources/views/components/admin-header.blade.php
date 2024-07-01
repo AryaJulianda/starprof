@@ -20,6 +20,8 @@
   <script src="{{ url('admin/libs/jquery/jquery.min.js') }}"></script>
   <!-- Sweet Alert-->
   <link href="{{ url('admin/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+  {{-- TinyMCE --}}
+  <script src="https://cdn.tiny.cloud/1/eghsnl8p2oercn275e7j4d6yzi3r98af2tv5upjpkm8960bq/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
   {{-- Global Script --}}
   <script>

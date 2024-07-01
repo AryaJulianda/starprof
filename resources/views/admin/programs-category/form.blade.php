@@ -54,6 +54,5 @@
   </div>
   <!-- end row -->
 
-
   <script src="{{ url('admin/js/pages/programs-category/form.js') }}"></script>
 </x-admin-layout>

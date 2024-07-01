@@ -22,31 +22,9 @@
       <div class="row py-3">
         <div class="col">
 
-          <p class="font-weight-medium text-4">Founded in 2001 by John Doe, gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, <span class="highlight highlight-primary highlight-bg-opacity highlight-animated" data-appear-animation="highlight-animated-start" data-appear-animation-delay="2000" data-plugin-options="{'flagClassOnly': true}">nisi elit consequat ipsum</span>, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. </p>
-          <p class="text-3-5 line-height-9">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ultricies nunc, eu interdum enim convallis pretium. Quisque eu neque augue. Aliquam egestas nunc at efficitur faucibus. Praesent mauris eros, tincidunt id enim sodales, rhoncus malesuada ligula. </p>
-          <div class="row justify-content-center counters py-4 gy-4 gy-md-0 my-5-5">
-            <div class="col-md-auto mt-0">
-              <div class="counter appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="150">
-                <strong class="text-color-secondary text-13" data-to="30" data-append="+" data-plugin-options="{'accY': -200}">0</strong>
-                <span class="text-color-secondary font-weight-bold text-4">Certified Instructors</span>
-              </div>
-            </div>
-            <div class="col-md-auto px-xl-5 mx-md-5">
-              <div class="counter appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="300">
-                <strong class="text-color-primary text-13" data-to="2000" data-append="+" data-plugin-options="{'accY': -200}">0</strong>
-                <span class="text-color-primary font-weight-bold text-4">Students Enrolled</span>
-              </div>
-            </div>
-            <div class="col-md-auto">
-              <div class="counter appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="450">
-                <strong class="text-color-secondary text-13" data-to="200" data-append="+" data-plugin-options="{'accY': -200}">0</strong>
-                <span class="text-color-secondary font-weight-bold text-4">Complete Courses</span>
-              </div>
-            </div>
-          </div>
-          <p class="text-3-5 line-height-9 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ultricies nunc, eu interdum enim convallis pretium. Quisque eu neque augue. Aliquam egestas nunc at efficitur faucibus. Praesent mauris eros, tincidunt id enim sodales, rhoncus malesuada ligula. </p>
+          <p class="font-weight-medium text-4">{!! $data->desc !!}</p>
 
-          <img class="img-fluid lazyload" src="{{ url('') }}/img/lazy.png" data-src="{{ url('') }}/img/demos/education/generic/generic-1.jpg" alt="" />
+          <img class="img-fluid lazyload" src="{{ url('') }}/img/lazy.png" data-src="{{ asset('storage/' . $data->image) }}" alt="" />
 
           <div class="row justify-content-center my-5">
             <div class="col-lg-8 text-center">
@@ -68,7 +46,7 @@
                 <div class="overflow-hidden mb-3-5">
                   <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="100">Our Mission</h2>
                 </div>
-                <p class="text-3-5 line-height-9 mb-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dapibus elementum ante quis commodo. Fusce tincidunt pretium pellentesque. Nulla vitae ante tincidunt, suscipit dui sit amet, posuere tortor. Sed elementum ex fringilla, molestie nibh eu, pulvinar diam. Fusce vestibulum nisl a lectus consequat, vel semper arcu tempor. Sed ac consequat nunc.</p>
+                <p class="text-3-5 line-height-9 mb-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="300">{{ $data->mission }}</p>
               </div>
             </div>
             <div class="col-md-6">
@@ -76,7 +54,7 @@
                 <div class="overflow-hidden mb-3-5">
                   <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="500">Our Vision</h2>
                 </div>
-                <p class="text-3-5 line-height-9 mb-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dapibus elementum ante quis commodo. Fusce tincidunt pretium pellentesque. Nulla vitae ante tincidunt, suscipit dui sit amet, posuere tortor. Sed elementum ex fringilla, molestie nibh eu, pulvinar diam. Fusce vestibulum nisl a lectus consequat, vel semper arcu tempor. Sed ac consequat nunc.</p>
+                <p class="text-3-5 line-height-9 mb-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="700">{{ $data->vision }}</p>
               </div>
             </div>
           </div>

@@ -1,11 +1,11 @@
 <x-layout>
   <div role="main" class="main">
 
-    <section class="page-header page-header-modern page-header-background page-header-background-md custom-bg-color-grey-1 mb-0" style="background-image: url(img/demos/education/backgrounds/page-header.jpg); background-position: 100% 100%;">
+    <section class="page-header page-header-modern page-header-background page-header-background-md custom-bg-color-grey-1 mb-0" style="background-image: url({{ url('') }}/img/demos/education/backgrounds/page-header.jpg); background-position: 100% 100%;">
       <div class="container">
         <div class="row mt-5">
           <div class="col align-self-center p-static text-center">
-            <h1 class="font-weight-bold text-color-secondary text-10">Course Name Example</h1>
+            <h1 class="font-weight-bold text-color-secondary text-10">{{ $program->prog_name }}</h1>
           </div>
         </div>
       </div>
@@ -16,7 +16,7 @@
           <ul class="breadcrumb d-block">
             <li><a href="#">Home</a></li>
             <li><a href="#">Courses</a></li>
-            <li class="active">Course Name Example</li>
+            <li class="active">{{ $program->prog_name }}</li>
           </ul>
         </div>
       </div>
@@ -45,7 +45,7 @@
                   <div class="d-flex flex-row align-items-center h-100">
                     <div class="p-0">
                       <p class="mb-0 text-1 text-uppercase p-relative top-3">Category</p>
-                      <h4 class="mb-0 text-color-secondary text-4"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Web Development</a></h4>
+                      <h4 class="mb-0 text-color-secondary text-4"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">{{ $program->category->category_name }}</a></h4>
                     </div>
                   </div>
                 </div>
@@ -67,24 +67,25 @@
 
               <div class="pb-5">
                 <div class="ratio ratio-16x9">
-                  <iframe src="http://player.vimeo.com/video/67957799" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                  <img src="{{ asset('storage/' . $program->prog_image) }}" alt="{{ $program->prog_name }}">
+                  {{-- <iframe src="http://player.vimeo.com/video/67957799" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> --}}
                 </div>
               </div>
 
               <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3">Description</h2>
 
-              <p class="text-3-5 line-height-9 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dapibus elementum ante quis commodo. Fusce tincidunt pretium pellentesque. Nulla vitae ante tincidunt, suscipit dui sit amet, posuere tortor. Sed elementum ex fringilla, molestie nibh eu, pulvinar diam. Fusce vestibulum nisl a lectus consequat, vel semper arcu tempor. Sed ac consequat nunc.</p>
+              <div class="text-3-5 line-height-9 mb-5"> {!! $program->desc !!}</div>
 
-              <div class="row align-items-md-end">
+              {{-- <div class="row align-items-md-end">
                 <div class="col-md-6">
                   <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-4">Course Content</h2>
                 </div>
                 <div class="col-md-6 text-md-end">
                   <p class="text-color-secondary font-weight-semi-bold text-3 line-height-1 mb-4 opacity-5">4 sections • 16 lectures • 17h 2m total length</p>
                 </div>
-              </div>
+              </div> --}}
 
-              <div class="accordion custom-accordion-style-1" id="accordion1">
+              {{-- <div class="accordion custom-accordion-style-1" id="accordion1">
                 <div class="card card-default">
                   <div class="card-header" id="collapse1HeadingOne">
                     <h4 class="card-title m-0">
@@ -273,8 +274,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
+              </div> --}}
+              {{--
               <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3 mt-5">Reviews</h2>
 
               <ul class="comments">
@@ -304,7 +305,7 @@
                     </div>
                   </div>
                 </li>
-              </ul>
+              </ul> --}}
 
               <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-4 mt-4">Related Courses</h2>
 
@@ -403,19 +404,13 @@
               <h2 class="text-color-secondary font-weight-semi-bold text-5 line-height-1 mb-3">Categories</h2>
 
               <ul class="nav nav-list flex-column p-relative right-9">
-                <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Design (2)</a></li>
-                <li class="nav-item">
-                  <a class="nav-link bg-transparent border-0 active" href="#">Web Development (4)</a>
-                  <ul>
-                    <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Data Science</a></li>
-                    <li class="nav-item"><a class="nav-link bg-transparent border-0 active text-color-primary" href="#">Mobile Development</a></li>
-                    <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Software Testing</a></li>
-                    <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Development Tools</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Personal Development (3)</a></li>
-                <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Business (2)</a></li>
-                <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Photography (1)</a></li>
+                @foreach ($list_categories as $item)
+                  <li class="nav-item">
+                    <a class="nav-link bg-transparent border-0" href="{{ url('programs?category=' . Str::slug($item->category_name)) }}">
+                      {{ $item->category_name }} ({{ $item->programs_count }})
+                    </a>
+                  </li>
+                @endforeach
               </ul>
             </div>
 

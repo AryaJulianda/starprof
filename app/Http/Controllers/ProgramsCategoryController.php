@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CourseCategory;
+use App\Models\ProgramsCategory;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProgramsCategoryController extends Controller
@@ -11,7 +11,7 @@ class ProgramsCategoryController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = CourseCategory::select(['id', 'category_name', 'created_by', 'created_at']);
+            $data = ProgramsCategory::select(['id', 'category_name', 'created_by', 'created_at']);
             $dataTable = DataTables::of($data)->make(true);
             return $dataTable;
         }
@@ -35,7 +35,7 @@ class ProgramsCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $category = new CourseCategory();
+        $category = new ProgramsCategory();
         $category->category_name = $request['category_name'];
         $category->created_by = 0;
 
@@ -51,7 +51,7 @@ class ProgramsCategoryController extends Controller
         $data = [
             'type'     => 'view',
             'title'    => 'Detail Programs Category',
-            'dataForm' => CourseCategory::where('id', $id)->first()
+            'dataForm' => ProgramsCategory::where('id', $id)->first()
         ];
 
         return view('admin.programs-category.form', $data);
@@ -62,7 +62,7 @@ class ProgramsCategoryController extends Controller
         $data = [
             'type'     => 'edit',
             'title'    => 'Edit Programs Category',
-            'dataForm' => CourseCategory::where('id', $id)->first()
+            'dataForm' => ProgramsCategory::where('id', $id)->first()
         ];
 
         return view('admin.programs-category.form', $data);
@@ -70,7 +70,7 @@ class ProgramsCategoryController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $c_category = CourseCategory::where('id', $id)->first();
+        $c_category = ProgramsCategory::where('id', $id)->first();
         $c_category->category_name = $request['category_name'];
         $c_category->updated_by = 1;
 
@@ -83,7 +83,7 @@ class ProgramsCategoryController extends Controller
 
     public function destroy(string $id)
     {
-        $c_category = CourseCategory::where('id', $id)->first();
+        $c_category = ProgramsCategory::where('id', $id)->first();
         if ($c_category->delete()) {
             return response()->json(['message' => 'Programs Category deleted successfully'], 200);
         } else {

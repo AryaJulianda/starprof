@@ -16,25 +16,21 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>Trans Code</th>
-                <th>Department Name</th>
-                <th>Department Code</th>
+                <th>Program Name</th>
+                <th>Program Category</th>
                 <th>Created By</th>
                 <th>Created At</th>
                 <th>Actions</th>
               </tr>
             </thead>
-
-
             <tbody>
 
             </tbody>
           </table>
-
         </div>
       </div>
     </div> <!-- end col -->
   </div> <!-- end row -->
 
-  <script src="{{ url('js/pages/departments/index.js') }}"></script>
+  <script src="{{ url("admin/js/pages/$module_path/index.js") }}"></script>
 </x-admin-layout>

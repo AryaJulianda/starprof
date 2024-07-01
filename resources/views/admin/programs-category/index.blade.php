@@ -22,17 +22,13 @@
                 <th>Actions</th>
               </tr>
             </thead>
-
-
             <tbody>
 
             </tbody>
           </table>
-
         </div>
       </div>
     </div> <!-- end col -->
   </div> <!-- end row -->
-
   <script src="{{ url('admin/js/pages/programs-category/index.js') }}"></script>
 </x-admin-layout>

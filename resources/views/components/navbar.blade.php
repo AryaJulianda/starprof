@@ -63,7 +63,7 @@
                       <a href="{{ url('') }}/about-us" class="nav-link">About Us</a>
                     </li>
                     <li>
-                      <a href="{{ url('') }}/courses" class="nav-link">Courses</a>
+                      <a href="{{ url('') }}/programs" class="nav-link">Programs</a>
                     </li>
                     <li>
                       <a href="{{ url('') }}/instructors" class="nav-link">Instructors</a>

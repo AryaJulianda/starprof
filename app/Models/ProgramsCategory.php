@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\TimestampLocalized;
 
-class CourseCategory extends Model
+class ProgramsCategory extends Model
 {
     use HasFactory;
     use TimestampLocalized;
-    protected $table = 'course_category';
+    protected $table = 'programs_category';
+
+    public function programs()
+    {
+        return $this->hasMany(Programs::class, 'prog_category');
+    }
 }
