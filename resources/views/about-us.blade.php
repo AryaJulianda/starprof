@@ -26,7 +26,7 @@
 
           <img class="img-fluid lazyload" src="{{ url('') }}/img/lazy.png" data-src="{{ asset('storage/' . $data->image) }}" alt="" />
 
-          <div class="row justify-content-center my-5">
+          {{-- <div class="row justify-content-center my-5">
             <div class="col-lg-8 text-center">
               <div class="testimonial testimonial-style-2 testimonial-with-quotes testimonial-quotes-primary mb-0">
                 <blockquote>
@@ -38,9 +38,9 @@
               </div>
               <img src="{{ url('') }}/img/demos/education/signature.png" class="img-fluid my-4" alt="" />
             </div>
-          </div>
+          </div> --}}
 
-          <div class="row">
+          <div class="row my-5">
             <div class="col-md-6">
               <div class="overflow-hidden">
                 <div class="overflow-hidden mb-3-5">

@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="bg-light">
+    {{-- <div class="bg-light">
       <div class="container py-4">
         <div class="row pb-2 mb-1">
           <div class="col-md-4 mb-4 mb-md-0">
@@ -108,7 +108,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <section class="section custom-bg-color-grey-1 border-0 m-0" id="courses">
       <div class="container position-relative my-4">

@@ -22,12 +22,7 @@
       <div class="row py-3">
         <div class="col">
 
-          <p class="font-weight-medium text-4">Aenean sollicitudin, lorem quis bibendum auctor, <span class="highlight highlight-primary highlight-bg-opacity highlight-animated" data-appear-animation="highlight-animated-start" data-appear-animation-delay="2000" data-plugin-options="{'flagClassOnly': true}">nisi elit consequat ipsum</span>, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. </p>
-          <p class="text-3-5 line-height-9">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ultricies nunc, eu interdum enim convallis pretium. Quisque eu neque augue. Aliquam egestas nunc at efficitur faucibus. Praesent mauris eros, tincidunt id enim sodales, rhoncus malesuada ligula. </p>
-
-          <hr class="solid my-5">
-
-          <div class="row">
+          <div class="row d-flex justify-content-center">
             <div class="col-md-3 mb-4 mb-md-0 text-center">
               <div class="feature-box d-flex flex-column align-items-center">
                 <div class="feature-box-icon bg-color-quaternary feature-box-icon-extra-large appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="250">
@@ -35,7 +30,7 @@
                 </div>
                 <div class="feature-box-info ps-0 appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="150">
                   <p class="mt-2 pt-1 mb-0 text-1 p-relative top-5 text-uppercase">Address</p>
-                  <p class="mb-0 text-color-secondary text-4 font-weight-semi-bold">123 Porto Blvd, Suite 100</p>
+                  <p class="mb-0 text-color-secondary text-4 font-weight-semi-bold">{{ $data->location }}</p>
                 </div>
               </div>
             </div>
@@ -46,7 +41,7 @@
                 </div>
                 <div class="feature-box-info ps-0 appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="150">
                   <p class="mt-2 pt-1 mb-0 text-1 p-relative top-5 text-uppercase">Phone Number</p>
-                  <p class="mb-0 text-color-secondary text-4 font-weight-semi-bold"><a href="tel:+1234567890" class="text-color-secondary">(800) 123-4567</a></p>
+                  <p class="mb-0 text-color-secondary text-4 font-weight-semi-bold">{{ $data->phone }}</p>
                 </div>
               </div>
             </div>
@@ -57,18 +52,7 @@
                 </div>
                 <div class="feature-box-info ps-0 appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="150">
                   <p class="mt-2 pt-1 mb-0 text-1 p-relative top-5 text-uppercase">E-mail Address</p>
-                  <p class="mb-0 text-color-secondary text-4 font-weight-semi-bold"><a href="mailto:porto@portotheme.com" class="text-color-secondary">porto@portotheme.com</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 mb-4 mb-md-0 text-center">
-              <div class="feature-box d-flex flex-column align-items-center">
-                <div class="feature-box-icon bg-color-quaternary feature-box-icon-extra-large appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="250">
-                  <img class="icon-animated" width="100" height="46" src="{{ url('') }}/img/demos/education/icons/icon-appointment.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary'}" />
-                </div>
-                <div class="feature-box-info ps-0 appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="150">
-                  <p class="mt-2 pt-1 mb-0 text-1 p-relative top-5 text-uppercase">Working Days / Hours</p>
-                  <p class="mb-0 text-color-secondary text-4 font-weight-semi-bold">9:00AM - 8:00PM</p>
+                  <p class="mb-0 text-color-secondary text-4 font-weight-semi-bold"><a href="mailto:{{ $data->email }}" class="text-color-secondary">{{ $data->email }}</a></p>
                 </div>
               </div>
             </div>

@@ -76,29 +76,33 @@ class ProgramsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $program = Programs::findOrFail($id);
+        try {
+            $program = Programs::findOrFail($id);
 
-        $validatedData = $request->validate([
-            'prog_name' => 'required|string|max:255',
-            'prog_category' => 'required|integer|exists:programs_category,id',
-            'prog_image_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'desc' => 'nullable|string',
-        ]);
+            $validatedData = $request->validate([
+                'prog_name' => 'required|string|max:255',
+                'prog_category' => 'required|integer|exists:programs_category,id',
+                'prog_image_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'desc' => 'nullable|string',
+            ]);
 
-        if ($request->hasFile('prog_image_file')) {
-            if ($program->prog_image) {
-                Storage::disk('public')->delete($program->prog_image);
+            if ($request->hasFile('prog_image_file')) {
+                if ($program->prog_image) {
+                    Storage::disk('public')->delete($program->prog_image);
+                }
+
+                $imagePath = $request->file('prog_image_file')->store('programs_images', 'public');
+                $validatedData['prog_image'] = $imagePath;
             }
 
-            $imagePath = $request->file('prog_image_file')->store('programs_images', 'public');
-            $validatedData['prog_image'] = $imagePath;
+            $validatedData['updated_by'] = auth()->user()->id;
+
+            $program->update($validatedData);
+
+            return response()->json(['success' => 'Program updated successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to create program: ' . $e->getMessage()], 500);
         }
-
-        $validatedData['updated_by'] = auth()->user()->id;
-
-        $program->update($validatedData);
-
-        return response()->json(['success' => 'Program updated successfully']);
     }
 
     /**
@@ -137,8 +141,22 @@ class ProgramsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        try {
+            $program = Programs::findOrFail($id);
+
+            // Delete the program image from storage
+            if ($program->prog_image) {
+                Storage::disk('public')->delete($program->prog_image);
+            }
+
+            // Delete the program record
+            $program->delete();
+
+            return response()->json(['success' => 'Program deleted successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete program: ' . $e->getMessage()], 500);
+        }
     }
 }

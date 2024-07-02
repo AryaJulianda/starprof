@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseCategoryController;
+use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\ProgramsCategoryController;
 use App\Http\Controllers\ProgramsController;
 use App\Models\AboutUs;
+use App\Models\ContactUs;
 use App\Models\Programs;
 use App\Models\ProgramsCategory;
 use Illuminate\Http\Request;
@@ -56,7 +58,7 @@ Route::get('/blog', function () {
 });
 
 Route::get('/contact-us', function () {
-    return view('contact-us');
+    return view('contact-us', ['data' => ContactUs::first()]);
 });
 
 // ADMIN
@@ -111,7 +113,34 @@ Route::prefix('adm')->group(function () {
     })->middleware('auth');
 
     Route::get('/contact-us', function () {
-        return view('admin.contact-us', ["title" => "Contact Us"]);
+        $data = [
+            "title" => "Contact Us",
+            "module_path" => "contact-us",
+            "dataForm" => ContactUs::first()
+        ];
+        return view('admin.contact-us', $data);
+    })->middleware('auth');
+
+    Route::put('/contact-us', function (Request $request) {
+        $request->validate([
+            'location' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|string|email',
+        ]);
+
+        $contactUs = ContactUs::first();
+        if (!$contactUs) {
+            $contactUs = new ContactUs();
+        }
+
+        $contactUs->location = $request->location;
+        $contactUs->phone = $request->phone;
+        $contactUs->email = $request->email;
+        $contactUs->updated_by = Auth::id();
+
+        $contactUs->save();
+
+        return redirect()->back()->with('success', 'Contact Us updated successfully.');
     })->middleware('auth');
 
     Route::get('/login', function () {
@@ -123,6 +152,8 @@ Route::prefix('adm')->group(function () {
 
     Route::resource('programs', ProgramsController::class)->middleware('auth');
     Route::resource('programs-category', ProgramsCategoryController::class)->middleware('auth');
+
+    Route::resource('instructors', InstructorsController::class)->middleware('auth');
 });
 
 // Route::resource('options', OptionController::class);
