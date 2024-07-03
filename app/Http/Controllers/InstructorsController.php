@@ -81,7 +81,6 @@ class InstructorsController extends Controller
 
             $validatedData = $request->validate([
                 'full_name' => 'required|string|max:255',
-                'photo_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'desc' => 'nullable|string',
             ]);
 

@@ -32,6 +32,17 @@
                   </select>
                 </div>
               </div>
+              <div class="col-4">
+                <div class="mt-3">
+                  <label for="instructor" class="form-label">Instructor</label>
+                  <select class="form-select" name="instructor" id="instructor" {{ $type == 'view' ? 'disabled' : 'required' }}>
+                    <option value="">-- Select Instructor --</option>
+                    @foreach ($select_instructors as $item)
+                      <option value="{{ $item->id }}" {{ isset($dataForm) && $item->id == $dataForm->instructor ? 'selected' : '' }}>{{ $item->full_name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
               <div class="col-12">
                 <div class="mt-3">
                   <label for="prog_image_file" class="form-label d-block">Image</label>

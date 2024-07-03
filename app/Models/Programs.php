@@ -14,6 +14,7 @@ class Programs extends Model
     protected $fillable = [
         'prog_name',
         'prog_category',
+        'instructor',
         'prog_image',
         'desc',
         'created_by',
@@ -23,6 +24,11 @@ class Programs extends Model
     public function category()
     {
         return $this->belongsTo(ProgramsCategory::class, 'prog_category');
+    }
+
+    public function join_instructor()
+    {
+        return $this->belongsTo(Instructors::class, 'instructor');
     }
 
     public function creator()

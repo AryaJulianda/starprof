@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Instructors;
 use App\Models\Programs;
 use App\Models\ProgramsCategory;
 use Illuminate\Http\Request;
@@ -37,7 +38,8 @@ class ProgramsController extends Controller
             'module_path' => 'programs',
             'type'  => 'create',
             'title' => 'Create Program',
-            'select_programs_category' => ProgramsCategory::all()
+            'select_programs_category' => ProgramsCategory::all(),
+            'select_instructors' => Instructors::all(),
         ];
 
         return view('admin.programs.form', $data);
@@ -52,6 +54,7 @@ class ProgramsController extends Controller
             $validatedData = $request->validate([
                 'prog_name' => 'required|string|max:255',
                 'prog_category' => 'required|integer|exists:programs_category,id',
+                'instructor' => 'required|integer|exists:instructors,id',
                 'prog_image_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'desc' => 'nullable|string',
             ]);
@@ -82,6 +85,7 @@ class ProgramsController extends Controller
             $validatedData = $request->validate([
                 'prog_name' => 'required|string|max:255',
                 'prog_category' => 'required|integer|exists:programs_category,id',
+                'instructor' => 'required|integer|exists:instructors,id',
                 'prog_image_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'desc' => 'nullable|string',
             ]);
@@ -115,6 +119,7 @@ class ProgramsController extends Controller
             'type'        => 'view',
             'title'       => 'Detail Program',
             'select_programs_category' => ProgramsCategory::all(),
+            'select_instructors' => Instructors::all(),
             'dataForm'    => Programs::where('id', $id)->first()
         ];
 
@@ -131,6 +136,7 @@ class ProgramsController extends Controller
             'type'        => 'edit',
             'title'       => 'Detail Program',
             'select_programs_category' => ProgramsCategory::all(),
+            'select_instructors' => Instructors::all(),
             'dataForm'    => Programs::where('id', $id)->first()
         ];
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProgramsCategoryController;
 use App\Http\Controllers\ProgramsController;
 use App\Models\AboutUs;
 use App\Models\ContactUs;
+use App\Models\Instructors;
 use App\Models\Programs;
 use App\Models\ProgramsCategory;
 use Illuminate\Http\Request;
@@ -28,11 +29,10 @@ Route::get('/programs', function (Request $request) {
     if ($categorySlug) {
         $category = ProgramsCategory::where('category_name', Str::slug($categorySlug, ' '))->first();
         $categoryId = $category ? $category->id : null;
-        $list_programs = Programs::where('prog_category', $categoryId)->paginate(2);
+        $list_programs = Programs::where('prog_category', $categoryId)->with('join_instructor')->paginate(2);
     } else {
-        $list_programs = Programs::paginate(2);
+        $list_programs = Programs::with('join_instructor')->paginate(2);
     }
-
     return view('programs', [
         'list_programs' => $list_programs,
         'list_categories' => ProgramsCategory::withCount('programs')->get(),
@@ -50,7 +50,8 @@ Route::get('/program-details/{slug}', function ($slug) {
 });
 
 Route::get('/instructors', function () {
-    return view('instructors');
+    $data = Instructors::paginate(5);
+    return view('instructors', ['data' => $data]);
 });
 
 Route::get('/blog', function () {

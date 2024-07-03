@@ -27,323 +27,69 @@
 
           <div class="col">
 
-            <div class="row mb-5">
-              <div class="col">
-                <div class="d-flex flex-wrap bg-light custom-link-hover-effects custom-instructor-details">
-                  <div class="position-relative lazyload col-12 col-md-3" data-bg-src="{{ url('') }}/img/demos/education/team/team-1.jpg" style="background-position: center; background-size: cover; min-height: 302px;">
-                  </div>
-                  <div class="col-md-9 p-5">
-
-                    <div class="d-md-flex mb-4">
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Full Name</p>
-                            <h4 class="mb-0 text-color-secondary text-6">John Doe</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Available Courses</p>
-                            <h4 class="mb-0 text-color-secondary text-3">12</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 flex-grow-1">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Average Rating</p>
-                            <h4 class="mb-0 text-color-secondary text-3">4.75</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-4">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <a href="#" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3">VIEW COURSES</a>
-                          </div>
-                        </div>
-                      </div>
+            @foreach ($data as $item)
+              <div class="row mb-5">
+                <div class="col">
+                  <div class="d-flex flex-wrap bg-light custom-link-hover-effects custom-instructor-details">
+                    <div class="position-relative lazyload col-12 col-md-3" data-bg-src="{{ asset('storage/' . $item->photo) }}" style="background-position: center; background-size: cover; min-height: 302px; background-image:url('{{ asset('storage/' . $item->photo) }}')">
                     </div>
+                    <div class="col-md-9 p-5">
 
-                    <div class="custom-read-more-style-1" data-plugin-readmore data-plugin-options="{
-                                                         'buttonOpenLabel': 'View More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
-                                                         'buttonCloseLabel': 'View Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
-                                                         'maxHeight': 120
-                                                     }">
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <div class="readmore-button-wrapper d-none">
-                        <a href="#" class="text-decoration-none">
-                          View More
-                          <i class="fas fa-chevron-down"></i>
-                        </a>
+                      <div class="d-md-flex mb-4">
+                        <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
+                          <div class="d-flex flex-row align-items-center h-100">
+                            <div class="p-0">
+                              <p class="mb-0 text-1 text-uppercase p-relative top-3">Full Name</p>
+                              <h4 class="mb-0 text-color-secondary text-6">{{ $item->full_name }}</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
+                          <div class="d-flex flex-row align-items-center h-100">
+                            <div class="p-0">
+                              <p class="mb-0 text-1 text-uppercase p-relative top-3">Available Programs</p>
+                              <h4 class="mb-0 text-color-secondary text-3">12</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ps-md-4">
+                          <div class="d-flex flex-row align-items-center h-100">
+                            <div class="p-0">
+                              <a href="{{ url('programs') }}" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3">VIEW PROGRAMS</a>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
 
+                      <div class="custom-read-more-style-1" data-plugin-readmore data-plugin-options="{
+                                                            'buttonOpenLabel': 'View More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
+                                                            'buttonCloseLabel': 'View Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
+                                                            'maxHeight': 120
+                                                        }">
+                        {!! $item->desc !!}
+                        <div class="readmore-button-wrapper d-none">
+                          <a href="#" class="text-decoration-none">
+                            View More
+                            <i class="fas fa-chevron-down"></i>
+                          </a>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row mb-5">
-              <div class="col">
-                <div class="d-flex flex-wrap bg-light custom-link-hover-effects custom-instructor-details">
-                  <div class="position-relative lazyload col-12 col-md-3" data-bg-src="{{ url('') }}/img/demos/education/team/team-2.jpg" style="background-position: center; background-size: cover; min-height: 302px;">
-                  </div>
-                  <div class="col-md-9 p-5">
+            @endforeach
 
-                    <div class="d-md-flex mb-4">
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Full Name</p>
-                            <h4 class="mb-0 text-color-secondary text-6">Janice Doe</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Available Courses</p>
-                            <h4 class="mb-0 text-color-secondary text-3">12</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 flex-grow-1">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Average Rating</p>
-                            <h4 class="mb-0 text-color-secondary text-3">4.75</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-4">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <a href="#" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3">VIEW COURSES</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="custom-read-more-style-1" data-plugin-readmore data-plugin-options="{
-                                                         'buttonOpenLabel': 'View More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
-                                                         'buttonCloseLabel': 'View Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
-                                                         'maxHeight': 120
-                                                     }">
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <div class="readmore-button-wrapper d-none">
-                        <a href="#" class="text-decoration-none">
-                          View More
-                          <i class="fas fa-chevron-down"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-5">
-              <div class="col">
-                <div class="d-flex flex-wrap bg-light custom-link-hover-effects custom-instructor-details">
-                  <div class="position-relative lazyload col-12 col-md-3" data-bg-src="{{ url('') }}/img/demos/education/team/team-3.jpg" style="background-position: center; background-size: cover; min-height: 302px;">
-                  </div>
-                  <div class="col-md-9 p-5">
-
-                    <div class="d-md-flex mb-4">
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Full Name</p>
-                            <h4 class="mb-0 text-color-secondary text-6">Robert Doe</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Available Courses</p>
-                            <h4 class="mb-0 text-color-secondary text-3">12</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 flex-grow-1">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Average Rating</p>
-                            <h4 class="mb-0 text-color-secondary text-3">4.75</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-4">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <a href="#" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3">VIEW COURSES</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="custom-read-more-style-1" data-plugin-readmore data-plugin-options="{
-                                                         'buttonOpenLabel': 'View More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
-                                                         'buttonCloseLabel': 'View Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
-                                                         'maxHeight': 120
-                                                     }">
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <div class="readmore-button-wrapper d-none">
-                        <a href="#" class="text-decoration-none">
-                          View More
-                          <i class="fas fa-chevron-down"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-5">
-              <div class="col">
-                <div class="d-flex flex-wrap bg-light custom-link-hover-effects custom-instructor-details">
-                  <div class="position-relative lazyload col-12 col-md-3" data-bg-src="{{ url('') }}/img/demos/education/team/team-4.jpg" style="background-position: center; background-size: cover; min-height: 302px;">
-                  </div>
-                  <div class="col-md-9 p-5">
-
-                    <div class="d-md-flex mb-4">
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Full Name</p>
-                            <h4 class="mb-0 text-color-secondary text-6">Alice Doe</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Available Courses</p>
-                            <h4 class="mb-0 text-color-secondary text-3">12</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 flex-grow-1">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Average Rating</p>
-                            <h4 class="mb-0 text-color-secondary text-3">4.75</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-4">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <a href="#" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3">VIEW COURSES</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="custom-read-more-style-1" data-plugin-readmore data-plugin-options="{
-                                                         'buttonOpenLabel': 'View More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
-                                                         'buttonCloseLabel': 'View Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
-                                                         'maxHeight': 120
-                                                     }">
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <div class="readmore-button-wrapper d-none">
-                        <a href="#" class="text-decoration-none">
-                          View More
-                          <i class="fas fa-chevron-down"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-5">
-              <div class="col">
-                <div class="d-flex flex-wrap bg-light custom-link-hover-effects custom-instructor-details">
-                  <div class="position-relative lazyload col-12 col-md-3" data-bg-src="{{ url('') }}/img/demos/education/team/team-5.jpg" style="background-position: center; background-size: cover; min-height: 302px;">
-                  </div>
-                  <div class="col-md-9 p-5">
-
-                    <div class="d-md-flex mb-4">
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Full Name</p>
-                            <h4 class="mb-0 text-color-secondary text-6">Bob Doe</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 border-right">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Available Courses</p>
-                            <h4 class="mb-0 text-color-secondary text-3">12</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-0 mb-3 mb-md-0 pe-4 me-4 flex-grow-1">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <p class="mb-0 text-1 text-uppercase p-relative top-3">Average Rating</p>
-                            <h4 class="mb-0 text-color-secondary text-3">4.75</h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ps-md-4">
-                        <div class="d-flex flex-row align-items-center h-100">
-                          <div class="p-0">
-                            <a href="#" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3">VIEW COURSES</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="custom-read-more-style-1" data-plugin-readmore data-plugin-options="{
-                                                         'buttonOpenLabel': 'View More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
-                                                         'buttonCloseLabel': 'View Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
-                                                         'maxHeight': 120
-                                                     }">
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <p class="text-3-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate posuere tortor luctus vulputate. Cras laoreet pretium blandit. </p>
-                      <div class="readmore-button-wrapper d-none">
-                        <a href="#" class="text-decoration-none">
-                          View More
-                          <i class="fas fa-chevron-down"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            <!-- Pagination Links -->
             <div class="row">
               <div class="col">
                 <ul class="pagination float-end p-relative bottom-2">
-                  <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+                  {{ $data->links('pagination::bootstrap-4') }}
                 </ul>
               </div>
             </div>
+
           </div>
         </div>
       </div>

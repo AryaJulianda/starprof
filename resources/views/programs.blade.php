@@ -41,7 +41,7 @@
                       </div>
                     </div>
                     <div class="card-body">
-                      <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
+                      <p class="mb-0 text-1 p-relative top-5 text-uppercase">{{ $item->join_instructor->full_name }}</p>
                       <h4 class="mb-3 text-color-secondary"><a href="{{ url('program-details/' . Str::slug($item->prog_name)) }}" class="text-color-secondary" title="">{{ $item->prog_name }}</a></h4>
 
                       <div class="float-end">
