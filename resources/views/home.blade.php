@@ -247,7 +247,8 @@
         </div>
       </div>
     </section>
-    <section class="section section-background custom-section-background-1 bg-color-tertiary border-0 m-0" style="background-image: url(img/demos/education/backgrounds/background-1.jpg); background-position: 100% 100%; background-repeat: no-repeat; background-size: contain;">
+
+    {{-- <section class="section section-background custom-section-background-1 bg-color-tertiary border-0 m-0" style="background-image: url({{ url('') }}/img/demos/education/backgrounds/background-1.jpg); background-position: 100% 100%; background-repeat: no-repeat; background-size: contain;">
       <div class="container my-4">
         <div class="row mb-4">
           <div class="col-lg-6">
@@ -303,7 +304,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> --}}
 
     <section class="section custom-bg-color-grey-1 border-0 m-0">
       <div class="container position-relative my-4">

@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarouselsController;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\ProgramsCategoryController;
 use App\Http\Controllers\ProgramsController;
+use App\Http\Controllers\TestimonialsController;
+use App\Http\Controllers\WhysController;
 use App\Models\AboutUs;
 use App\Models\ContactUs;
 use App\Models\Instructors;
@@ -69,7 +72,10 @@ Route::prefix('adm')->group(function () {
     })->middleware('auth');
 
     Route::get('/home', function () {
-        return view('admin.home', ["title" => "Home"]);
+        return view('admin.home.index', [
+            "title" => "Home",
+            "module_path" => "home"
+        ]);
     })->middleware('auth');
 
     Route::get('/about-us', function () {
@@ -150,6 +156,10 @@ Route::prefix('adm')->group(function () {
 
     Route::post('authenticate', [AuthController::class, 'authenticate']);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::resource('carousels', CarouselsController::class)->middleware('auth');
+    Route::resource('testimonials', TestimonialsController::class)->middleware('auth');
+    Route::resource('whys', WhysController::class)->middleware('auth');
 
     Route::resource('programs', ProgramsController::class)->middleware('auth');
     Route::resource('programs-category', ProgramsCategoryController::class)->middleware('auth');
