@@ -1,4 +1,3 @@
-// app/Providers/RouteServiceProvider.php
 <?php
 
 namespace App\Providers;
