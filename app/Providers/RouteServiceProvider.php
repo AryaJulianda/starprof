@@ -36,7 +36,6 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
         $this->mapWebRoutes();
-        $this->mapAdminRoutes();
     }
 
     /**
@@ -51,21 +50,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
-    }
-
-    /**
-     * Define the "admin" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapAdminRoutes()
-    {
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->domain('admin.course.local') // Ganti dengan subdomain lokal Anda
-            ->group(base_path('routes/admin.php'));
     }
 
     /*

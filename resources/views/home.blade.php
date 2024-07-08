@@ -6,12 +6,33 @@
         <div class="owl-stage-outer">
           <div class="owl-stage">
 
+            @foreach ($carousels as $item)
+              <div class="owl-item position-relative overflow-hidden">
+                <div class="background-image-wrapper custom-bg-color-grey-1 position-absolute top-0 left-0 right-0 bottom-0" data-appear-animation="kenBurnsToLeft" data-appear-animation-duration="30s" data-plugin-options="{'minWindowWidth': 0}" data-carousel-onchange-show style="background-image: url({{ url('') }}/img/demos/education/slides/slide-1-bg.jpg); background-size: cover; background-position: 100% 100%;">
+                </div>
+
+                <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid position-absolute bottom-0 d-none d-lg-block custom-slider-el-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600" alt="" />{{-- 587*689 --}}
+
+                <div class="container h-100 r-relative z-index-1">
+                  <div class="row h-100 align-items-center">
+                    <div class="col">
+                      <div class="text-end float-lg-start custom-slider-text-block">
+                        <h2 class="text-color-secondary font-weight-extra-bold mb-4 custom-slider-text-1 p-relative z-index-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800"><em>#</em>{{ $item->text_1 }}</h2>
+                        <h2 class="text-color-default font-weight-semi-bold mb-3 text-5 p-relative z-index-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1000">{{ $item->text_2 }}</h2>
+                        <a href="{{ url('') }}/#courses" data-hash data-hash-offset="0" data-hash-offset-lg="70" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200">GET STARTED</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+
             <!-- Carousel Slide 1 -->
-            <div class="owl-item position-relative overflow-hidden">
+            {{-- <div class="owl-item position-relative overflow-hidden">
               <div class="background-image-wrapper custom-bg-color-grey-1 position-absolute top-0 left-0 right-0 bottom-0" data-appear-animation="kenBurnsToLeft" data-appear-animation-duration="30s" data-plugin-options="{'minWindowWidth': 0}" data-carousel-onchange-show style="background-image: url(img/demos/education/slides/slide-1-bg.jpg); background-size: cover; background-position: 100% 100%;">
               </div>
 
-              <img src="{{ url('') }}/img/demos/education/slides/slide-1-1.png" class="img-fluid position-absolute bottom-0 d-none d-lg-block custom-slider-el-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600" alt="" />
+              <img src="{{ url('') }}/img/demos/education/slides/slide-1-1.png" class="img-fluid position-absolute bottom-0 d-none d-lg-block custom-slider-el-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600" alt="" />//587*689
 
               <div class="container h-100 r-relative z-index-1">
                 <div class="row h-100 align-items-center">
@@ -24,10 +45,10 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
 
             <!-- Carousel Slide 2 -->
-            <div class="owl-item position-relative overflow-hidden">
+            {{-- <div class="owl-item position-relative overflow-hidden">
               <div class="background-image-wrapper custom-bg-color-grey-1 position-absolute top-0 left-0 right-0 bottom-0" data-appear-animation="kenBurnsToLeft" data-appear-animation-duration="30s" data-plugin-options="{'minWindowWidth': 0}" data-carousel-onchange-show style="background-image: url(img/demos/education/slides/slide-2-bg.jpg); background-size: cover; background-position: 100% 100%;">
               </div>
 
@@ -44,7 +65,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
 
           </div>
         </div>
@@ -325,20 +346,23 @@
         <div class="row">
           <div class="appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="350">
             <div class="owl-carousel owl-theme nav-style-1 nav-outside nav-font-size-lg custom-nav-secondary mb-0" data-plugin-options="{'responsive': {'576': {'items': 1}, '768': {'items': 1}, '992': {'items': 1}, '1200': {'items': 1}}, 'loop': true, 'nav': true, 'dots': false, 'margin': 20}">
-              <div class="px-lg-5 mx-lg-5">
-                <div class="testimonial testimonial-style-2 testimonial-with-quotes testimonial-quotes-primary mb-0">
-                  <div class="testimonial-author">
-                    <img src="{{ url('') }}/img/clients/client-1.jpg" class="img-fluid rounded-circle" alt="">
-                  </div>
-                  <blockquote>
-                    <p class="mb-0 custom-font-1 fst-italic text-4 line-height-7">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis non consectetur sed, pharetra nec ex.</p>
-                  </blockquote>
-                  <div class="testimonial-author">
-                    <p><strong class="font-weight-bold">John Smith</strong></p>
+              @foreach ($testimonials as $item)
+                <div class="px-lg-5 mx-lg-5">
+                  <div class="testimonial testimonial-style-2 testimonial-with-quotes testimonial-quotes-primary mb-0">
+                    <div class="testimonial-author">
+                      <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid rounded-circle" alt="">{{-- 120*120 --}}
+                    </div>
+                    <blockquote>
+                      <p class="mb-0 custom-font-1 fst-italic text-4 line-height-7">{{ $item->text }}</p>
+                    </blockquote>
+                    <div class="testimonial-author">
+                      <p><strong class="font-weight-bold">{{ $item->name }}</strong></p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="px-lg-5 mx-lg-5">
+              @endforeach
+
+              {{-- <div class="px-lg-5 mx-lg-5">
                 <div class="testimonial testimonial-style-2 testimonial-with-quotes testimonial-quotes-primary mb-0">
                   <div class="testimonial-author">
                     <img src="{{ url('') }}/img/clients/client-2.jpg" class="img-fluid rounded-circle" alt="">
@@ -376,7 +400,7 @@
                     <p><strong class="font-weight-bold">John Smith</strong></p>
                   </div>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -479,22 +503,25 @@
         <div class="row justify-content-end mb-4">
           <div class="col-lg-6 py-4">
 
-            <div class="row">
-              <div class="col">
-                <div class="feature-box feature-box-style-5">
-                  <div class="feature-box-icon appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="100">
-                    <img class="icon-animated" width="50" src="{{ url('') }}/img/demos/education/icons/icon-medal.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary'}" />
-                  </div>
-                  <div class="feature-box-info">
-                    <div class="overflow-hidden">
-                      <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-2 pb-1 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="100">National Awards</h2>
+            @foreach ($whys as $item)
+              <div class="row">
+                <div class="col">
+                  <div class="feature-box feature-box-style-5">
+                    <div class="feature-box-icon appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="100">
+                      <img class="icon-animated" width="50" src="{{ asset('storage/' . $item->image) }}" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-primary'}" />
                     </div>
-                    <p class="text-3-5 line-height-9 mb-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="100">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis elit vitae enim vehicula fermentum consectetur adipiscing elit.</p>
+                    <div class="feature-box-info">
+                      <div class="overflow-hidden">
+                        <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-2 pb-1 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="100">{{$item->header}}</h2>
+                      </div>
+                      <p class="text-3-5 line-height-9 mb-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="100">{{$item->text}}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
+            @endforeach
+
+            {{-- <div class="row">
               <div class="col">
                 <div class="feature-box feature-box-style-5">
                   <div class="feature-box-icon appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="200">
@@ -523,7 +550,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
 
           </div>
         </div>

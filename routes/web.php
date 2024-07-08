@@ -13,6 +13,9 @@ use App\Models\ContactUs;
 use App\Models\Instructors;
 use App\Models\Programs;
 use App\Models\ProgramsCategory;
+use App\Models\Carousels;
+use App\Models\Testimonials;
+use App\Models\Whys;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +23,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        'carousels' => Carousels::all(),
+        'testimonials' => Testimonials::all(),
+        'whys' => Whys::all()
+    ]);
 });
 
 Route::get('/about-us', function () {
