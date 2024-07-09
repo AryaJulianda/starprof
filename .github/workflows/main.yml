@@ -46,11 +46,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /
-          dry-run: false
-          dangerous-clean-slate: false
           exclude: |
-          **/.git*
-          **/.git*/**
-          **/vendor/**
-          **/public/**
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/vendor/**
+            **/public/**
