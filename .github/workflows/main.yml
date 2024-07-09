@@ -41,7 +41,7 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
 
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -50,7 +50,7 @@ jobs:
           dry-run: false
           dangerous-clean-slate: false
           exclude: |
-            .git
-            node_modules
-            vendor
-            public
+          **/.git*
+          **/.git*/**
+          **/vendor/**
+          **/public/**
