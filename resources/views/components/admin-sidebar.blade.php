@@ -64,6 +64,12 @@
             <span key="t-instructors">Instructors</span>
           </a>
         </li>
+        <li>
+          <a href="{{ url('adm/blogs') }}" class="waves-effect">
+            <i class=""></i>
+            <span key="t-blogs">Blogs</span>
+          </a>
+        </li>
         <li class="menu-title" key="t-setting">Setting</li>
         <li>
           <a href="#" class="waves-effect">

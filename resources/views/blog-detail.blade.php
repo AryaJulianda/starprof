@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row mt-5">
           <div class="col align-self-center p-static text-center">
-            <h1 class="font-weight-bold text-color-secondary text-10">Blog Post Title</h1>
+            <h1 class="font-weight-bold text-color-secondary text-10">{{ $blog->title }}</h1>
           </div>
         </div>
       </div>
@@ -25,29 +25,27 @@
           <article>
             <div class="card border-0">
               <div class="card-body z-index-1 p-0">
-                <p class="text-uppercase text-1 mb-3 text-color-default"><time pubdate datetime="2024-01-10">10 Jan 2024</time> <span class="opacity-3 d-inline-block px-2">|</span> 3 Comments <span class="opacity-3 d-inline-block px-2">|</span> John Doe</p>
+                <p class="text-uppercase text-1 mb-3 text-color-default"><time pubdate datetime="2024-01-10">{{ $blog->created_at }}</time> {{-- <span class="opacity-3 d-inline-block px-2">|</span>  3 Comments <span class="opacity-3 d-inline-block px-2">|</span> John Doe --}}</p>
 
                 <div class="post-image pb-4">
-                  <img class="card-img-top custom-border-radius-1" src="{{ url('') }}/img/blog/wide/blog-2.jpg" alt="Card Image">
+                  <img class="card-img-top custom-border-radius-1" src="{{ asset('storage/' . $blog->image) }}" alt="Card Image">
                 </div>
 
                 <div class="card-body p-0">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lectus lacus, rutrum sit amet placerat et, bibendum nec mauris. Duis molestie, purus eget placerat viverra, nisi odio gravida sapien, congue tincidunt nisl ante nec tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sagittis, massa fringilla consequat blandit, mauris ligula porta nisi, non tristique enim sapien vel nisl. Suspendisse vestibulum lobortis dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent nec tempus nibh. Donec mollis commodo metus et fringilla. Etiam venenatis, diam id adipiscing convallis, nisi eros lobortis tellus, feugiat adipiscing ante ante sit amet dolor. Vestibulum vehicula scelerisque facilisis. Sed faucibus placerat bibendum. Maecenas sollicitudin commodo justo, quis hendrerit leo consequat ac. Proin sit amet risus sapien, eget interdum dui. Proin justo sapien, varius sit amet hendrerit id, egestas quis mauris.</p>
-                  <p>Ut ac elit non mi pharetra dictum nec quis nibh. Pellentesque ut fringilla elit. Aliquam non ipsum id leo eleifend sagittis id a lorem. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam massa mauris, viverra et rhoncus a, feugiat ut sem. Quisque ultricies diam tempus quam molestie vitae sodales dolor sagittis. Praesent commodo sodales purus. Maecenas scelerisque ligula vitae leo adipiscing a facilisis nisl ullamcorper. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-                  <p>Curabitur non erat quam, id volutpat leo. Nullam pretium gravida urna et interdum. Suspendisse in dui tellus. Cras luctus nisl vel risus adipiscing aliquet. Phasellus convallis lorem dui. Quisque hendrerit, lectus ut accumsan gravida, leo tellus porttitor mi, ac mattis eros nunc vel enim. Nulla facilisi. Nam non nulla sed nibh sodales auctor eget non augue. Pellentesque sollicitudin consectetur mauris, eu mattis mi dictum ac. Etiam et sapien eu nisl dapibus fermentum et nec tortor.</p>
+                  <p>{!! $blog->text !!}</p>
 
                   <!-- Go to www.addtoany.com to customize -->
                   <!-- AddToAny BEGIN -->
-                  <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                  {{-- <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
                     <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
                     <a class="a2a_button_facebook"></a>
                     <a class="a2a_button_x"></a>
                     <a class="a2a_button_copy_link"></a>
                   </div>
                   <script async src="https://static.addtoany.com/menu/page.js"></script>
-                  <!-- AddToAny END -->
+                  <!-- AddToAny END --> --}}
 
-                  <hr class="my-5">
+                  {{-- <hr class="my-5">
 
                   <div class="post-block post-author">
                     <h3 class="text-color-secondary text-capitalize font-weight-semi-bold text-5 m-0 mb-3">Author</h3>
@@ -60,9 +58,9 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus.</p>
                   </div>
 
-                  <hr class="my-5">
+                  <hr class="my-5"> --}}
 
-                  <div id="comments" class="post-block post-comments">
+                  {{-- <div id="comments" class="post-block post-comments">
                     <h3 class="text-color-secondary text-capitalize font-weight-semi-bold text-5 m-0 mb-3">3 comments for "An Interview with John Doe"</h3>
 
                     <ul class="comments">
@@ -191,7 +189,7 @@
                       </div>
                     </form>
 
-                  </div>
+                  </div> --}}
 
                 </div>
               </div>
@@ -230,7 +228,7 @@
                 <a href="#" class="text-color-secondary text-hover-primary font-weight-bold text-3 d-block pb-3 line-height-4">Vivamus sollicitudin nibh luctus</a>
               </div>
             </div>
-            <div class="py-1 clearfix">
+            {{-- <div class="py-1 clearfix">
               <hr class="my-2">
             </div>
             <div class="px-3 mt-4">
@@ -261,7 +259,7 @@
                 <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Lifestyle (2)</a></li>
                 <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Technology (1)</a></li>
               </ul>
-            </div>
+            </div> --}}
           </aside>
         </div>
       </div>

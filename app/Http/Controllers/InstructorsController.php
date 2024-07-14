@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instructors;
-use App\Models\Programs;
-use App\Models\ProgramsCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;

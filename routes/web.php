@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\CarouselsController;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\InstructorsController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\WhysController;
 use App\Models\AboutUs;
+use App\Models\Blogs;
 use App\Models\ContactUs;
 use App\Models\Instructors;
 use App\Models\Programs;
@@ -65,7 +67,14 @@ Route::get('/instructors', function () {
 });
 
 Route::get('/blog', function () {
-    return view('blog');
+    $blogs = Blogs::paginate(2);
+    return view('blogs', ['blogs' => $blogs]);
+});
+
+Route::get('/blog/{slug}', function ($slug) {
+    $title = Str::slug($slug, ' ');
+    $blog = Blogs::where('title', $title)->firstOrFail();
+    return view('blog-detail', ['blog' => $blog]);
 });
 
 Route::get('/contact-us', function () {
@@ -172,6 +181,8 @@ Route::prefix('adm')->group(function () {
     Route::resource('programs-category', ProgramsCategoryController::class)->middleware('auth');
 
     Route::resource('instructors', InstructorsController::class)->middleware('auth');
+
+    Route::resource('blogs', BlogsController::class)->middleware('auth');
 });
 
 // Route::resource('options', OptionController::class);

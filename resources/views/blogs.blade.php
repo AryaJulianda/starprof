@@ -22,37 +22,40 @@
       <div class="row py-3">
         <div class="col-lg-8 mb-5 mb-lg-0">
 
-          <article class="mb-5">
-            <div class="card bg-transparent border-0 custom-border-radius-1">
-              <div class="card-body p-0 z-index-1">
-                <a href="demo-education-blog-post.html" data-cursor-effect-hover="plus">
-                  <img class="card-img-top border-radius-0 mb-2" src="{{ url('') }}/img/blog/wide/blog-2.jpg" alt="Card Image">
-                </a>
-                <p class="text-uppercase text-color-default text-1 my-2">
-                  <time pubdate datetime="2024-01-10">10 Jan 2024</time>
-                  <span class="opacity-3 d-inline-block px-2">|</span>
-                  3 Comments
-                  <span class="opacity-3 d-inline-block px-2">|</span>
-                  John Doe
-                </p>
-                <div class="card-body p-0">
-                  <h4 class="card-title text-5 font-weight-semi-bold pb-1 mb-2"><a class="text-color-secondary text-color-hover-primary text-decoration-none text-4" href="demo-education-blog-post.html">The Education Business</a></h4>
-                  <p class="card-text mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra lorem , consectetur adipiscing elit...</p>
-                  <a href="demo-education-blog-post.html" class="text-decoration-none custom-link-hover-effects">
-                    <span class="btn btn-link font-weight-semi-bold text-decoration-none text-2 ps-0 text-uppercase">
-                      Read More
-                    </span>
+          @foreach ($blogs as $item)
+            <article class="mb-5">
+              <div class="card bg-transparent border-0 custom-border-radius-1">
+                <div class="card-body p-0 z-index-1">
+                  <a href="{{ url('blog/' . \Illuminate\Support\Str::slug($item->title)) }}" data-cursor-effect-hover="plus">
+                    <img class="card-img-top border-radius-0 mb-2" src="{{ asset('storage/' . $item->image) }}" alt="Card Image">
                   </a>
+                  <p class="text-uppercase text-color-default text-1 my-2">
+                    <time pubdate datetime="2024-01-10">{{ $item->created_at }}</time>
+                    {{-- <span class="opacity-3 d-inline-block px-2">|</span>
+                    3 Comments
+                    <span class="opacity-3 d-inline-block px-2">|</span>
+                    John Doe --}}
+                  </p>
+                  <div class="card-body p-0">
+                    <h4 class="card-title text-5 font-weight-semi-bold pb-1 mb-2"><a class="text-color-secondary text-color-hover-primary text-decoration-none text-4" href="{{ url('blog/' . \Illuminate\Support\Str::slug($item->title)) }}">{{ $item->title }}</a></h4>
+                    <p class="card-text mb-2">{!! \Illuminate\Support\Str::limit($item->text, 300, '...') !!}
+                    </p>
+                    <a href="{{ url('blog/' . \Illuminate\Support\Str::slug($item->title)) }}" class="text-decoration-none custom-link-hover-effects">
+                      <span class="btn btn-link font-weight-semi-bold text-decoration-none text-2 ps-0 text-uppercase">
+                        Read More
+                      </span>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </article>
-
+            </article>
+          @endforeach
+          {{--
           <article class="mb-5">
             <div class="card bg-transparent border-0 custom-border-radius-1">
               <div class="card-body p-0 z-index-1">
                 <a href="demo-education-blog-post.html" data-cursor-effect-hover="plus">
-                  <img class="card-img-top border-radius-0 mb-2" src="{{ url('') }}/img/blog/wide/blog-21.jpg" alt="Card Image">
+                  <img class="card-img-top border-radius-0 mb-2" src="{{ url("") }}/img/blog/wide/blog-21.jpg" alt="Card Image">
                 </a>
                 <p class="text-uppercase text-color-default text-1 my-2">
                   <time pubdate datetime="2024-01-10">10 Jan 2024</time>
@@ -72,15 +75,16 @@
                 </div>
               </div>
             </div>
-          </article>
+          </article> --}}
 
-          <ul class="custom-pagination-style-1 pagination pagination-rounded pagination-md justify-content-center">
-            <li class="page-item"><a class="page-link" href="#" data-cursor-effect-hover="fit"><i class="fas fa-angle-left"></i></a></li>
-            <li class="page-item active"><a class="page-link" href="#" data-cursor-effect-hover="fit">1</a></li>
-            <li class="page-item"><a class="page-link" href="#" data-cursor-effect-hover="fit">2</a></li>
-            <li class="page-item"><a class="page-link" href="#" data-cursor-effect-hover="fit">3</a></li>
-            <li class="page-item"><a class="page-link" href="#" data-cursor-effect-hover="fit"><i class="fas fa-angle-right"></i></a></li>
-          </ul>
+          <!-- Pagination Links -->
+          <div class="row">
+            <div class="col">
+              <ul class="pagination float-end p-relative bottom-2">
+                {{ $blogs->links('pagination::bootstrap-4') }}
+              </ul>
+            </div>
+          </div>
 
         </div>
         <div class="blog-sidebar col-lg-4 pt-4 pt-lg-0 mb-5">
@@ -114,7 +118,7 @@
                 <a href="#" class="text-color-secondary text-hover-primary font-weight-bold text-3 d-block pb-3 line-height-4">Vivamus sollicitudin nibh luctus</a>
               </div>
             </div>
-            <div class="py-1 clearfix">
+            {{-- <div class="py-1 clearfix">
               <hr class="my-2">
             </div>
             <div class="px-3 mt-4">
@@ -145,7 +149,7 @@
                 <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Lifestyle (2)</a></li>
                 <li class="nav-item"><a class="nav-link bg-transparent border-0" href="#">Technology (1)</a></li>
               </ul>
-            </div>
+            </div> --}}
           </aside>
         </div>
       </div>
@@ -153,3 +157,5 @@
 
   </div>
 </x-layout>
+
+
