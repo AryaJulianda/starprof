@@ -6,32 +6,17 @@ use App\Traits\TimestampLocalized;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Programs extends Model
+class Users extends Model
 {
     use HasFactory;
     use TimestampLocalized;
-
+    protected $table = 'users';
     protected $fillable = [
-        'prog_name',
-        'prog_category',
-        'instructor',
-        'prog_image',
-        'desc',
-        'price',
-        'popular',
+        'username',
+        'password',
         'created_by',
         'updated_by',
     ];
-
-    public function category()
-    {
-        return $this->belongsTo(ProgramsCategory::class, 'prog_category');
-    }
-
-    public function join_instructor()
-    {
-        return $this->belongsTo(Instructors::class, 'instructor');
-    }
 
     public function creator()
     {

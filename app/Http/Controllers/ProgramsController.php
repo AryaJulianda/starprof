@@ -57,6 +57,8 @@ class ProgramsController extends Controller
                 'instructor' => 'required|integer|exists:instructors,id',
                 'prog_image_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'desc' => 'nullable|string',
+                'price' => 'string|max:255',
+                'popular' => 'string',
             ]);
 
             if ($request->hasFile('prog_image_file')) {
@@ -88,6 +90,8 @@ class ProgramsController extends Controller
                 'instructor' => 'required|integer|exists:instructors,id',
                 'prog_image_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'desc' => 'nullable|string',
+                'price' => 'string|max:255',
+                'popular' => 'string',
             ]);
 
             if ($request->hasFile('prog_image_file')) {

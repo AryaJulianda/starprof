@@ -8,6 +8,7 @@ use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\ProgramsCategoryController;
 use App\Http\Controllers\ProgramsController;
 use App\Http\Controllers\TestimonialsController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WhysController;
 use App\Models\AboutUs;
 use App\Models\Blogs;
@@ -28,7 +29,9 @@ Route::get('/', function () {
     return view('home', [
         'carousels' => Carousels::all(),
         'testimonials' => Testimonials::all(),
-        'whys' => Whys::all()
+        'whys' => Whys::all(),
+        'popular_programs' => Programs::where('popular', 1)->with('join_instructor')->get(),
+        'latest_blogs' => Blogs::orderBy('created_at', 'desc')->take(3)->get()
     ]);
 });
 
@@ -41,9 +44,9 @@ Route::get('/programs', function (Request $request) {
     if ($categorySlug) {
         $category = ProgramsCategory::where('category_name', Str::slug($categorySlug, ' '))->first();
         $categoryId = $category ? $category->id : null;
-        $list_programs = Programs::where('prog_category', $categoryId)->with('join_instructor')->paginate(2);
+        $list_programs = Programs::where('prog_category', $categoryId)->with('join_instructor')->paginate(6);
     } else {
-        $list_programs = Programs::with('join_instructor')->paginate(2);
+        $list_programs = Programs::with('join_instructor')->paginate(6);
     }
     return view('programs', [
         'list_programs' => $list_programs,
@@ -54,7 +57,7 @@ Route::get('/programs', function (Request $request) {
 
 Route::get('/program-details/{slug}', function ($slug) {
     $progName = Str::slug($slug, ' ');
-    $program = Programs::with('category')->where('prog_name', $progName)->firstOrFail();
+    $program = Programs::with('category')->with('join_instructor')->where('prog_name', $progName)->firstOrFail();
     return view('program-details', [
         'program' => $program,
         'list_categories' => ProgramsCategory::withCount('programs')->get(),
@@ -183,6 +186,7 @@ Route::prefix('adm')->group(function () {
     Route::resource('instructors', InstructorsController::class)->middleware('auth');
 
     Route::resource('blogs', BlogsController::class)->middleware('auth');
+    Route::resource('users', UsersController::class)->middleware('auth');
 });
 
 // Route::resource('options', OptionController::class);

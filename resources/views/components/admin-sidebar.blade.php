@@ -72,7 +72,7 @@
         </li>
         <li class="menu-title" key="t-setting">Setting</li>
         <li>
-          <a href="#" class="waves-effect">
+          <a href="{{ url('adm/users') }}" class="waves-effect">
             <i class=""></i>
             <span key="t-access-control">Access Control</span>
           </a>

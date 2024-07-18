@@ -150,34 +150,32 @@
         <div class="row">
           <div class="col appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="500">
             <div class="owl-carousel owl-theme nav-style-1 nav-outside nav-font-size-lg custom-nav-secondary mb-0" data-plugin-options="{'responsive': {'576': {'items': 1}, '768': {'items': 2}, '992': {'items': 2}, '1200': {'items': 3}}, 'loop': true, 'nav': true, 'dots': false, 'margin': 20}">
-              <div>
-                <div class="card custom-card-courses border-radius-0">
-                  <div class="p-relative">
-                    <a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">
-                      <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-1.jpg" alt="" />
-                    </a>
-                    <div class="custom-card-courses-author">
-                      <div class="img-thumbnail img-thumbnail-no-borders">
-                        <img src="{{ url('') }}/img/avatars/avatar.jpg" class="rounded-circle" alt="">
+              @foreach ($popular_programs as $program)
+                <div>
+                  <div class="card custom-card-courses border-radius-0">
+                    <div class="p-relative">
+                      <a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">
+                        <img class="card-img-top border-radius-0" src="{{ asset('storage/' . $program->prog_image) }}" alt="{{ asset('storage/' . $program->prog_image) }}" />
+                      </a>
+                      <div class="custom-card-courses-author">
+                        <div class="img-thumbnail img-thumbnail-no-borders rounded-circle">
+                          <img src="{{ asset('storage/' . $program->join_instructor->photo) }}" class="rounded-circle" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <p class="mb-0 text-1 p-relative top-5 text-uppercase">{{ $program->join_instructor->full_name }}</p>
+                      <h4 class="mb-3 text-color-secondary"><a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">{{ $program->prog_name }}</a></h4>
+
+                      <div class="float-end">
+                        <strong class="text-primary text-5">{{ $program->price }}</strong>
                       </div>
                     </div>
                   </div>
-                  <div class="card-body">
-                    <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-                    <div class="float-end">
-                      <strong class="text-primary text-5">$79</strong>
-                    </div>
-
-                    <div class="text-2">
-                      <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-                      <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div>
+              @endforeach
+
+              {{-- <div>
                 <div class="card custom-card-courses border-radius-0">
                   <div class="p-relative">
                     <a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">
@@ -257,7 +255,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -417,76 +415,27 @@
           </div>
         </div>
         <div class="row pb-3">
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <article class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
-              <div class="card border-0 border-radius-0 box-shadow-1">
-                <div class="card-body p-3 z-index-1">
-                  <a href="{{ url('') }}/demo-education-blog-post.html">
-                    <img class="card-img-top border-radius-0 mb-2" src="{{ url('') }}/img/demos/education/blog/blog-1.jpg" alt="Card Image">
-                  </a>
-                  <p class="text-uppercase text-color-default text-1 my-2">
-                    <time pubdate datetime="2024-01-10">10 Jan 2024</time>
-                    <span class="opacity-3 d-inline-block px-2">|</span>
-                    3 Comments
-                    <span class="opacity-3 d-inline-block px-2">|</span>
-                    John Doe
-                  </p>
-                  <div class="card-body p-0">
-                    <h4 class="card-title text-5 font-weight-semi-bold pb-1 mb-2"><a class="text-color-secondary text-decoration-none" href="{{ url('') }}/demo-education-blog-post.html">Lorem ipsum dolor sit amet</a></h4>
-                    <p class="card-text mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra lorem , consectetur adipiscing elit...</p>
-                    <a href="{{ url('') }}/demo-education-blog-post.html" class="btn btn-link font-weight-semibold text-decoration-none text-2 ps-0">READ MORE</a>
+          @foreach ($latest_blogs as $blog)
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <article class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
+                <div class="card border-0 border-radius-0 box-shadow-1">
+                  <div class="card-body p-3 z-index-1">
+                    <a href="{{ url('') }}/demo-education-blog-post.html">
+                      <img class="card-img-top border-radius-0 mb-2" src="{{ asset('storage/' . $blog->image) }}" alt="Card Image">
+                    </a>
+                    <p class="text-uppercase text-color-default text-1 my-2">
+                      <time pubdate datetime="2024-01-10">{{ $blog->created_at }}</time>
+                    </p>
+                    <div class="card-body p-0">
+                      <h4 class="card-title text-5 font-weight-semi-bold pb-1 mb-2"><a class="text-color-secondary text-decoration-none" href="{{ url('blog/' . \Illuminate\Support\Str::slug($blog->title)) }}">{{ $blog->title }}</a></h4>
+                      <p class="card-text mb-2">{!! \Illuminate\Support\Str::limit($blog->text, 150, '...') !!}</p>
+                      <a href="{{ url('blog/' . \Illuminate\Support\Str::slug($blog->title)) }}" class="btn btn-link font-weight-semibold text-decoration-none text-2 ps-0">READ MORE</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <article class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
-              <div class="card border-0 border-radius-0 box-shadow-1">
-                <div class="card-body p-3 z-index-1">
-                  <a href="{{ url('') }}/demo-education-blog-post.html">
-                    <img class="card-img-top border-radius-0 mb-2" src="{{ url('') }}/img/demos/education/blog/blog-2.jpg" alt="Card Image">
-                  </a>
-                  <p class="text-uppercase text-color-default text-1 my-2">
-                    <time pubdate datetime="2024-01-10">10 Jan 2024</time>
-                    <span class="opacity-3 d-inline-block px-2">|</span>
-                    3 Comments
-                    <span class="opacity-3 d-inline-block px-2">|</span>
-                    John Doe
-                  </p>
-                  <div class="card-body p-0">
-                    <h4 class="card-title text-5 font-weight-semi-bold pb-1 mb-2"><a class="text-color-secondary text-decoration-none" href="{{ url('') }}/demo-education-blog-post.html">Lorem ipsum dolor sit amet</a></h4>
-                    <p class="card-text mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra lorem , consectetur adipiscing elit...</p>
-                    <a href="{{ url('') }}/demo-education-blog-post.html" class="btn btn-link font-weight-semibold text-decoration-none text-2 ps-0">READ MORE</a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <article class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
-              <div class="card border-0 border-radius-0 box-shadow-1">
-                <div class="card-body p-3 z-index-1">
-                  <a href="{{ url('') }}/demo-education-blog-post.html">
-                    <img class="card-img-top border-radius-0 mb-2" src="{{ url('') }}/img/demos/education/blog/blog-3.jpg" alt="Card Image">
-                  </a>
-                  <p class="text-uppercase text-color-default text-1 my-2">
-                    <time pubdate datetime="2024-01-10">10 Jan 2024</time>
-                    <span class="opacity-3 d-inline-block px-2">|</span>
-                    3 Comments
-                    <span class="opacity-3 d-inline-block px-2">|</span>
-                    John Doe
-                  </p>
-                  <div class="card-body p-0">
-                    <h4 class="card-title text-5 font-weight-semi-bold pb-1 mb-2"><a class="text-color-secondary text-decoration-none" href="{{ url('') }}/demo-education-blog-post.html">Lorem ipsum dolor sit amet</a></h4>
-                    <p class="card-text mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra lorem , consectetur adipiscing elit...</p>
-                    <a href="{{ url('') }}/demo-education-blog-post.html" class="btn btn-link font-weight-semibold text-decoration-none text-2 ps-0">READ MORE</a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-
+              </article>
+            </div>
+          @endforeach
         </div>
       </div>
     </section>
@@ -512,9 +461,9 @@
                     </div>
                     <div class="feature-box-info">
                       <div class="overflow-hidden">
-                        <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-2 pb-1 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="100">{{$item->header}}</h2>
+                        <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-2 pb-1 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="100">{{ $item->header }}</h2>
                       </div>
-                      <p class="text-3-5 line-height-9 mb-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="100">{{$item->text}}</p>
+                      <p class="text-3-5 line-height-9 mb-5 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="100">{{ $item->text }}</p>
                     </div>
                   </div>
                 </div>

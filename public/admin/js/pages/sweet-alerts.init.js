@@ -27,9 +27,9 @@ function showAlert(type, title, text, callback) {
             text,
             icon: 'error',
             showConfirmButton: false,
-            showCloseButton: false,
+            showCloseButton: true,
             timerProgressBar: true,
-            timer: 1000,
+            timer: 5000,
         })
     }
 }

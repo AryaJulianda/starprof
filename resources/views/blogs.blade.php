@@ -38,8 +38,7 @@
                   </p>
                   <div class="card-body p-0">
                     <h4 class="card-title text-5 font-weight-semi-bold pb-1 mb-2"><a class="text-color-secondary text-color-hover-primary text-decoration-none text-4" href="{{ url('blog/' . \Illuminate\Support\Str::slug($item->title)) }}">{{ $item->title }}</a></h4>
-                    <p class="card-text mb-2">{!! \Illuminate\Support\Str::limit($item->text, 300, '...') !!}
-                    </p>
+                    <p class="card-text mb-2">{!! \Illuminate\Support\Str::limit($item->text, 300, '...') !!}</p>
                     <a href="{{ url('blog/' . \Illuminate\Support\Str::slug($item->title)) }}" class="text-decoration-none custom-link-hover-effects">
                       <span class="btn btn-link font-weight-semi-bold text-decoration-none text-2 ps-0 text-uppercase">
                         Read More

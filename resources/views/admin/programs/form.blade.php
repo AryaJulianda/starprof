@@ -45,6 +45,18 @@
               </div>
               <div class="col-12">
                 <div class="mt-3">
+                  <label for="price" class="form-label">Price</label>
+                  <input type="text" class="form-control" id="price" placeholder="Price" name="price" value="{{ isset($dataForm) ? $dataForm->price : '' }}" {{ $type == 'view' ? 'disabled' : '' }}>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="mt-3">
+                  <input type="checkbox" class="form-check-input" id="popular" placeholder="popular" name="popular" value="1" {{ isset($dataForm) && $dataForm->popular == true ? 'checked' : '' }} {{ $type == 'view' ? 'disabled' : '' }}>
+                  <label for="popular" class="form-label">Add to Popular Programs</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="mt-3">
                   <label for="prog_image_file" class="form-label d-block">Image</label>
                   <img id="image-preview" src="{{ isset($dataForm) && $dataForm->prog_image ? asset('storage/' . $dataForm->prog_image) : '#' }}" alt="Program Image" class="img-thumbnail mb-3" style="max-width: 200px; {{ isset($dataForm) && $dataForm->prog_image ? '' : 'display:none;' }}">
                   <input type="file" class="form-control" id="prog_image_file" placeholder="prog_image_file" name="prog_image_file" value="" onchange="previewImage(event)" {{ $type == 'view' ? 'disabled' : '' }}>

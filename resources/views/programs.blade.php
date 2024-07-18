@@ -35,8 +35,8 @@
                         <div class="card-img-top border-radius-0" src="" alt="" style="height:200px; background-image:url('{{ asset('storage/' . $item->prog_image) }}'); background-size:cover; background-position:center;"></div> <!--340x180-->
                       </a>
                       <div class="custom-card-courses-author">
-                        <div class="img-thumbnail img-thumbnail-no-borders">
-                          <img src="{{ url('') }}/img/avatars/avatar.jpg" class="rounded-circle" alt="">
+                        <div class="img-thumbnail img-thumbnail-no-borders rounded-circle">
+                          <img src="{{ asset('storage/' . $item->join_instructor->photo) }}" class="rounded-circle" alt="">
                         </div>
                       </div>
                     </div>
@@ -45,7 +45,7 @@
                       <h4 class="mb-3 text-color-secondary"><a href="{{ url('program-details/' . Str::slug($item->prog_name)) }}" class="text-color-secondary" title="">{{ $item->prog_name }}</a></h4>
 
                       <div class="float-end">
-                        <strong class="text-primary text-5">$79</strong>
+                        <strong class="text-primary text-5">{{ $item->price }}</strong>
                       </div>
 
                       {{-- <div class="text-2">

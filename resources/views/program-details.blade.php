@@ -32,8 +32,8 @@
               <div class="d-md-flex mb-4">
                 <div class="ps-md-0 mb-3 mb-md-0 pe-4 border-right">
                   <div class="d-flex align-items-center">
-                    <div class="img-thumbnail img-thumbnail-no-borders">
-                      <img src="{{ url('') }}/img/avatars/avatar.jpg" class="custom-course-detail-avatar" alt="">
+                    <div class="img-thumbnail img-thumbnail-no-borders rounded-circle">
+                      <img src="{{ asset('storage/' . $program->join_instructor->photo) }}" class="custom-course-detail-avatar rounded-circle" alt="">
                     </div>
                     <div class="ps-3">
                       <p class="mb-0 text-1 text-uppercase p-relative top-3">Instructor</p>
@@ -52,7 +52,7 @@
                 <div class="pe-md-4 mb-3 mb-md-0 border-right">
                   <div class="d-flex flex-row align-items-center h-100">
                     <div class="p-0">
-                      <strong class="text-primary text-5">$29</strong>
+                      <strong class="text-primary text-5">{{ $program->price }}</strong>
                     </div>
                   </div>
                 </div>

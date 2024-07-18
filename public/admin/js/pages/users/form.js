@@ -1,17 +1,11 @@
 $(document).ready(function() {
-    var form = $('#form-user');
+    var form = $('form');
 
     form.on('submit', function(event) {
         event.preventDefault();
 
         var url = $(this).attr("action");
-        var method = $(this).attr("method");
-
-        let formData = {
-            username: $('#username').val(),
-            fullname: $('#fullname').val(),
-            password: $('#password').val(),
-        }
+        var formData = new FormData(this);
 
         if (this.checkValidity() === false) {
             event.stopPropagation();
@@ -28,15 +22,17 @@ $(document).ready(function() {
                     showAlert('loading','Loading...',null, null);
                     $.ajax({
                         url,
-                        type: method,
+                        type: 'POST',
                         data: formData,
+                        processData: false,
+                        contentType: false,
                         success: function(response) {
                             showAlert('success','Success!',null, () => {
-                                window.location.href = `${base_url}/users`;
+                                window.location.href = `${base_url}/adm/users`;
                             });
                         },
                         error: function(xhr, status, error) {
-                            showAlert('error','Failed!',null, null);
+                            showAlert('error','Failed!',xhr.responseJSON.error, null);
                         }
                     });
                 }
