@@ -1,4 +1,4 @@
-<header id="header" class="header-transparent header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 70, 'stickyHeaderContainerHeight': 70}">
+{{-- <header id="header" class="header-transparent header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 70, 'stickyHeaderContainerHeight': 70}">
   <div class="header-body header-body-bottom-border border-top-0">
     <div class="header-top bg-light border-0">
       <div class="container">
@@ -98,6 +98,88 @@
             <button class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
               <i class="fas fa-bars"></i>
             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header> --}}
+<header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 45, 'stickySetTop': '-45px', 'stickyChangeLogo': true}">
+  <div class="header-body">
+    <div class="header-container container">
+      <div class="header-row">
+        <div class="header-column">
+          <div class="header-row">
+            <div class="header-logo">
+              <a href="index.html">
+                <img alt="Porto" width="100" height="48" data-sticky-width="82" data-sticky-height="40" data-sticky-top="25" src="img/logo-default-slim.png">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="header-column justify-content-end">
+          <div class="header-row pt-3">
+            <nav class="header-nav-top">
+              <ul class="nav nav-pills">
+                <li class="nav-item nav-item-anim-icon d-none d-md-block">
+                  <a class="nav-link ps-0" href="{{ url('about-us') }}"><i class="fas fa-angle-right"></i> About Us</a>
+                </li>
+                <li class="nav-item nav-item-anim-icon d-none d-md-block">
+                  <a class="nav-link" href="{{ url('contact-us') }}"><i class="fas fa-angle-right"></i> Contact Us</a>
+                </li>
+                <li class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-sm-show">
+                  <span class="ws-nowrap"><i class="fas fa-phone"></i> {{ $phone }}</span>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="header-row">
+            <div class="header-nav pt-1">
+              <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1">
+                <nav class="collapse">
+                  <ul class="nav nav-pills" id="mainNav">
+                    <li>
+                      <a href="{{ url('') }}/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">Home</a>
+                    </li>
+                    <li>
+                      <a href="{{ url('') }}/about-us" class="nav-link {{ Request::is('about-us') ? 'active' : '' }}">About Us</a>
+                    </li>
+                    <li class="dropdown dropdown-full-color dropdown-primary">
+                      <a class="dropdown-item dropdown-toggle {{ Request::is('programs') ? 'active' : '' }}" href="{{ url('') }}/programs">
+                        Our Programs
+                      </a>
+                      <ul class="dropdown-menu">
+                        @foreach ($program_categories as $item)
+                          <li>
+                            <a class="dropdown-item {{ Request::is('programs?category=' . Str::slug($item->category_name)) ? 'active' : '' }}" href="{{ url('programs?category=' . Str::slug($item->category_name)) }}">
+                              {{ $item->category_name }}
+                            </a>
+                          </li>
+                        @endforeach
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="{{ url('') }}/instructors" class="nav-link {{ Request::is('instructors') ? 'active' : '' }}">Our Trainer</a>
+                    </li>
+                    <li>
+                      <a href="{{ url('') }}/blog" class="nav-link {{ Request::is('blog') ? 'active' : '' }}">Blog</a>
+                    </li>
+                    <li>
+                      <a href="{{ url('') }}/contact-us" class="nav-link {{ Request::is('contact-us') ? 'active' : '' }}">Contact Us</a>
+                    </li>
+                  </ul>
+
+                </nav>
+              </div>
+              <ul class="header-social-icons social-icons d-none d-sm-block">
+                <li class="social-icons-instagram"><a href="http://www.instagram.com/" target="_blank" title="instagram"><i class="fab fa-instagram"></i></a></li>
+                <li class="social-icons-youtube"><a href="http://www.youtube.com/" target="_blank" title="youtube"><i class="fab fa-youtube"></i></a></li>
+                <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+              </ul>
+              <button class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
+                <i class="fas fa-bars"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>

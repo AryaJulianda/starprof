@@ -30,13 +30,15 @@ Route::get('/', function () {
         'carousels' => Carousels::all(),
         'testimonials' => Testimonials::all(),
         'whys' => Whys::all(),
-        'popular_programs' => Programs::where('popular', 1)->with('join_instructor')->get(),
         'latest_blogs' => Blogs::orderBy('created_at', 'desc')->take(3)->get()
     ]);
 });
 
 Route::get('/about-us', function () {
-    return view('about-us', ['data' => AboutUs::first()]);
+    return view('about-us', [
+        'data' => AboutUs::first(),
+        'testimonials' => Testimonials::all(),
+    ]);
 });
 
 Route::get('/programs', function (Request $request) {
@@ -44,9 +46,9 @@ Route::get('/programs', function (Request $request) {
     if ($categorySlug) {
         $category = ProgramsCategory::where('category_name', Str::slug($categorySlug, ' '))->first();
         $categoryId = $category ? $category->id : null;
-        $list_programs = Programs::where('prog_category', $categoryId)->with('join_instructor')->paginate(6);
+        $list_programs = Programs::where('prog_category', $categoryId)->with(['join_instructor', 'category'])->paginate(6);
     } else {
-        $list_programs = Programs::with('join_instructor')->paginate(6);
+        $list_programs = Programs::with(['join_instructor', 'category'])->paginate(6);
     }
     return view('programs', [
         'list_programs' => $list_programs,
@@ -67,6 +69,10 @@ Route::get('/program-details/{slug}', function ($slug) {
 Route::get('/instructors', function () {
     $data = Instructors::paginate(5);
     return view('instructors', ['data' => $data]);
+});
+
+Route::get('/instructor-detail', function () {
+    return view('instructor-detail');
 });
 
 Route::get('/blog', function () {

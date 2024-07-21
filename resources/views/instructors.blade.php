@@ -1,5 +1,201 @@
 <x-layout>
   <div role="main" class="main">
+    <section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-5" style="background-image: url(img/page-header/page-header-background.jpg);">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+            <h1>Our <strong>Trainer</strong></h1>
+            <span class="sub-title">We are proud to introduce you to our team.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container py-4">
+
+      <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="team" data-option-key="filter">
+        <li class="nav-item active" data-option-value="*"><a class="nav-link text-2-5 text-uppercase active" href="#">Show All</a></li>
+        <li class="nav-item" data-option-value=".Training"><a class="nav-link text-2-5 text-uppercase" href="#">Training</a></li>
+        <li class="nav-item" data-option-value=".Course"><a class="nav-link text-2-5 text-uppercase" href="#">Course</a></li>
+        <li class="nav-item" data-option-value=".ConsultingService"><a class="nav-link text-2-5 text-uppercase" href="#">Consulting Service</a></li>
+        <li class="nav-item" data-option-value=".CertificationService"><a class="nav-link text-2-5 text-uppercase" href="#">Certification Service</a></li>
+        <li class="nav-item" data-option-value=".Audit"><a class="nav-link text-2-5 text-uppercase" href="#">Audit</a></li>
+        <li class="nav-item" data-option-value=".Character Building"><a class="nav-link text-2-5 text-uppercase" href="#">Character Building</a></li>
+      </ul>
+
+      <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+        <div class="row team-list sort-destination" data-sort-id="team">
+          <div class="col-12 col-sm-6 col-lg-3 isotope-item Training">
+            <span class="thumb-info thumb-info-hide-wrapper-bg mb-4">
+              <span class="thumb-info-wrapper">
+                <a href="{{ url('instructor-detail') }}">
+                  <img src="img/team/team-1.jpg" class="img-fluid" alt="">
+                  <span class="thumb-info-title">
+                    <span class="thumb-info-inner">John Doe</span>
+                    <span class="thumb-info-type">Training</span>
+                  </span>
+                </a>
+              </span>
+              <span class="thumb-info-caption">
+                <span class="thumb-info-caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.</span>
+                <span class="thumb-info-social-icons mb-4">
+                  <a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+                  <a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>
+                </span>
+              </span>
+            </span>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 isotope-item Course">
+            <span class="thumb-info thumb-info-hide-wrapper-bg mb-4">
+              <span class="thumb-info-wrapper">
+                <a href="{{ url('instructor-detail') }}">
+                  <img src="img/team/team-1.jpg" class="img-fluid" alt="">
+                  <span class="thumb-info-title">
+                    <span class="thumb-info-inner">Jessica Doe</span>
+                    <span class="thumb-info-type">Course</span>
+                  </span>
+                </a>
+              </span>
+              <span class="thumb-info-caption">
+                <span class="thumb-info-caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.</span>
+                <span class="thumb-info-social-icons mb-4">
+                  <a href="http://www.twitter.com"><i class="fab fa-x-twitter"></i><span>Twitter</span></a>
+                  <a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>
+                </span>
+              </span>
+            </span>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 isotope-item ConsultingService">
+            <span class="thumb-info thumb-info-hide-wrapper-bg mb-4">
+              <span class="thumb-info-wrapper">
+                <a href="{{ url('instructor-detail') }}">
+                  <img src="img/team/team-1.jpg" class="img-fluid" alt="">
+                  <span class="thumb-info-title">
+                    <span class="thumb-info-inner">Rick Edward Doe</span>
+                    <span class="thumb-info-type">Developer</span>
+                  </span>
+                </a>
+              </span>
+              <span class="thumb-info-caption">
+                <span class="thumb-info-caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.</span>
+                <span class="thumb-info-social-icons mb-4">
+                  <a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+                  <a href="http://www.twitter.com"><i class="fab fa-x-twitter"></i><span>Twitter</span></a>
+                  <a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>
+                </span>
+              </span>
+            </span>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 isotope-item CertificationService">
+            <span class="thumb-info thumb-info-hide-wrapper-bg mb-4">
+              <span class="thumb-info-wrapper">
+                <a href="{{ url('instructor-detail') }}">
+                  <img src="img/team/team-1.jpg" class="img-fluid" alt="">
+                  <span class="thumb-info-title">
+                    <span class="thumb-info-inner">Melinda Doe</span>
+                    <span class="thumb-info-type">CertificationService</span>
+                  </span>
+                </a>
+              </span>
+              <span class="thumb-info-caption">
+                <span class="thumb-info-caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.</span>
+                <span class="thumb-info-social-icons mb-4">
+                  <a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+                  <a href="http://www.twitter.com"><i class="fab fa-x-twitter"></i><span>Twitter</span></a>
+                  <a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>
+                </span>
+              </span>
+            </span>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 isotope-item ConsultingService">
+            <span class="thumb-info thumb-info-hide-wrapper-bg mb-4">
+              <span class="thumb-info-wrapper">
+                <a href="{{ url('instructor-detail') }}">
+                  <img src="img/team/team-1.jpg" class="img-fluid" alt="">
+                  <span class="thumb-info-title">
+                    <span class="thumb-info-inner">Robert Doe</span>
+                    <span class="thumb-info-type">CertificationService</span>
+                  </span>
+                </a>
+              </span>
+              <span class="thumb-info-caption">
+                <span class="thumb-info-caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.</span>
+                <span class="thumb-info-social-icons mb-4">
+                  <a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+                </span>
+              </span>
+            </span>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 isotope-item Course">
+            <span class="thumb-info thumb-info-hide-wrapper-bg mb-4">
+              <span class="thumb-info-wrapper">
+                <a href="{{ url('instructor-detail') }}">
+                  <img src="img/team/team-1.jpg" class="img-fluid" alt="">
+                  <span class="thumb-info-title">
+                    <span class="thumb-info-inner">Melissa Doe</span>
+                    <span class="thumb-info-type">Course</span>
+                  </span>
+                </a>
+              </span>
+              <span class="thumb-info-caption">
+                <span class="thumb-info-caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.</span>
+                <span class="thumb-info-social-icons mb-4">
+                  <a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+                  <a href="http://www.twitter.com"><i class="fab fa-x-twitter"></i><span>Twitter</span></a>
+                  <a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>
+                </span>
+              </span>
+            </span>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 isotope-item ConsultingService">
+            <span class="thumb-info thumb-info-hide-wrapper-bg mb-4">
+              <span class="thumb-info-wrapper">
+                <a href="{{ url('instructor-detail') }}">
+                  <img src="img/team/team-1.jpg" class="img-fluid" alt="">
+                  <span class="thumb-info-title">
+                    <span class="thumb-info-inner">Janice Doe</span>
+                    <span class="thumb-info-type">Developer</span>
+                  </span>
+                </a>
+              </span>
+              <span class="thumb-info-caption">
+                <span class="thumb-info-caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.</span>
+                <span class="thumb-info-social-icons mb-4">
+                  <a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>
+                </span>
+              </span>
+            </span>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3 isotope-item ConsultingService">
+            <span class="thumb-info thumb-info-hide-wrapper-bg mb-4">
+              <span class="thumb-info-wrapper">
+                <a href="{{ url('instructor-detail') }}">
+                  <img src="img/team/team-1.jpg" class="img-fluid" alt="">
+                  <span class="thumb-info-title">
+                    <span class="thumb-info-inner">Jerry Doe</span>
+                    <span class="thumb-info-type">Developer</span>
+                  </span>
+                </a>
+              </span>
+              <span class="thumb-info-caption">
+                <span class="thumb-info-caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac ligula mi, non suscipitaccumsan.</span>
+                <span class="thumb-info-social-icons mb-4">
+                  <a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+                  <a href="http://www.twitter.com"><i class="fab fa-x-twitter"></i><span>Twitter</span></a>
+                  <a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>
+                </span>
+              </span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  {{-- <div role="main" class="main">
 
     <section class="page-header page-header-modern page-header-background page-header-background-md custom-bg-color-grey-1 mb-0" style="background-image: url(img/demos/education/backgrounds/page-header.jpg); background-position: 100% 100%;">
       <div class="container">
@@ -108,5 +304,5 @@
     </div>
   </section>
 
-  </div>
+  </div> --}}
 </x-layout>

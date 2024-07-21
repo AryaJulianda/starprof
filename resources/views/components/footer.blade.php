@@ -1,97 +1,32 @@
-<footer id="footer" class="footer-reveal bg-color-secondary border-0 mt-0">
-  <div class="container py-5">
-    <div class="row py-5">
-      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-
-        <a href="{{ url('') }}/demo-education.html" class="d-inline-block mb-3">
-          <img alt="Porto" width="115" height="30" src="{{ url('') }}/img/demos/education/logo-footer.png">
-        </a>
-
-        <ul class="social-icons social-icons-clean social-icons-icon-light">
-          <li>
-            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-          </li>
-          <li>
-            <a href="https://www.twitter.com/"><i class="fab fa-x-twitter"></i></a>
-          </li>
-          <li>
-            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-          </li>
-        </ul>
-
-        <p class="text-3 mt-4 mb-0 line-height-8 text-color-tertiary opacity-6">Porto Education. © 2024.<br> All Rights Reserved</p>
-
+<footer id="footer">
+  <div class="container my-4">
+    <div class="row pt-5 py-lg-5 justify-content-center">
+      <div class="col-5 col-md-6 col-lg-3 mb-5 mb-lg-0">
+        <h5 class="text-6 text-transform-none font-weight-semi-bold text-color-light mb-4">Location</h5>
+        <p class="text-4 mb-0">{{ $location }}</p>
       </div>
-      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-        <h4 class="font-weight-bold text-5">About Us</h4>
-        <ul class="list list-unstyled text-color-tertiary opacity-6">
-          <li class="mb-1">
-            Porto Education
-          </li>
-          <li class="mb-1">
-            123 Porto Blvd, Suite 100
-          </li>
-          <li class="mb-1">
-            New York, NY
-          </li>
-          <li class="mb-1">
-            Phone: <a href="{{ url('') }}/tel:1234567890" class="text-decoration-none text-color-tertiary text-color-hover-primary">123-456-7890</a>
-          </li>
-          <li>
-            Email: <a href="{{ url('') }}/mailto:email@domain.com" class="text-decoration-none text-color-tertiary text-color-hover-primary">porto@domain.com</a>
-          </li>
+      <div class="col-7 col-md-6 col-lg-3 mb-5 mb-lg-0">
+        <h5 class="text-6 text-transform-none font-weight-semi-bold text-color-light mb-4">Call Us Now</h5>
+        <p class="text-7 text-color-light font-weight-light mb-2"><a href="tel:{{ $phone }}" class="text-decoration-none text-color-light">{{ $phone }}</a></p>
+      </div>
+      <div class="col-5 col-md-6 col-lg-3">
+        <h5 class="text-6 text-transform-none font-weight-semi-bold text-color-light mb-4">Social Media</h5>
+        <ul class="footer-social-icons social-icons m-0">
+          <li class="social-icons-instagram"><a href="http://www.instagram.com/" target="_blank" title="instagram"><i class="fab fa-instagram text-2"></i></a></li>
+          <li class="social-icons-youtube"><a href="http://www.youtube.com/" target="_blank" title="youtube"><i class="fab fa-youtube text-2"></i></a></li>
+          <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in text-2"></i></a></li>
         </ul>
       </div>
-      <div class="col-md-4 col-lg-2 mb-4 mb-lg-0">
-        <h4 class="font-weight-bold text-5">Navigation</h4>
-        <ul class="list list-unstyled opacity-6">
-          <li class="mb-1">
-            <a href="{{ url('') }}/demo-education.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Home</a>
-          </li>
-          <li class="mb-1">
-            <a href="{{ url('') }}/demo-education-about-us.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- About Us</a>
-          </li>
-          <li class="mb-1">
-            <a href="{{ url('') }}/demo-education-courses.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Courses</a>
-          </li>
-          <li class="mb-1">
-            <a href="{{ url('') }}/demo-education-instructors.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Instructors</a>
-          </li>
-          <li class="mb-1">
-            <a href="{{ url('') }}/demo-education-blog.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Blog</a>
-          </li>
-          <li>
-            <a href="{{ url('') }}/demo-education-contact-us.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Contact Us</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-4 col-lg-2 mb-4 mb-lg-0">
-        <h4 class="font-weight-bold text-5">Support</h4>
-        <ul class="list list-unstyled opacity-6">
-          <li class="mb-1">
-            <a href="{{ url('') }}/demo-education.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Documentation</a>
-          </li>
-          <li class="mb-1">
-            <a href="{{ url('') }}/demo-education.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Forums</a>
-          </li>
-          <li class="mb-1">
-            <a href="{{ url('') }}/demo-education.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Open a Ticket</a>
-          </li>
-          <li>
-            <a href="{{ url('') }}/demo-education.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- FAQ's</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-4 col-lg-2 mb-4 mb-lg-0">
-        <h4 class="font-weight-bold text-5">More</h4>
-        <ul class="list list-unstyled opacity-6">
-          <li class="mb-1">
-            <a href="{{ url('') }}/demo-education.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Terms of Use</a>
-          </li>
-          <li>
-            <a href="{{ url('') }}/demo-education.html" class="text-decoration-none text-color-tertiary text-color-hover-primary link-hover-style-1">- Privacy Policy</a>
-          </li>
-        </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-copyright footer-copyright-style-2 pb-4">
+      <div class="py-2">
+        <div class="row py-4">
+          <div class="col d-flex align-items-center justify-content-center mb-4 mb-lg-0">
+            <p>© Copyright 2024. All Rights Reserved.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

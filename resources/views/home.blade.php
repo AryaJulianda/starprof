@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    {{-- <div class="bg-light">
+    <div class="bg-light">
       <div class="container py-4">
         <div class="row pb-2 mb-1">
           <div class="col-md-4 mb-4 mb-md-0">
@@ -129,7 +129,7 @@
           </div>
         </div>
       </div>
-    </div> --}}
+    </div>
 
     <section class="section custom-bg-color-grey-1 border-0 m-0" id="courses">
       <div class="container position-relative my-4">
@@ -143,131 +143,44 @@
         <div class="row mb-4">
           <div class="col text-center">
             <div class="overflow-hidden">
-              <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3-5 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300">Popular Courses</h2>
+              <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3-5 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300">Our Programs</h2>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="500">
             <div class="owl-carousel owl-theme nav-style-1 nav-outside nav-font-size-lg custom-nav-secondary mb-0" data-plugin-options="{'responsive': {'576': {'items': 1}, '768': {'items': 2}, '992': {'items': 2}, '1200': {'items': 3}}, 'loop': true, 'nav': true, 'dots': false, 'margin': 20}">
-              @foreach ($popular_programs as $program)
+              @foreach ($program_categories as $category)
                 <div>
                   <div class="card custom-card-courses border-radius-0">
                     <div class="p-relative">
-                      <a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">
-                        <img class="card-img-top border-radius-0" src="{{ asset('storage/' . $program->prog_image) }}" alt="{{ asset('storage/' . $program->prog_image) }}" />
+                      <a href="{{ url('programs?category=' . Str::slug($category->category_name)) }}" class="text-color-secondary" title="">
+                        <img class="card-img-top border-radius-0" src="{{ url('img/demos/education/courses/course-1.jpg') }}" alt="Category Image" />
                       </a>
-                      <div class="custom-card-courses-author">
+                      {{-- <div class="custom-card-courses-author">
                         <div class="img-thumbnail img-thumbnail-no-borders rounded-circle">
-                          <img src="{{ asset('storage/' . $program->join_instructor->photo) }}" class="rounded-circle" alt="">
+                          <img src="{{ asset('storage/') }}" class="rounded-circle" alt="">
                         </div>
-                      </div>
+                      </div> --}}
                     </div>
                     <div class="card-body">
-                      <p class="mb-0 text-1 p-relative top-5 text-uppercase">{{ $program->join_instructor->full_name }}</p>
-                      <h4 class="mb-3 text-color-secondary"><a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">{{ $program->prog_name }}</a></h4>
+                      <p class="mb-0 text-1 p-relative top-5 text-uppercase">{{ $category->programs_count }} Programs</p>
+                      <h4 class="mb-3 text-color-secondary"><a href="{{ url('programs?category=' . Str::slug($category->category_name)) }}" class="text-color-secondary" title="">{{ $category->category_name }}</a></h4>
 
                       <div class="float-end">
-                        <strong class="text-primary text-5">{{ $program->price }}</strong>
+                        <a href="{{ url('programs?category=' . Str::slug($category->category_name)) }}" class="text-primary text-5 font-weight-semi-bold">Detail</a>
                       </div>
                     </div>
                   </div>
                 </div>
               @endforeach
-
-              {{-- <div>
-                <div class="card custom-card-courses border-radius-0">
-                  <div class="p-relative">
-                    <a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">
-                      <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-2.jpg" alt="" />
-                    </a>
-                    <div class="custom-card-courses-author">
-                      <div class="img-thumbnail img-thumbnail-no-borders">
-                        <img src="{{ url('') }}/img/avatars/avatar-2.jpg" class="rounded-circle" alt="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-                    <div class="float-end">
-                      <strong class="text-primary text-5">$59</strong>
-                    </div>
-
-                    <div class="text-2">
-                      <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-                      <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="card custom-card-courses border-radius-0">
-                  <div class="p-relative">
-                    <a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">
-                      <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-3.jpg" alt="" />
-                    </a>
-                    <div class="custom-card-courses-author">
-                      <div class="img-thumbnail img-thumbnail-no-borders">
-                        <img src="{{ url('') }}/img/avatars/avatar-3.jpg" class="rounded-circle" alt="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-                    <div class="float-end">
-                      <strong class="text-primary text-5">$29</strong>
-                    </div>
-
-                    <div class="text-2">
-                      <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-                      <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="card custom-card-courses border-radius-0">
-                  <div class="p-relative">
-                    <a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">
-                      <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-4.jpg" alt="" />
-                    </a>
-                    <div class="custom-card-courses-author">
-                      <div class="img-thumbnail img-thumbnail-no-borders">
-                        <img src="{{ url('') }}/img/avatars/avatar-4.jpg" class="rounded-circle" alt="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                    <h4 class="mb-3 text-color-secondary"><a href="{{ url('') }}/demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-                    <div class="float-end">
-                      <strong class="text-primary text-5">$29</strong>
-                    </div>
-
-                    <div class="text-2">
-                      <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-                      <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
             </div>
-          </div>
-        </div>
-        <div class="row pt-2">
-          <div class="col text-center">
-            <a href="{{ url('') }}/demo-education-courses.html" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3 mt-4 mb-2 appear-animation" data-appear-animation="fadeInUpShorterPlus" data-appear-animation-delay="350">VIEW ALL</a>
           </div>
         </div>
       </div>
     </section>
 
-    {{-- <section class="section section-background custom-section-background-1 bg-color-tertiary border-0 m-0" style="background-image: url({{ url('') }}/img/demos/education/backgrounds/background-1.jpg); background-position: 100% 100%; background-repeat: no-repeat; background-size: contain;">
+    <section class="section section-background custom-section-background-1 bg-color-tertiary border-0 m-0" style="background-image: url({{ url('') }}/img/demos/education/backgrounds/background-1.jpg); background-position: 100% 100%; background-repeat: no-repeat; background-size: contain;">
       <div class="container my-4">
         <div class="row mb-4">
           <div class="col-lg-6">
@@ -323,7 +236,7 @@
           </div>
         </div>
       </div>
-    </section> --}}
+    </section>
 
     <section class="section custom-bg-color-grey-1 border-0 m-0">
       <div class="container position-relative my-4">
