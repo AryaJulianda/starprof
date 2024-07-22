@@ -38,18 +38,28 @@ Route::get('/about-us', function () {
     return view('about-us', [
         'data' => AboutUs::first(),
         'testimonials' => Testimonials::all(),
+        'instructors' => Instructors::all()
     ]);
 });
 
 Route::get('/programs', function (Request $request) {
     $categorySlug = $request->query('category');
+    $searchQuery = $request->query('search');
+
+    $query = Programs::query();
+
     if ($categorySlug) {
         $category = ProgramsCategory::where('category_name', Str::slug($categorySlug, ' '))->first();
         $categoryId = $category ? $category->id : null;
-        $list_programs = Programs::where('prog_category', $categoryId)->with(['join_instructor', 'category'])->paginate(6);
-    } else {
-        $list_programs = Programs::with(['join_instructor', 'category'])->paginate(6);
+        $query->where('prog_category', $categoryId);
     }
+
+    if ($searchQuery) {
+        $query->where('prog_name', 'LIKE', '%' . $searchQuery . '%');
+    }
+
+    $list_programs = $query->with(['join_instructor', 'category'])->paginate(6);
+
     return view('programs', [
         'list_programs' => $list_programs,
         'list_categories' => ProgramsCategory::withCount('programs')->get(),
@@ -71,8 +81,15 @@ Route::get('/instructors', function () {
     return view('instructors', ['data' => $data]);
 });
 
-Route::get('/instructor-detail', function () {
-    return view('instructor-detail');
+Route::get('/instructor-detail/{slug}', function ($slug) {
+    $name = Str::slug($slug, ' ');
+    $instructor = Instructors::where('full_name', $name)->firstOrFail();
+    $programs = Programs::where('instructor', $instructor->id)->get();
+
+    return view('instructor-detail', [
+        'instructor' => $instructor,
+        'programs'   => $programs
+    ]);
 });
 
 Route::get('/blog', function () {
@@ -118,6 +135,7 @@ Route::prefix('adm')->group(function () {
             'image_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'vision'     => 'required|string',
             'mission'    => 'required|string',
+            'why_us'     => 'required|string',
         ]);
 
         $aboutUs = AboutUs::first();
@@ -128,6 +146,7 @@ Route::prefix('adm')->group(function () {
         $aboutUs->desc       = $request->desc;
         $aboutUs->vision     = $request->vision;
         $aboutUs->mission    = $request->mission;
+        $aboutUs->why_us     = $request->why_us;
         $aboutUs->updated_by = Auth::id();
 
         if ($request->hasFile('image_file')) {

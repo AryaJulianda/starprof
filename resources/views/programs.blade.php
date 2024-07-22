@@ -28,6 +28,15 @@
 
     <div class="container py-2">
 
+      <div class="row d-row justify-content-center">
+        <form action="{{ url('programs') }}" method="GET" class="col-12">
+          <div class="input-group mb-3">
+            <input type="text" name="search" class="form-control" placeholder="Search program..." value="{{ request()->query('search') }}">
+            <button class="btn btn-primary" type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+
       <ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
         <li class="nav-item {{ $selected_category_slug == '' ? 'active' : '' }}" data-option-value="*"><a class="nav-link text-2-5 text-uppercase {{ $selected_category_slug == '' ? 'active' : '' }}" href="{{ url('programs') }}" onclick="redirectCategory(this)">Show All</a></li>
         @foreach ($list_categories as $item)
@@ -73,7 +82,7 @@
         {{-- pagination --}}
         <div class="row">
           <div class="col d-flex justify-content-center">
-            {{ $list_programs->appends(['category' => $selected_category_slug])->links('pagination::bootstrap-4') }}
+            {{ $list_programs->appends(['category' => $selected_category_slug, 'search' => request()->query('search')])->links('pagination::bootstrap-4') }}
           </div>
         </div>
 

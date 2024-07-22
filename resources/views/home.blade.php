@@ -155,7 +155,7 @@
                   <div class="card custom-card-courses border-radius-0">
                     <div class="p-relative">
                       <a href="{{ url('programs?category=' . Str::slug($category->category_name)) }}" class="text-color-secondary" title="">
-                        <img class="card-img-top border-radius-0" src="{{ url('img/demos/education/courses/course-1.jpg') }}" alt="Category Image" />
+                        <img class="card-img-top border-radius-0" src="{{ asset('storage/' . $category->category_image) }}" alt="Category Image" />
                       </a>
                       {{-- <div class="custom-card-courses-author">
                         <div class="img-thumbnail img-thumbnail-no-borders rounded-circle">

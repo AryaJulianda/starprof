@@ -23,6 +23,24 @@
               </div>
               <div class="col-12">
                 <div class="mt-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="{{ isset($dataForm) ? $dataForm->email : '' }}" {{ $type == 'view' ? 'disabled' : 'required' }}>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="mt-3">
+                  <label for="instagram" class="form-label">Link Instagram</label>
+                  <input type="text" class="form-control" id="instagram" placeholder="Link Instagram" name="instagram" value="{{ isset($dataForm) ? $dataForm->instagram : '' }}" {{ $type == 'view' ? 'disabled' : 'required' }}>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="mt-3">
+                  <label for="linkedin" class="form-label">Link Linkedin</label>
+                  <input type="text" class="form-control" id="linkedin" placeholder="Link Linkedin" name="linkedin" value="{{ isset($dataForm) ? $dataForm->linkedin : '' }}" {{ $type == 'view' ? 'disabled' : 'required' }}>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="mt-3">
                   <label for="photo_file" class="form-label d-block">Photo</label>
                   <img id="image-preview" src="{{ isset($dataForm) && $dataForm->photo ? asset('storage/' . $dataForm->photo) : '#' }}" alt="Photo" class="img-thumbnail mb-3" style="max-width: 200px; {{ isset($dataForm) && $dataForm->photo ? '' : 'display:none;' }}">
                   <input type="file" class="form-control" id="photo_file" placeholder="photo_file" name="photo_file" value="" onchange="previewImage(event)" {{ $type == 'view' ? 'disabled' : '' }}>

@@ -35,6 +35,12 @@
                   <textarea id="mission" class="form-control" name="mission" rows="3" placeholder="Mission">{{ isset($dataForm) ? $dataForm->mission : '' }}</textarea>
                 </div>
               </div>
+              <div class="col-12">
+                <div class="mt-3">
+                  <label for="why_us" class="form-label">Why Us</label>
+                  <textarea id="why_us" class="form-control" name="why_us" rows="3" placeholder="Why Us">{{ isset($dataForm) ? $dataForm->why_us : '' }}</textarea>
+                </div>
+              </div>
               <div class="col-md-6 col-xl-3">
                 <div class="mt-3">
                   <label for="updatedBy" class="form-label">Updated By</label>

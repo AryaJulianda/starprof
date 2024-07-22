@@ -52,6 +52,9 @@ class InstructorsController extends Controller
                 'full_name' => 'required|string|max:255',
                 'photo_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'desc' => 'nullable|string',
+                'email' => 'nullable|string',
+                'instagram' => 'nullable|string',
+                'linkedin' => 'nullable|string',
             ]);
 
             if ($request->hasFile('photo_file')) {
@@ -80,6 +83,9 @@ class InstructorsController extends Controller
             $validatedData = $request->validate([
                 'full_name' => 'required|string|max:255',
                 'desc' => 'nullable|string',
+                'email' => 'nullable|string',
+                'instagram' => 'nullable|string',
+                'linkedin' => 'nullable|string',
             ]);
 
             if ($request->hasFile('photo_file')) {

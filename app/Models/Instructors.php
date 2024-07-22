@@ -15,6 +15,9 @@ class Instructors extends Model
         'full_name',
         'photo',
         'desc',
+        'email',
+        'instagram',
+        'linkedin',
         'created_by',
         'updated_by',
     ];
