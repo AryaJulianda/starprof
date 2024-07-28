@@ -46,15 +46,15 @@
               <div class="col-12">
                 <div class="mt-3">
                   <label for="price" class="form-label">Price</label>
-                  <input type="text" class="form-control" id="price" placeholder="Price" name="price" value="{{ isset($dataForm) ? $dataForm->price : '' }}" {{ $type == 'view' ? 'disabled' : '' }}>
+                  <input type="text" class="form-control" id="price" name="price" placeholder="Price" value="{{ isset($dataForm) ? number_format($dataForm->price, 0, ',', '.') : '' }}" {{ $type == 'view' ? 'disabled' : '' }}>
                 </div>
               </div>
-              <div class="col-12">
+              {{-- <div class="col-12">
                 <div class="mt-3">
                   <input type="checkbox" class="form-check-input" id="popular" placeholder="popular" name="popular" value="1" {{ isset($dataForm) && $dataForm->popular == true ? 'checked' : '' }} {{ $type == 'view' ? 'disabled' : '' }}>
                   <label for="popular" class="form-label">Add to Popular Programs</label>
                 </div>
-              </div>
+              </div> --}}
               <div class="col-12">
                 <div class="mt-3">
                   <label for="prog_image_file" class="form-label d-block">Image</label>
@@ -119,6 +119,51 @@
       reader.readAsDataURL(event.target.files[0]);
     }
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var priceInput = document.getElementById('price');
+
+      // Function to format number as currency
+      function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+          split = number_string.split(','),
+          sisa = split[0].length % 3,
+          rupiah = split[0].substr(0, sisa),
+          ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan) {
+          separator = sisa ? '.' : '';
+          rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix === undefined ? rupiah : (rupiah ? 'Rp ' + rupiah : '');
+      }
+
+      // Function to remove format and get pure number
+      function removeFormatRupiah(angka) {
+        return angka.replace(/[^,\d]/g, '');
+      }
+
+      // Format value on load
+      if (priceInput.value) {
+        priceInput.value = formatRupiah(priceInput.value, 'Rp ');
+      }
+
+      priceInput.addEventListener('input', function(e) {
+        var value = e.target.value;
+        priceInput.value = formatRupiah(value, 'Rp ');
+      });
+
+      // On form submit, remove format
+      var form = priceInput.closest('form');
+      form.addEventListener('submit', function(e) {
+        priceInput.value = removeFormatRupiah(priceInput.value);
+      });
+    });
+  </script>
+
   @if ($type == 'view')
     <script>
       $(document).ready(function() {

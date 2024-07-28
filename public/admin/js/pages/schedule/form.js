@@ -13,6 +13,11 @@ $(document).ready(function() {
         var url = $(this).attr("action");
         var formData = new FormData(this);
 
+        var tanggal = $('.input-tanggal').val();
+        formData.append('tanggal', tanggal);
+
+        console.table(Array.from(formData.entries()));
+
         if (this.checkValidity() === false) {
             event.stopPropagation();
         } else {
@@ -34,11 +39,11 @@ $(document).ready(function() {
                         contentType: false,
                         success: function(response) {
                             showAlert('success','Success!',null, () => {
-                                window.location.href = `${base_url}/adm/blogs`;
+                                window.location.href = `${base_url}/adm/schedule`;
                             });
                         },
                         error: function(xhr, status, error) {
-                            showAlert('error','Failed!',null, null);
+                            showAlert('error','Failed!',xhr.responseJSON.error, null);
                         }
                     });
                 }

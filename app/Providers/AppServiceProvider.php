@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $phone = ContactUs::first()->phone;
+        $email = ContactUs::first()->email;
         $phone_link = preg_replace('/\D/', '', $phone);
         if (strpos($phone_link, '0') === 0) {
             $phone_link = preg_replace('/^0/', '+62', $phone_link);
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         $location = ContactUs::first()->location;
 
         View::share('phone', $phone);
+        View::share('email', $email);
         View::share('phone_link', $phone_link);
         View::share('location', $location);
         View::share('program_categories', ProgramsCategory::withCount('programs')->get());

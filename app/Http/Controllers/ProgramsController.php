@@ -11,162 +11,107 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ProgramsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         if ($request->ajax()) {
             $data = Programs::select(['id', 'prog_name', 'prog_category', 'created_by', 'created_at']);
-            $dataTable = DataTables::of($data)->make(true);
-            return $dataTable;
+            return DataTables::of($data)->make(true);
         }
 
-        $data = [
+        return view('admin.programs.index', [
             'title' => 'Programs',
             'module_path' => 'programs',
-        ];
-        return view('admin.programs.index', $data);
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function show($id)
+    {
+        return view('admin.programs.form', [
+            'module_path' => 'programs',
+            'type' => 'view',
+            'title' => 'Detail Program',
+            'select_programs_category' => ProgramsCategory::all(),
+            'select_instructors' => Instructors::all(),
+            'dataForm' => Programs::findOrFail($id),
+        ]);
+    }
+
     public function create()
     {
-        $data = [
+        return view('admin.programs.form', [
             'module_path' => 'programs',
-            'type'  => 'create',
+            'type' => 'create',
             'title' => 'Create Program',
             'select_programs_category' => ProgramsCategory::all(),
             'select_instructors' => Instructors::all(),
-        ];
-
-        return view('admin.programs.form', $data);
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        try {
-            $validatedData = $request->validate([
-                'prog_name' => 'required|string|max:255',
-                'prog_category' => 'required|integer|exists:programs_category,id',
-                'instructor' => 'required|integer|exists:instructors,id',
-                'prog_image_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'desc' => 'nullable|string',
-                'price' => 'string|max:255',
-                'popular' => 'string',
-            ]);
+        $validatedData = $this->validateData($request);
 
-            if ($request->hasFile('prog_image_file')) {
-                $imagePath = $request->file('prog_image_file')->store('programs_images', 'public');
-                $validatedData['prog_image'] = $imagePath;
-            }
-
-            $validatedData['created_by'] = auth()->user()->id;
-
-            Programs::create($validatedData);
-
-            return response()->json(['success' => 'Program created successfully']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to create program: ' . $e->getMessage()], 500);
+        if ($request->hasFile('prog_image_file')) {
+            $validatedData['prog_image'] = $request->file('prog_image_file')->store('programs_images', 'public');
         }
+
+        $validatedData['created_by'] = auth()->user()->id;
+        Programs::create($validatedData);
+
+        return response()->json(['success' => 'Program created successfully']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    public function edit($id)
+    {
+        return view('admin.programs.form', [
+            'module_path' => 'programs',
+            'type' => 'edit',
+            'title' => 'Edit Program',
+            'select_programs_category' => ProgramsCategory::all(),
+            'select_instructors' => Instructors::all(),
+            'dataForm' => Programs::findOrFail($id),
+        ]);
+    }
+
     public function update(Request $request, $id)
     {
-        try {
-            $program = Programs::findOrFail($id);
+        $program = Programs::findOrFail($id);
+        $validatedData = $this->validateData($request);
 
-            $validatedData = $request->validate([
-                'prog_name' => 'required|string|max:255',
-                'prog_category' => 'required|integer|exists:programs_category,id',
-                'instructor' => 'required|integer|exists:instructors,id',
-                'prog_image_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'desc' => 'nullable|string',
-                'price' => 'string|max:255',
-                'popular' => 'string',
-            ]);
-
-            if ($request->hasFile('prog_image_file')) {
-                if ($program->prog_image) {
-                    Storage::disk('public')->delete($program->prog_image);
-                }
-
-                $imagePath = $request->file('prog_image_file')->store('programs_images', 'public');
-                $validatedData['prog_image'] = $imagePath;
-            }
-
-            $validatedData['updated_by'] = auth()->user()->id;
-
-            $program->update($validatedData);
-
-            return response()->json(['success' => 'Program updated successfully']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to create program: ' . $e->getMessage()], 500);
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $data = [
-            'module_path' => 'programs',
-            'type'        => 'view',
-            'title'       => 'Detail Program',
-            'select_programs_category' => ProgramsCategory::all(),
-            'select_instructors' => Instructors::all(),
-            'dataForm'    => Programs::where('id', $id)->first()
-        ];
-
-        return view('admin.programs.form', $data);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $data = [
-            'module_path' => 'programs',
-            'type'        => 'edit',
-            'title'       => 'Detail Program',
-            'select_programs_category' => ProgramsCategory::all(),
-            'select_instructors' => Instructors::all(),
-            'dataForm'    => Programs::where('id', $id)->first()
-        ];
-
-        return view('admin.programs.form', $data);
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        try {
-            $program = Programs::findOrFail($id);
-
-            // Delete the program image from storage
+        if ($request->hasFile('prog_image_file')) {
             if ($program->prog_image) {
                 Storage::disk('public')->delete($program->prog_image);
             }
-
-            // Delete the program record
-            $program->delete();
-
-            return response()->json(['success' => 'Program deleted successfully']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete program: ' . $e->getMessage()], 500);
+            $validatedData['prog_image'] = $request->file('prog_image_file')->store('programs_images', 'public');
         }
+
+        $validatedData['updated_by'] = auth()->user()->id;
+        $program->update($validatedData);
+
+        return response()->json(['success' => 'Program updated successfully']);
+    }
+
+    public function destroy($id)
+    {
+        $program = Programs::findOrFail($id);
+        if ($program->prog_image) {
+            Storage::disk('public')->delete($program->prog_image);
+        }
+        $program->delete();
+
+        return response()->json(['success' => 'Program deleted successfully']);
+    }
+
+    private function validateData($request)
+    {
+        return $request->validate([
+            'prog_name' => 'required|string|max:255',
+            'prog_category' => 'required|integer|exists:programs_category,id',
+            'instructor' => 'required|integer|exists:instructors,id',
+            'prog_image_file' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'desc' => 'nullable|string',
+            'price' => 'nullable|integer',
+            'popular' => 'nullable|boolean',
+        ]);
     }
 }

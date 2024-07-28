@@ -25,8 +25,101 @@
       <div class="container">
 
         <div class="row py-3 gy-5 gy-lg-0">
-          <div class="col-lg-9 mt-0">
+          <!-- Sidebar -->
+          <div class="col-lg-3 position-relative">
 
+            <div class="mt-2 mb-4 pb-2">
+              <h2 class="text-color-secondary font-weight-semi-bold text-5 line-height-1 mb-3">Categories</h2>
+
+              <ul class="nav nav-list flex-column p-relative right-9">
+                @foreach ($list_categories as $item)
+                  <li class="nav-item">
+                    <a class="nav-link bg-transparent border-0" href="{{ url('programs?category=' . Str::slug($item->category_name)) }}">
+                      {{ $item->category_name }} ({{ $item->programs_count }})
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+
+            {{-- <div class="mt-2 mb-4 pb-2">
+
+              <h2 class="text-color-secondary font-weight-semi-bold text-5 line-height-1 mb-3">Latest Courses</h2>
+
+              <ul class="simple-post-list">
+                <li class="border-0">
+                  <div class="post-image">
+                    <div class="img-thumbnail img-thumbnail-no-borders d-block">
+                      <a href="blog-post.html">
+                        <img src="{{ url('') }}/img/demos/education/courses/course-1.jpg" width="80" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="post-info">
+                    <a href="blog-post.html" class="text-color-secondary text-3 font-weight-semi-bold line-height-4 d-block pb-1">Course Name Example</a>
+                    <div class="post-meta">
+                      <strong class="text-primary text-4">$79</strong>
+                    </div>
+                  </div>
+                </li>
+                <li class="border-0">
+                  <div class="post-image">
+                    <div class="img-thumbnail img-thumbnail-no-borders d-block">
+                      <a href="blog-post.html">
+                        <img src="{{ url('') }}/img/demos/education/courses/course-2.jpg" width="80" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="post-info">
+                    <a href="blog-post.html" class="text-color-secondary text-3 font-weight-semi-bold line-height-4 d-block pb-1">Course Name Example</a>
+                    <div class="post-meta">
+                      <strong class="text-primary text-4">$79</strong>
+                    </div>
+                  </div>
+                </li>
+                <li class="border-0">
+                  <div class="post-image">
+                    <div class="img-thumbnail img-thumbnail-no-borders d-block">
+                      <a href="blog-post.html">
+                        <img src="{{ url('') }}/img/demos/education/courses/course-3.jpg" width="80" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="post-info">
+                    <a href="blog-post.html" class="text-color-secondary text-3 font-weight-semi-bold line-height-4 d-block pb-1">Course Name Example</a>
+                    <div class="post-meta">
+                      <strong class="text-primary text-4">$79</strong>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+
+            </div> --}}
+
+            <div class="mt-2 mb-4 pb-2">
+              <section class="section section-height-3 bg-color-primary border-0 m-0">
+                <div class="container p-relative py-3">
+
+                  <div class="custom-element custom-element-pos-4 appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="200">
+                    <div class="opacity-2" data-plugin-float-element data-plugin-options="{'startPos': 'bottom', 'speed': 0.8, 'transition': true, 'transitionDuration': 3000}">
+                      <img class="icon-animated" width="157" height="157" src="{{ url('') }}/img/demos/education/elements/element-1.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-light'}" />
+                    </div>
+                  </div>
+
+                  <div class="row align-items-center justify-content-center text-center">
+                    <div class="col col pt-2">
+                      <h2 class="text-color-light font-weight-semi-bold text-7 mb-0 appear-animation" data-appear-animation="fadeInRightShorterPlus" data-appear-animation-delay="150">Ready to kick-start your career?</h2>
+
+                      <a href="{{ url('contact-us') }}" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3 mt-4 mb-2 appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="350">REGISTER NOW</a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+          </div>
+
+          <div class="col-lg-9 mt-0">
             <div class="custom-course-detail">
 
               <div class="d-md-flex mb-4">
@@ -59,7 +152,7 @@
                 <div class="ps-md-4">
                   <div class="d-flex flex-row align-items-center h-100">
                     <div class="p-0">
-                      <a href="#" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3">TAKE THIS COURSE</a>
+                      <a href="#" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3">REGISTER NOW</a>
                     </div>
                   </div>
                 </div>
@@ -394,101 +487,6 @@
               </div>
 
             </div>
-
-          </div>
-
-          <!-- Sidebar -->
-          <div class="col-lg-3 position-relative">
-
-            <div class="mt-2 mb-4 pb-2">
-              <h2 class="text-color-secondary font-weight-semi-bold text-5 line-height-1 mb-3">Categories</h2>
-
-              <ul class="nav nav-list flex-column p-relative right-9">
-                @foreach ($list_categories as $item)
-                  <li class="nav-item">
-                    <a class="nav-link bg-transparent border-0" href="{{ url('programs?category=' . Str::slug($item->category_name)) }}">
-                      {{ $item->category_name }} ({{ $item->programs_count }})
-                    </a>
-                  </li>
-                @endforeach
-              </ul>
-            </div>
-
-            <div class="mt-2 mb-4 pb-2">
-
-              <h2 class="text-color-secondary font-weight-semi-bold text-5 line-height-1 mb-3">Latest Courses</h2>
-
-              <ul class="simple-post-list">
-                <li class="border-0">
-                  <div class="post-image">
-                    <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                      <a href="blog-post.html">
-                        <img src="{{ url('') }}/img/demos/education/courses/course-1.jpg" width="80" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-info">
-                    <a href="blog-post.html" class="text-color-secondary text-3 font-weight-semi-bold line-height-4 d-block pb-1">Course Name Example</a>
-                    <div class="post-meta">
-                      <strong class="text-primary text-4">$79</strong>
-                    </div>
-                  </div>
-                </li>
-                <li class="border-0">
-                  <div class="post-image">
-                    <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                      <a href="blog-post.html">
-                        <img src="{{ url('') }}/img/demos/education/courses/course-2.jpg" width="80" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-info">
-                    <a href="blog-post.html" class="text-color-secondary text-3 font-weight-semi-bold line-height-4 d-block pb-1">Course Name Example</a>
-                    <div class="post-meta">
-                      <strong class="text-primary text-4">$79</strong>
-                    </div>
-                  </div>
-                </li>
-                <li class="border-0">
-                  <div class="post-image">
-                    <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                      <a href="blog-post.html">
-                        <img src="{{ url('') }}/img/demos/education/courses/course-3.jpg" width="80" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-info">
-                    <a href="blog-post.html" class="text-color-secondary text-3 font-weight-semi-bold line-height-4 d-block pb-1">Course Name Example</a>
-                    <div class="post-meta">
-                      <strong class="text-primary text-4">$79</strong>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-
-            </div>
-
-            <div class="mt-2 mb-4 pb-2">
-              <section class="section section-height-3 bg-color-primary border-0 m-0">
-                <div class="container p-relative py-3">
-
-                  <div class="custom-element custom-element-pos-4 appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="200">
-                    <div class="opacity-2" data-plugin-float-element data-plugin-options="{'startPos': 'bottom', 'speed': 0.8, 'transition': true, 'transitionDuration': 3000}">
-                      <img class="icon-animated" width="157" height="157" src="{{ url('') }}/img/demos/education/elements/element-1.svg" alt="" data-icon data-plugin-options="{'onlySVG': true, 'extraClass': 'svg-fill-color-light'}" />
-                    </div>
-                  </div>
-
-                  <div class="row align-items-center justify-content-center text-center">
-                    <div class="col col pt-2">
-                      <h2 class="text-color-light font-weight-semi-bold text-7 mb-0 appear-animation" data-appear-animation="fadeInRightShorterPlus" data-appear-animation-delay="150">Ready to kick-start your career?</h2>
-
-                      <a href="demo-education-courses.html" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3 mt-4 mb-2 appear-animation" data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="350">GET STARTED NOW</a>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-
           </div>
         </div>
 

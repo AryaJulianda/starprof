@@ -51,5 +51,33 @@ $(document).ready(function() {
 
         form.addClass('was-validated');
     });
+
+    $(document).ready(function() {
+        $('#save-client').click(function(e) {
+          e.preventDefault();
+          var formData = new FormData();
+          formData.append('image_file_client', $('#image_file_client')[0].files[0]);
+          showAlert('loading','Loading...',null, null);
+          $.ajax({
+            url: '/clients',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+              showAlert('success','Success!',response.success, null);
+              $('#myModal').modal('hide');
+            },
+            error: function(response) {
+              if (response.status === 422) {
+                var errors = response.responseJSON.errors;
+                showAlert('error','Failed!',errors.image_file_client[0], null);
+              } else {
+                showAlert('error','Failed!',response.responseJSON.error, null);
+              }
+            }
+          });
+        });
+      });
 });
 

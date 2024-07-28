@@ -86,8 +86,7 @@
         </div>
         <div class="col-md-6 order-1 order-md-2 text-center text-md-start mb-5 mb-md-0">
           <h2 class="text-color-dark font-weight-normal text-6 mb-2 pb-1"><strong class="font-weight-extra-bold">Our Trainer</strong></h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit massa enim. Nullam id varius nunc.</p>
-          <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc. Vivamus bibendum magna ex, et faucibus lacus venenatis eget.</p>
+          <p class="mb-4">{{ $data->our_trainer_desc }}</p>
         </div>
       </div>
     </div>
@@ -97,30 +96,30 @@
         <div class="row counters counters-sm pb-4 pt-3">
           <div class="col-sm-6 col-lg-3 mb-5 mb-lg-0">
             <div class="counter">
-              <i class="icons icon-user text-color-light"></i>
-              <strong class="text-color-light font-weight-extra-bold" data-to="45000" data-append="+">0</strong>
-              <label class="text-4 mt-1 text-color-light">Happy Clients</label>
+              <i class="icons icon-badge text-color-light"></i>
+              <strong class="text-color-light font-weight-extra-bold" data-to="{{ $data->completed_course }}" data-append="+">0</strong>
+              <label class="text-4 mt-1 text-color-light">Completed Courses</label>
             </div>
           </div>
           <div class="col-sm-6 col-lg-3 mb-5 mb-lg-0">
             <div class="counter">
-              <i class="icons icon-badge text-color-light"></i>
-              <strong class="text-color-light font-weight-extra-bold" data-to="15">0</strong>
-              <label class="text-4 mt-1 text-color-light">Years In Business</label>
+              <i class="icons icon-people text-color-light"></i>
+              <strong class="text-color-light font-weight-extra-bold" data-to="{{ $total_instructor }}">0</strong>
+              <label class="text-4 mt-1 text-color-light">Total Instructor</label>
             </div>
           </div>
           <div class="col-sm-6 col-lg-3 mb-5 mb-sm-0">
             <div class="counter">
-              <i class="icons icon-graph text-color-light"></i>
-              <strong class="text-color-light font-weight-extra-bold" data-to="178">0</strong>
-              <label class="text-4 mt-1 text-color-light">High Score</label>
+              <i class="icons icon-user-following text-color-light"></i>
+              <strong class="text-color-light font-weight-extra-bold" data-to="{{ $data->active_student }}" data-append="+">0</strong>
+              <label class="text-4 mt-1 text-color-light">Active Student</label>
             </div>
           </div>
           <div class="col-sm-6 col-lg-3">
             <div class="counter">
-              <i class="icons icon-cup text-color-light"></i>
-              <strong class="text-color-light font-weight-extra-bold" data-to="352">0</strong>
-              <label class="text-4 mt-1 text-color-light">Cups of Coffee</label>
+              <i class="icons icon-clock text-color-light"></i>
+              <strong class="text-color-light font-weight-extra-bold" data-to="{{ $data->total_training_hours }}" data-append="+">0</strong>
+              <label class="text-4 mt-1 text-color-light">Total Training Hours</label>
             </div>
           </div>
         </div>
@@ -132,17 +131,12 @@
         <div class="row">
           <div class="col-lg-6 text-center text-md-start mb-5 mb-lg-0">
             <h2 class="text-color-dark font-weight-normal text-6 mb-2">About <strong class="font-weight-extra-bold">Our Clients</strong></h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit massa enim. Nullam id varius nunc.</p>
             <div class="row justify-content-center my-5">
-              <div class="col-8 text-center col-md-4">
-                <img src="{{ url('') }}/img/logos/logo-1.png" class="img-fluid hover-effect-3" alt="" />
-              </div>
-              <div class="col-8 text-center col-md-4 my-3 my-md-0">
-                <img src="{{ url('') }}/img/logos/logo-1.png" class="img-fluid hover-effect-3" alt="" />
-              </div>
-              <div class="col-8 text-center col-md-4">
-                <img src="{{ url('') }}/img/logos/logo-1.png" class="img-fluid hover-effect-3" alt="" />
-              </div>
+              @foreach ($our_clients as $item)
+                <div class="col-8 text-center col-md-4">
+                  <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid hover-effect-3" alt="" />
+                </div>
+              @endforeach
             </div>
           </div>
           <div class="col-lg-6">

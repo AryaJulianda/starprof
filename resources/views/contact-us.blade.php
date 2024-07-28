@@ -1,4 +1,21 @@
 <x-layout>
+  <!-- Sweet Alert-->
+  <link href="{{ url('admin/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+
+  <style>
+    /* Untuk browser berbasis Webkit seperti Chrome dan Safari */
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Untuk Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
+
   <div role="main" class="main">
 
     <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
@@ -13,7 +30,21 @@
           <h2 class="font-weight-bold text-8 mt-2 mb-0">Contact Us</h2>
           <p class="mb-4">Feel free to ask for details, don't save any questions!</p>
 
-          <form class="contact-form" action="php/contact-form.php" method="POST">
+          @if (session('success'))
+            <div class="alert alert-success">
+              {{ session('success') }}
+            </div>
+          @endif
+
+          @if (session('error'))
+            <div class="alert alert-danger">
+              {{ session('error') }}
+            </div>
+          @endif
+
+
+          <form class="contact-form" id="contactForm" action="{{ url('submit-registration') }}" method="POST">
+            @csrf
             <div class="contact-form-success alert alert-success d-none mt-4">
               <strong>Success!</strong> Your message has been sent to us.
             </div>
@@ -25,24 +56,67 @@
 
             <div class="row">
               <div class="form-group col-lg-6">
-                <label class="form-label mb-1 text-2">Full Name</label>
-                <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control text-3 h-auto py-2" name="name" required>
+                <label class="form-label mb-1 text-2">Nama Lengkap Peserta</label>
+                <input type="text" value="" maxlength="100" class="form-control text-3 h-auto py-2" name="nama_lengkap" required>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="form-label mb-1 text-2">Jenis Kelamin</label>
+                <select name="jenis_kelamin" id="jenis_kelamin" class="form-control text-3 h-auto py-2" required>
+                  <option value="">-- Pilih Jenis Kelamin --</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="form-label mb-1 text-2">Tempat Lahir</label>
+                <input type="text" value="" maxlength="100" class="form-control text-3 h-auto py-2" name="tempat_lahir" required>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="form-label mb-1 text-2">Tanggal Lahir</label>
+                <input type="date" value="" class="form-control text-3 h-auto py-2" name="tanggal_lahir" required>
+              </div>
+              <div class="form-group col-lg-12">
+                <label class="form-label mb-1 text-2">Alamat Lengkap</label>
+                <textarea maxlength="5000" rows="2" class="form-control text-3 h-auto py-2" name="alamat_lengkap" required></textarea>
               </div>
               <div class="form-group col-lg-6">
                 <label class="form-label mb-1 text-2">Email Address</label>
-                <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control text-3 h-auto py-2" name="email" required>
+                <input type="email" value="" maxlength="100" class="form-control text-3 h-auto py-2" name="email" required>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col">
-                <label class="form-label mb-1 text-2">Subject</label>
-                <input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control text-3 h-auto py-2" name="subject" required>
+              <div class="form-group col-lg-6">
+                <label class="form-label mb-1 text-2">No Handphone</label>
+                <input type="number" value="" class="form-control text-3 h-auto py-2" name="phone" required>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="form-label mb-1 text-2">Program Category</label>
+                <select name="program_category" id="program_category" class="form-control text-3 h-auto py-2" required>
+                  <option value="">-- Pilih Program Category --</option>
+                  @foreach ($program_categories as $item)
+                    <option value="{{ $item->category_name }}" data-categoryId="{{ $item->id }}">{{ $item->category_name }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="form-label mb-1 text-2">Nama Program</label>
+                <select name="nama_program" id="nama_program" class="form-control text-3 h-auto py-2" disabled>
+                  <option value="">-- Pilih Nama Program --</option>
+                  @foreach ($programs as $item)
+                    <option value="{{ $item->prog_name }}" data-categoryId="{{ $item->prog_category }}">{{ $item->prog_name }}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
             <div class="row">
               <div class="form-group col">
                 <label class="form-label mb-1 text-2">Message</label>
                 <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control text-3 h-auto py-2" name="message" required></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col">
+                <label class="form-label mb-1 text-2">Registration Date</label>
+                <input type="date" value="" class="form-control text-3 h-auto py-2" id="registration_date" name="registration_date" readonly>
               </div>
             </div>
             <div class="row">
@@ -64,8 +138,8 @@
             </ul>
           </div>
 
-          <h4 class="pt-5">Get in <strong>Touch</strong></h4>
-          <p class="lead mb-0 text-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          {{-- <h4 class="pt-5">Get in <strong>Touch</strong></h4>
+          <p class="lead mb-0 text-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> --}}
 
         </div>
 
@@ -74,4 +148,77 @@
     </div>
 
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const programCategory = document.getElementById('program_category');
+      const programName = document.getElementById('nama_program');
+
+      programCategory.addEventListener('change', function() {
+        const selectedCategoryId = this.options[this.selectedIndex].getAttribute('data-categoryId');
+
+        // Reset and disable programName select
+        programName.innerHTML = '<option value="">-- Pilih Nama Program --</option>';
+        programName.disabled = true;
+        programName.required = false;
+
+        if (selectedCategoryId) {
+          @foreach ($programs as $item)
+            if (selectedCategoryId === "{{ $item->prog_category }}") {
+              programName.innerHTML += '<option value="{{ $item->prog_name }}" data-categoryId="{{ $item->prog_category }}">{{ $item->prog_name }}</option>';
+            }
+          @endforeach
+
+          programName.disabled = false;
+          programName.required = true;
+        }
+      });
+
+      const registrationDateInput = document.getElementById('registration_date');
+      const today = new Date().toISOString().split('T')[0];
+      registrationDateInput.value = today;
+    });
+
+    $(document).ready(function() {
+      $('#contactForm').on('submit', function(e) {
+        e.preventDefault();
+
+        const formData = $(this).serialize();
+        Swal.fire({
+          title: 'Processing...',
+          text: 'Please wait while we are submitting your message.',
+          allowOutsideClick: false,
+          showConfirmButton: false,
+          onBeforeOpen: () => {
+            Swal.showLoading();
+          }
+        });
+
+        $.ajax({
+          url: "{{ url('submit-registration') }}",
+          method: 'POST',
+          data: formData,
+          success: function(response) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'Your message has been sent successfully.'
+            });
+          },
+          error: function(xhr) {
+            console.error(xhr);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'There was an error sending your message.'
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+  {{-- Sweetalert2 --}}
+  <script src="{{ url('admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
 </x-layout>

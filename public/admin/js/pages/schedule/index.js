@@ -15,20 +15,13 @@ $(document).ready(function() {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }
             },
-{
-                data: null,
-                name: 'image',
-                orderable: false,
-                searchable: false,
-                render: function(data, type, row) {
-                    return `
-                    <div class="d-flex justify-content-center">
-                      <img src="${asset_path}/${data.image}" alt="${data.title}" class="img-center rounded-2" width="100">
-                    </div>
-                    `;
-                }
-            },
-            { data: 'title', name: 'title' },
+            { data: 'program_name', name: 'program_name' },
+            { data: 'formatted_tanggal', name: 'formatted_tanggal' },
+            { data: 'waktu', name: 'waktu' },
+            { data: 'harga', name: 'harga' },
+            { data: 'lokasi', name: 'lokasi' },
+            { data: 'seat_tersisa', name: 'seat_tersisa' },
+            { data: 'status', name: 'status' },
             { data: 'created_by', name: 'created_by' },
             { data: 'created_at', name: 'created_at' },
             {

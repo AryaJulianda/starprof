@@ -15,14 +15,11 @@
           <div class="header-row pt-3">
             <nav class="header-nav-top">
               <ul class="nav nav-pills">
-                {{-- <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                  <a class="nav-link ps-0" href="{{ url('about-us') }}"><i class="fas fa-angle-right"></i> About Us</a>
-                </li>
-                <li class="nav-item nav-item-anim-icon d-none d-md-block">
-                  <a class="nav-link" href="{{ url('contact-us') }}"><i class="fas fa-angle-right"></i> Contact Us</a>
-                </li> --}}
                 <li class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-sm-show">
                   <span class="ws-nowrap"><i class="fas fa-phone"></i> {{ $phone }}</span>
+                </li>
+                <li class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-sm-show">
+                  <span class="ws-nowrap"><i class="fas fa-envelope"></i> {{ $email }}</span>
                 </li>
               </ul>
             </nav>
@@ -56,7 +53,7 @@
                       <a href="{{ url('') }}/instructors" class="nav-link {{ Request::is('instructors') ? 'active' : '' }}">Our Trainer</a>
                     </li>
                     <li>
-                      <a href="{{ url('') }}/blog" class="nav-link {{ Request::is('blog') ? 'active' : '' }}">Blog</a>
+                      <a href="{{ url('') }}/schedule" class="nav-link {{ Request::is('schedule') ? 'active' : '' }}">Programs Calendar</a>
                     </li>
                     <li>
                       <a href="{{ url('') }}/contact-us" class="nav-link {{ Request::is('contact-us') ? 'active' : '' }}">Contact Us</a>

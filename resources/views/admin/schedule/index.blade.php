@@ -5,7 +5,7 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between mb-3">
-            <h4>List Blogs</h4>
+            <h4>List Schedule</h4>
             <div class="d-flex" style="gap:5px;">
               <a href="{{ url("adm/$module_path/create") }}" class="btn btn-primary waves-effect btn-label waves-light">
                 <i class="bx bx-plus label-icon"></i> Create
@@ -16,8 +16,13 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>Image</th>
-                <th>Title</th>
+                <th>Program</th>
+                <th>Tanggal</th>
+                <th>Waktu</th>
+                <th>Harga</th>
+                <th>Lokasi</th>
+                <th>Seat Tersisa</th>
+                <th>Status</th>
                 <th>Created By</th>
                 <th>Created At</th>
                 <th>Actions</th>

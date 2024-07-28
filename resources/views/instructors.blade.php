@@ -39,7 +39,19 @@
                   </a>
                 </span>
                 <span class="thumb-info-caption">
-                  <span class="thumb-info-caption-text">{!! $item->desc !!}</span>
+                  <span class="thumb-info-caption-text">
+                    <div data-plugin-readmore="" data-plugin-options="{
+                        'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
+                        'buttonCloseLabel': 'Read Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>'
+                    }" class="position-relative" style="height: 110px; overflow: hidden; max-height: none;">
+                      {!! $item->desc !!}
+                      <div class="" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
+                        <a href="{{ url('instructor-detail/' . Str::slug($item->full_name)) }}" class="btn btn-primary text-decoration-none">Read More <i class="fas fa-chevron-down text-2 ms-1"></i></a>
+                      </div>
+                      <div class="readmore-overlay" style="background: linear-gradient(rgba(2, 0, 36, 0) 0%, rgb(255, 255, 255) 100%); position: absolute; bottom: 0px; left: 0px; width: 100%; height: 100px; z-index: 1;"></div>
+                    </div>
+                  </span>
+
                   <span class="thumb-info-social-icons mb-4">
                     <a target="_blank" href="http://www.facebook.com"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
                     <a href="http://www.linkedin.com"><i class="fab fa-linkedin-in"></i><span>Linkedin</span></a>

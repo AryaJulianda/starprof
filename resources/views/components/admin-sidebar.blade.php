@@ -65,9 +65,9 @@
           </a>
         </li>
         <li>
-          <a href="{{ url('adm/blogs') }}" class="waves-effect">
+          <a href="{{ url('adm/schedule') }}" class="waves-effect">
             <i class=""></i>
-            <span key="t-blogs">Blogs</span>
+            <span key="t-schedule">Schedule</span>
           </a>
         </li>
         <li class="menu-title" key="t-setting">Setting</li>

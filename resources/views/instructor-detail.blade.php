@@ -16,7 +16,7 @@
           <hr class="solid my-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="900">
           <div class="row align-items-center appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1000">
             <div class="col-lg-6">
-              <a href="#" class="btn btn-modern btn-dark mt-3">Get In Touch</a>
+              <a href="mailto:{{ $instructor->email }}" class="btn btn-modern btn-dark mt-3">Get In Touch</a>
               <a href="tel:{{ $phone_link }}" class="btn btn-modern btn-primary mt-3">Call Me</a>
             </div>
             <div class="col-sm-6 text-lg-end my-4 my-lg-0">
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <section class="section section-default border-0 mt-5 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="1200">
+    {{-- <section class="section section-default border-0 mt-5 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="1200">
       <div class="container py-4">
 
         <div class="row featured-boxes featured-boxes-style-4">
@@ -77,15 +77,15 @@
         </div>
 
       </div>
-    </section>
+    </section> --}}
 
     <div class="container pt-5 pb-2">
       <div class="overflow-hidden">
         <h2 class="text-color-dark font-weight-normal text-6 mb-0 appear-animation" data-appear-animation="maskUp"><strong class="font-weight-extra-bold">Programs</strong></h2>
       </div>
-      <div class="overflow-hidden mb-3">
+      {{-- <div class="overflow-hidden mb-3">
         <p class="mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="200">Lorem ipsum dolor sit amet, consectetur adipiscing elit massa enim. Nullam id varius nunc.</p>
-      </div>
+      </div> --}}
       <div class="row">
         <div class="col">
 

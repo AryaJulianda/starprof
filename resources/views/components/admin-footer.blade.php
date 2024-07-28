@@ -27,3 +27,4 @@
 {{-- Sweetalert2 --}}
 <script src="{{ url('admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ url('admin/js/pages/sweet-alerts.init.js') }}"></script>
+

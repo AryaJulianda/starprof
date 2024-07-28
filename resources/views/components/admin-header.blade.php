@@ -6,6 +6,8 @@
   <meta content="Technology manufacture industry" name="description" />
   <meta content="TechnoBold" name="author" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <meta name="base-url" content="{{ url('/') }}">
+
   <!-- App favicon -->
   <link rel="shortcut icon" href="{{ url('admin/images/favicon.ico') }}">
   <!-- Bootstrap Css -->
@@ -22,7 +24,8 @@
   <link href="{{ url('admin/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
   {{-- TinyMCE --}}
   <script src="https://cdn.tiny.cloud/1/eghsnl8p2oercn275e7j4d6yzi3r98af2tv5upjpkm8960bq/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
+  {{-- Timepicker --}}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   {{-- Global Script --}}
   <script>
     var base_url = "{{ url('') }}";

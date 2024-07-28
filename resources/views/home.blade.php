@@ -1,4 +1,19 @@
 <x-layout>
+  <!-- Sweet Alert-->
+  <link href="{{ url('admin/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+
+  <style>
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
+
   <div role="main" class="main">
 
     <div class="custom-bg-color-grey-1">
@@ -190,41 +205,90 @@
                 <div class="row">
                   <div class="col px-4">
                     <div class="text-center">
-                      <h2 class="text-color-secondary font-weight-semi-bold text-8 line-height-1 mb-2">Register Now</h2>
-                      <p class="text-4">Get <strong>50% OFF</strong> For All Courses</p>
+                      <h2 class="text-color-secondary font-weight-semi-bold text-8 line-height-1 mb-5">Register Now</h2>
+                      {{-- <p class="text-4">Get <strong>50% OFF</strong> For All Courses</p> --}}
                     </div>
-                    <div class="countdown text-color-primary font-weight-semibold custom-countdown-style-1 justify-content-center mb-4 py-2 px-2" data-plugin-countdown data-plugin-options="{'textDay': 'DAYS', 'textHour': 'HRS', 'textMin': 'MIN', 'textSec': 'SEC', 'date': '2025/01/01 12:00:00', 'wrapperClass': 'text-color-primary', 'numberClass': 'font-weight-semibold text-color-primary'}"></div>
+                    {{-- <div class="countdown text-color-primary font-weight-semibold custom-countdown-style-1 justify-content-center mb-4 py-2 px-2" data-plugin-countdown data-plugin-options="{'textDay': 'DAYS', 'textHour': 'HRS', 'textMin': 'MIN', 'textSec': 'SEC', 'date': '2025/01/01 12:00:00', 'wrapperClass': 'text-color-primary', 'numberClass': 'font-weight-semibold text-color-primary'}"></div> --}}
 
-                    <form class="custom-form-style-1 contact-form" action="php/contact-form.php" method="POST">
-
+                    <form class="contact-form" id="contactForm" action="{{ url('submit-registration') }}" method="POST">
+                      @csrf
                       <div class="contact-form-success alert alert-success d-none mt-4">
-                        <strong>Success!</strong> Your register has been sent to us.
+                        <strong>Success!</strong> Your message has been sent to us.
                       </div>
 
                       <div class="contact-form-error alert alert-danger d-none mt-4">
-                        <strong>Error!</strong> There was an error sending your register.
+                        <strong>Error!</strong> There was an error sending your message.
                         <span class="mail-error-message text-1 d-block"></span>
                       </div>
 
-                      <div class="row g-2">
-                        <div class="form-group col-md-6 mb-2">
-                          <input type="text" value="" data-msg-required="Please enter your first name." maxlength="100" class="form-control p-3 bg-color-tertiary" name="firstName" id="firstName" placeholder="FIRST NAME*" required>
+                      <div class="row">
+                        <div class="form-group col-lg-6">
+                          <label class="form-label mb-1 text-2">Nama Lengkap Peserta</label>
+                          <input type="text" value="" maxlength="100" class="form-control text-3 h-auto py-2" name="nama_lengkap" required>
                         </div>
-                        <div class="form-group col-md-6 mb-2">
-                          <input type="text" value="" data-msg-required="Please enter your last name." maxlength="100" class="form-control p-3 bg-color-tertiary custom-border-start-1" name="lastName" id="lastName" placeholder="LAST NAME*" required>
+                        <div class="form-group col-lg-6">
+                          <label class="form-label mb-1 text-2">Jenis Kelamin</label>
+                          <select name="jenis_kelamin" id="jenis_kelamin" class="form-control text-3 h-auto py-2" required>
+                            <option value="">-- Pilih Jenis Kelamin --</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label class="form-label mb-1 text-2">Tempat Lahir</label>
+                          <input type="text" value="" maxlength="100" class="form-control text-3 h-auto py-2" name="tempat_lahir" required>
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label class="form-label mb-1 text-2">Tanggal Lahir</label>
+                          <input type="date" value="" class="form-control text-3 h-auto py-2" name="tanggal_lahir" required>
+                        </div>
+                        <div class="form-group col-lg-12">
+                          <label class="form-label mb-1 text-2">Alamat Lengkap</label>
+                          <textarea maxlength="5000" rows="2" class="form-control text-3 h-auto py-2" name="alamat_lengkap" required></textarea>
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label class="form-label mb-1 text-2">Email Address</label>
+                          <input type="email" value="" maxlength="100" class="form-control text-3 h-auto py-2" name="email" required>
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label class="form-label mb-1 text-2">No Handphone</label>
+                          <input type="number" value="" class="form-control text-3 h-auto py-2" name="phone" required>
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label class="form-label mb-1 text-2">Program Category</label>
+                          <select name="program_category" id="program_category" class="form-control text-3 h-auto py-2" required>
+                            <option value="">-- Pilih Program Category --</option>
+                            @foreach ($program_categories as $item)
+                              <option value="{{ $item->category_name }}" data-categoryId="{{ $item->id }}">{{ $item->category_name }}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label class="form-label mb-1 text-2">Nama Program</label>
+                          <select name="nama_program" id="nama_program" class="form-control text-3 h-auto py-2" disabled>
+                            <option value="">-- Pilih Nama Program --</option>
+                            @foreach ($programs as $item)
+                              <option value="{{ $item->prog_name }}" data-categoryId="{{ $item->prog_category }}">{{ $item->prog_name }}</option>
+                            @endforeach
+                          </select>
                         </div>
                       </div>
-                      <div class="row g-2">
-                        <div class="form-group col-md-6 mb-2">
-                          <input type="text" value="" data-msg-required="Please enter your phone number." maxlength="100" class="form-control p-3 bg-color-tertiary" name="phone" id="phone" placeholder="PHONE*" required>
-                        </div>
-                        <div class="form-group col-md-6 mb-2">
-                          <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control p-3 bg-color-tertiary custom-border-start-1" name="email" id="email" placeholder="EMAIL*" required>
+                      <div class="row">
+                        <div class="form-group col">
+                          <label class="form-label mb-1 text-2">Message</label>
+                          <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control text-3 h-auto py-2" name="message" required></textarea>
                         </div>
                       </div>
-                      <div class="row g-2">
-                        <div class="form-group col mb-0">
-                          <input type="submit" value="GET IT NOW" class="btn btn-secondary font-weight-bold d-block btn-px-5 btn-py-3 w-100" data-loading-text="Loading...">
+                      <div class="row">
+                        <div class="form-group col">
+                          <label class="form-label mb-1 text-2">Registration Date</label>
+                          <input type="date" value="" class="form-control text-3 h-auto py-2" id="registration_date" name="registration_date" readonly>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col">
+                          <input type="submit" value="Send Message" class="btn btn-primary btn-modern" data-loading-text="Loading...">
                         </div>
                       </div>
                     </form>
@@ -420,4 +484,75 @@
     </section>
 
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const programCategory = document.getElementById('program_category');
+      const programName = document.getElementById('nama_program');
+
+      programCategory.addEventListener('change', function() {
+        const selectedCategoryId = this.options[this.selectedIndex].getAttribute('data-categoryId');
+
+        // Reset and disable programName select
+        programName.innerHTML = '<option value="">-- Pilih Nama Program --</option>';
+        programName.disabled = true;
+        programName.required = false;
+
+        if (selectedCategoryId) {
+          @foreach ($programs as $item)
+            if (selectedCategoryId === "{{ $item->prog_category }}") {
+              programName.innerHTML += '<option value="{{ $item->prog_name }}" data-categoryId="{{ $item->prog_category }}">{{ $item->prog_name }}</option>';
+            }
+          @endforeach
+
+          programName.disabled = false;
+          programName.required = true;
+        }
+      });
+
+      const registrationDateInput = document.getElementById('registration_date');
+      const today = new Date().toISOString().split('T')[0];
+      registrationDateInput.value = today;
+    });
+
+    $(document).ready(function() {
+      $('#contactForm').on('submit', function(e) {
+        e.preventDefault();
+
+        const formData = $(this).serialize();
+        Swal.fire({
+          title: 'Processing...',
+          text: 'Please wait while we are submitting your message.',
+          allowOutsideClick: false,
+          showConfirmButton: false,
+          onBeforeOpen: () => {
+            Swal.showLoading();
+          }
+        });
+
+        $.ajax({
+          url: "{{ url('submit-registration') }}",
+          method: 'POST',
+          data: formData,
+          success: function(response) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'Your message has been sent successfully.'
+            });
+          },
+          error: function(xhr) {
+            console.error(xhr);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'There was an error sending your message.'
+            });
+          }
+        });
+      });
+    });
+  </script>
+    {{-- Sweetalert2 --}}
+    <script src="{{ url('admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 </x-layout>

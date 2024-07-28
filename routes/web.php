@@ -4,9 +4,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\CarouselsController;
 use App\Http\Controllers\CourseCategoryController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\ProgramsCategoryController;
 use App\Http\Controllers\ProgramsController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WhysController;
@@ -17,20 +19,29 @@ use App\Models\Instructors;
 use App\Models\Programs;
 use App\Models\ProgramsCategory;
 use App\Models\Carousels;
+use App\Models\Lookup;
+use App\Models\OurClient;
+use App\Models\Schedule;
 use App\Models\Testimonials;
 use App\Models\Whys;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('home', [
         'carousels' => Carousels::all(),
         'testimonials' => Testimonials::all(),
         'whys' => Whys::all(),
-        'latest_blogs' => Blogs::orderBy('created_at', 'desc')->take(3)->get()
+        'latest_blogs' => Blogs::orderBy('created_at', 'desc')->take(3)->get(),
+        'programs' => Programs::with('category')->get()
     ]);
 });
 
@@ -38,8 +49,29 @@ Route::get('/about-us', function () {
     return view('about-us', [
         'data' => AboutUs::first(),
         'testimonials' => Testimonials::all(),
-        'instructors' => Instructors::all()
+        'instructors' => Instructors::all(),
+        'total_instructor' => Instructors::count(),
+        'our_clients' => OurClient::all()
     ]);
+});
+
+Route::post('/clients', function (Request $request) {
+    try {
+        $validatedData = $request->validate([
+            'image_file_client' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        if ($request->hasFile('image_file_client')) {
+            $imagePath = $request->file('image_file_client')->store('client_images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
+        OurClient::create($validatedData);
+
+        return response()->json(['success' => 'Client added successfully']);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Failed to add client: ' . $e->getMessage()], 500);
+    }
 });
 
 Route::get('/programs', function (Request $request) {
@@ -92,10 +124,68 @@ Route::get('/instructor-detail/{slug}', function ($slug) {
     ]);
 });
 
-Route::get('/blog', function () {
-    $blogs = Blogs::paginate(2);
-    return view('blogs', ['blogs' => $blogs]);
+
+Route::get('/schedule', function (Request $request) {
+    $categorySlug = $request->query('category');
+    $statusSlug = $request->query('status');
+    $monthSlug = $request->query('month');
+
+    $list_schedule = Schedule::select([
+        'schedules.id',
+        'programs.prog_name as program_name',
+        'programs_category.category_name as program_category_name',
+        'schedules.tanggal',
+        DB::raw('DATE_FORMAT(schedules.waktu_from, "%H:%i") as waktu_from_formatted'),
+        DB::raw('DATE_FORMAT(schedules.waktu_to, "%H:%i") as waktu_to_formatted'),
+        'programs.price as harga',
+        'schedules.lokasi',
+        'schedules.seat_tersisa',
+        'lookup.lookup_value as status',
+        'schedules.created_by',
+        'schedules.created_at'
+    ])
+        ->join('programs', 'schedules.program', '=', 'programs.id')
+        ->join('programs_category', 'programs_category.id', '=', 'programs.prog_category')
+        ->join('lookup', function ($join) {
+            $join->on('schedules.status', '=', 'lookup.lookup_id')
+                ->where('lookup.lookup_type', '=', 'schedule_status');
+        });
+
+    if (!empty($categorySlug) && $categorySlug != 'all') {
+        $list_schedule->where(DB::raw('LOWER(REPLACE(programs_category.category_name, " ", "-"))'), '=', strtolower($categorySlug));
+    }
+
+    if (!empty($statusSlug) && $statusSlug != 'all') {
+        $list_schedule->where(DB::raw('LOWER(lookup.lookup_value)'), '=', strtolower($statusSlug));
+    }
+
+    if (!empty($monthSlug) && $monthSlug != 'all') {
+        $list_schedule->where('schedules.tanggal', 'LIKE', str_replace('-', '/', $monthSlug) . '%');
+    }
+
+    $list_schedule = $list_schedule->paginate(10);
+
+    $list_schedule->each(function ($item) {
+        $item->waktu = $item->waktu_from_formatted . ' - ' . $item->waktu_to_formatted;
+    });
+
+    $currentMonth = Carbon::now();
+    $months = [];
+    for ($i = 0; $i < 5; $i++) {
+        $months[] = $currentMonth->copy()->addMonths($i)->format('Y-m');
+    }
+
+    return view('schedule', [
+        'list_schedule' => $list_schedule,
+        'list_categories' => ProgramsCategory::all(),
+        'categorySlug' => $categorySlug,
+        'statusSlug' => $statusSlug,
+        'monthSlug' => $monthSlug,
+        'select_status' => Lookup::where('lookup_type', 'schedule_status')->get(),
+        'months' => $months
+    ]);
 });
+
 
 Route::get('/blog/{slug}', function ($slug) {
     $title = Str::slug($slug, ' ');
@@ -104,8 +194,13 @@ Route::get('/blog/{slug}', function ($slug) {
 });
 
 Route::get('/contact-us', function () {
-    return view('contact-us', ['data' => ContactUs::first()]);
+    return view('contact-us', [
+        'data' => ContactUs::first(),
+        'programs' => Programs::with('category')->get()
+    ]);
 });
+
+Route::post('/submit-registration', [EmailController::class, 'submitForm']);
 
 // ADMIN
 Route::prefix('adm')->group(function () {
@@ -124,18 +219,24 @@ Route::prefix('adm')->group(function () {
         $data = [
             "title" => "About Us",
             "module_path" => "about-us",
-            "dataForm" => AboutUs::first()
+            "dataForm" => AboutUs::first(),
+            "total_instructor" => Instructors::count(),
+            'our_clients' => OurClient::all()
         ];
         return view('admin.about-us', $data);
     })->middleware('auth');
 
     Route::put('/about-us', function (Request $request) {
         $request->validate([
-            'desc'       => 'required|string',
-            'image_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'vision'     => 'required|string',
-            'mission'    => 'required|string',
-            'why_us'     => 'required|string',
+            'desc'                 => 'required|string',
+            'image_file'           => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'vision'               => 'required|string',
+            'mission'              => 'required|string',
+            'why_us'               => 'required|string',
+            'our_trainer_desc'     => 'required|string',
+            'completed_course'     => 'required|integer',
+            'active_student'       => 'required|integer',
+            'total_training_hours' => 'required|integer',
         ]);
 
         $aboutUs = AboutUs::first();
@@ -143,11 +244,15 @@ Route::prefix('adm')->group(function () {
             $aboutUs = new AboutUs();
         }
 
-        $aboutUs->desc       = $request->desc;
-        $aboutUs->vision     = $request->vision;
-        $aboutUs->mission    = $request->mission;
-        $aboutUs->why_us     = $request->why_us;
-        $aboutUs->updated_by = Auth::id();
+        $aboutUs->desc                 = $request->desc;
+        $aboutUs->vision               = $request->vision;
+        $aboutUs->mission              = $request->mission;
+        $aboutUs->why_us               = $request->why_us;
+        $aboutUs->our_trainer_desc     = $request->our_trainer_desc;
+        $aboutUs->completed_course     = $request->completed_course;
+        $aboutUs->active_student       = $request->active_student;
+        $aboutUs->total_training_hours = $request->total_training_hours;
+        $aboutUs->updated_by           = Auth::id();
 
         if ($request->hasFile('image_file')) {
             if ($aboutUs->image && Storage::exists('public/' . $aboutUs->image)) {
@@ -210,7 +315,7 @@ Route::prefix('adm')->group(function () {
 
     Route::resource('instructors', InstructorsController::class)->middleware('auth');
 
-    Route::resource('blogs', BlogsController::class)->middleware('auth');
+    Route::resource('schedule', ScheduleController::class)->middleware('auth');
     Route::resource('users', UsersController::class)->middleware('auth');
 });
 
