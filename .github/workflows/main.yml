@@ -20,9 +20,6 @@ jobs:
         ini-values: post_max_size=256M, upload_max_filesize=256M
         coverage: none
 
-    - name: Copy .env file
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-
     - name: Install Composer Dependencies
       run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
