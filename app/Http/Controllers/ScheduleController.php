@@ -171,19 +171,12 @@ class ScheduleController extends Controller
     public function destroy($id)
     {
         try {
-            $blog = Blogs::findOrFail($id);
+            $sch = Schedule::findOrFail($id);
+            $sch->delete();
 
-            // Delete the photo from storage
-            if ($blog->image) {
-                Storage::disk('public')->delete($blog->image);
-            }
-
-            // Delete the instructor record
-            $blog->delete();
-
-            return response()->json(['success' => 'Blog deleted successfully']);
+            return response()->json(['success' => 'Schedule deleted successfully']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete Blog: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Failed to delete Schedule: ' . $e->getMessage()], 500);
         }
     }
 }

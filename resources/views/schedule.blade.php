@@ -78,7 +78,7 @@
                       Waktu
                     </th>
                     <th>
-                      Harga
+                      Trainer
                     </th>
                     <th>
                       Lokasi
@@ -107,7 +107,7 @@
                         {{ $schedule->waktu }}
                       </td>
                       <td>
-                        Rp. {{ number_format($schedule->harga, 0, ',', '.') }}
+                        {{ $schedule->trainer }}
                       </td>
                       <td>
                         @if (Str::lower($schedule->lokasi) == 'online')
@@ -129,7 +129,7 @@
                         @endif
                       </td>
                       <td>
-                        <button class="btn btn-sm btn-primary" {{ $schedule->status != 'Tersedia' ? 'disabled' : '' }}>Daftar</button>
+                        <button class="btn btn-sm btn-primary" onclick="redirectTo('{{ url('contact-us') }}')" {{ $schedule->status != 'Tersedia' ? 'disabled' : '' }}>Daftar</button>
                       </td>
                     </tr>
                   @empty

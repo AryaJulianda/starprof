@@ -109,9 +109,11 @@ class ProgramsController extends Controller
             'prog_category' => 'required|integer|exists:programs_category,id',
             'instructor' => 'required|integer|exists:instructors,id',
             'prog_image_file' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'link' => 'nullable|string',
             'desc' => 'nullable|string',
-            'price' => 'nullable|integer',
-            'popular' => 'nullable|boolean',
+            'silabus' => 'nullable|string',
+            'price_desc' => 'nullable|string',
+            'qualification' => 'nullable|string',
         ]);
     }
 }

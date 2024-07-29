@@ -28,6 +28,12 @@
                   <input type="text" id="email" class="form-control" name="email" placeholder="Email" value="{{ isset($dataForm) ? $dataForm->email : '' }}" required>
                 </div>
               </div>
+              <div class="col-12">
+                <div class="mt-3">
+                  <label for="how_to_register" class="form-label">How To Register</label>
+                  <textarea id="textarea" class="form-control" name="how_to_register" rows="3" placeholder="How To Register" required>{{ isset($dataForm) ? $dataForm->how_to_register : '' }}</textarea>
+                </div>
+              </div>
               <div class="col-md-6 col-xl-3">
                 <div class="mt-3">
                   <label for="updatedBy" class="form-label">Updated By</label>
@@ -60,5 +66,13 @@
       }
       reader.readAsDataURL(event.target.files[0]);
     }
+
+    $(document).ready(function() {
+      tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+      });
+    });
   </script>
 </x-admin-layout>

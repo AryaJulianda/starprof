@@ -11,20 +11,6 @@
             <span key="t-dashboard">Dashboard</span>
           </a>
         </li>
-        <li>
-          <a href="javascript: void(0);" class="has-arrow waves-effect">
-            <i class=""></i>
-            <span key="t-menus">Programs</span>
-          </a>
-          <ul class="sub-menu" aria-expanded="false">
-            <li>
-              <a href="{{ url('adm/programs') }}" key="t-list-programs">List Programs</a>
-            </li>
-            <li>
-              <a href="{{ url('adm/programs-category') }}" key="t-programs-category">Programs Category</a>
-            </li>
-          </ul>
-        </li>
         <li class="menu-title" key="t-dashboard">Content</li>
         <li>
           <a href="{{ url('adm/home') }}" class="waves-effect">

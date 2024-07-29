@@ -21,6 +21,7 @@ use App\Models\ProgramsCategory;
 use App\Models\Carousels;
 use App\Models\Lookup;
 use App\Models\OurClient;
+use App\Models\Quotes;
 use App\Models\Schedule;
 use App\Models\Testimonials;
 use App\Models\Whys;
@@ -41,7 +42,9 @@ Route::get('/', function () {
         'testimonials' => Testimonials::all(),
         'whys' => Whys::all(),
         'latest_blogs' => Blogs::orderBy('created_at', 'desc')->take(3)->get(),
-        'programs' => Programs::with('category')->get()
+        'programs' => Programs::with('category')->get(),
+        'quotes' => Quotes::first()
+
     ]);
 });
 
@@ -90,7 +93,7 @@ Route::get('/programs', function (Request $request) {
         $query->where('prog_name', 'LIKE', '%' . $searchQuery . '%');
     }
 
-    $list_programs = $query->with(['join_instructor', 'category'])->paginate(6);
+    $list_programs = $query->with(['join_instructor', 'category'])->paginate(9);
 
     return view('programs', [
         'list_programs' => $list_programs,
@@ -105,11 +108,12 @@ Route::get('/program-details/{slug}', function ($slug) {
     return view('program-details', [
         'program' => $program,
         'list_categories' => ProgramsCategory::withCount('programs')->get(),
+        'contact_us' => ContactUs::first()
     ]);
 });
 
 Route::get('/instructors', function () {
-    $data = Instructors::paginate(5);
+    $data = Instructors::all();
     return view('instructors', ['data' => $data]);
 });
 
@@ -137,7 +141,7 @@ Route::get('/schedule', function (Request $request) {
         'schedules.tanggal',
         DB::raw('DATE_FORMAT(schedules.waktu_from, "%H:%i") as waktu_from_formatted'),
         DB::raw('DATE_FORMAT(schedules.waktu_to, "%H:%i") as waktu_to_formatted'),
-        'programs.price as harga',
+        'instructors.full_name as trainer',
         'schedules.lokasi',
         'schedules.seat_tersisa',
         'lookup.lookup_value as status',
@@ -145,6 +149,7 @@ Route::get('/schedule', function (Request $request) {
         'schedules.created_at'
     ])
         ->join('programs', 'schedules.program', '=', 'programs.id')
+        ->join('instructors', 'instructors.id', '=', 'programs.instructor')
         ->join('programs_category', 'programs_category.id', '=', 'programs.prog_category')
         ->join('lookup', function ($join) {
             $join->on('schedules.status', '=', 'lookup.lookup_id')
@@ -211,7 +216,8 @@ Route::prefix('adm')->group(function () {
     Route::get('/home', function () {
         return view('admin.home.index', [
             "title" => "Home",
-            "module_path" => "home"
+            "module_path" => "home",
+            "quotes" => Quotes::first()
         ]);
     })->middleware('auth');
 
@@ -268,6 +274,37 @@ Route::prefix('adm')->group(function () {
         return redirect()->back()->with('success', 'About Us updated successfully.');
     })->middleware('auth');
 
+    Route::put('/quotes', function (Request $request) {
+        $request->validate([
+            'image_file'       => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'quotes_text'      => 'required|string',
+            'quotes_by_name'   => 'required|string',
+            'quotes_by_status' => 'required|string',
+        ]);
+
+        $Quotes = Quotes::first();
+        if (!$Quotes) {
+            $Quotes = new Quotes();
+        }
+
+        $Quotes->quotes_by_name     = $request->quotes_by_name;
+        $Quotes->quotes_by_status   = $request->quotes_by_status;
+        $Quotes->quotes_text        = $request->quotes_text;
+
+        if ($request->hasFile('image_file')) {
+            if ($Quotes->image && Storage::exists('public/' . $Quotes->image)) {
+                Storage::delete('public/' . $Quotes->image);
+            }
+
+            $filePath = $request->file('image_file')->store('quotes', 'public');
+            $Quotes->image = $filePath;
+        }
+
+        $Quotes->save();
+
+        return redirect()->back()->with('success', 'Quotes updated successfully.');
+    })->middleware('auth');
+
     Route::get('/contact-us', function () {
         $data = [
             "title" => "Contact Us",
@@ -282,6 +319,7 @@ Route::prefix('adm')->group(function () {
             'location' => 'required|string',
             'phone' => 'required|string',
             'email' => 'required|string|email',
+            'how_to_register' => 'required|string',
         ]);
 
         $contactUs = ContactUs::first();
@@ -292,6 +330,7 @@ Route::prefix('adm')->group(function () {
         $contactUs->location = $request->location;
         $contactUs->phone = $request->phone;
         $contactUs->email = $request->email;
+        $contactUs->how_to_register = $request->how_to_register;
         $contactUs->updated_by = Auth::id();
 
         $contactUs->save();

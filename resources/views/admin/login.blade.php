@@ -17,7 +17,7 @@
                 <div class="col-7">
                   <div class="text-primary p-4">
                     <h5 class="text-primary">Welcome Back !</h5>
-                    <p>Sign in to continue to Skote.</p>
+                    <p>Sign in to continue to StarProf Admin Panel</p>
                   </div>
                 </div>
                 <div class="col-5 align-self-end">
@@ -77,7 +77,7 @@
               <p>©
                 <script>
                   document.write(new Date().getFullYear())
-                </script> Kraken. Crafted with <i class="mdi mdi-heart text-danger"></i> by Kraken
+                </script> StarProf. Crafted with <i class="mdi mdi-heart text-danger"></i> by Node Code Solution
               </p>
             </div>
           </div>

@@ -29,74 +29,6 @@
           <div class="col-lg-3 position-relative">
 
             <div class="mt-2 mb-4 pb-2">
-              <h2 class="text-color-secondary font-weight-semi-bold text-5 line-height-1 mb-3">Categories</h2>
-
-              <ul class="nav nav-list flex-column p-relative right-9">
-                @foreach ($list_categories as $item)
-                  <li class="nav-item">
-                    <a class="nav-link bg-transparent border-0" href="{{ url('programs?category=' . Str::slug($item->category_name)) }}">
-                      {{ $item->category_name }} ({{ $item->programs_count }})
-                    </a>
-                  </li>
-                @endforeach
-              </ul>
-            </div>
-
-            {{-- <div class="mt-2 mb-4 pb-2">
-
-              <h2 class="text-color-secondary font-weight-semi-bold text-5 line-height-1 mb-3">Latest Courses</h2>
-
-              <ul class="simple-post-list">
-                <li class="border-0">
-                  <div class="post-image">
-                    <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                      <a href="blog-post.html">
-                        <img src="{{ url('') }}/img/demos/education/courses/course-1.jpg" width="80" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-info">
-                    <a href="blog-post.html" class="text-color-secondary text-3 font-weight-semi-bold line-height-4 d-block pb-1">Course Name Example</a>
-                    <div class="post-meta">
-                      <strong class="text-primary text-4">$79</strong>
-                    </div>
-                  </div>
-                </li>
-                <li class="border-0">
-                  <div class="post-image">
-                    <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                      <a href="blog-post.html">
-                        <img src="{{ url('') }}/img/demos/education/courses/course-2.jpg" width="80" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-info">
-                    <a href="blog-post.html" class="text-color-secondary text-3 font-weight-semi-bold line-height-4 d-block pb-1">Course Name Example</a>
-                    <div class="post-meta">
-                      <strong class="text-primary text-4">$79</strong>
-                    </div>
-                  </div>
-                </li>
-                <li class="border-0">
-                  <div class="post-image">
-                    <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                      <a href="blog-post.html">
-                        <img src="{{ url('') }}/img/demos/education/courses/course-3.jpg" width="80" alt="">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-info">
-                    <a href="blog-post.html" class="text-color-secondary text-3 font-weight-semi-bold line-height-4 d-block pb-1">Course Name Example</a>
-                    <div class="post-meta">
-                      <strong class="text-primary text-4">$79</strong>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-
-            </div> --}}
-
-            <div class="mt-2 mb-4 pb-2">
               <section class="section section-height-3 bg-color-primary border-0 m-0">
                 <div class="container p-relative py-3">
 
@@ -142,17 +74,11 @@
                     </div>
                   </div>
                 </div>
-                <div class="pe-md-4 mb-3 mb-md-0 border-right">
-                  <div class="d-flex flex-row align-items-center h-100">
-                    <div class="p-0">
-                      <strong class="text-primary text-5">{{ $program->price }}</strong>
-                    </div>
-                  </div>
-                </div>
                 <div class="ps-md-4">
                   <div class="d-flex flex-row align-items-center h-100">
                     <div class="p-0">
-                      <a href="#" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3">REGISTER NOW</a>
+                      <a href="{{ url('contact-us') }}" class="btn btn-secondary font-weight-bold btn-sm btn-px-2 btn-py-2">REGISTER NOW</a>
+                      <a href="{{ $program->link }}" target="_blank" class="btn btn-success font-weight-bold btn-sm btn-px-2 btn-py-2">START LEARNING</a>
                     </div>
                   </div>
                 </div>
@@ -165,330 +91,156 @@
                 </div>
               </div>
 
-              <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3">Description</h2>
+              {{-- <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3">Description</h2>
 
-              <div class="text-3-5 line-height-9 mb-5"> {!! $program->desc !!}</div>
-
-              {{-- <div class="row align-items-md-end">
-                <div class="col-md-6">
-                  <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-4">Course Content</h2>
+              <div class="text-3-5 line-height-9 mb-5"> {!! $program->desc !!}</div> --}}
+            </div>
+          </div>
+        </div>
+        {{-- - Deskripsi
+        - Silabus
+        - Harga
+        - Kualifikasi / Prasyarat
+        - Cara Pendaftaran --}}
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="tabs tabs-vertical tabs-left tabs-navigation">
+                  <ul class="nav nav-tabs col-sm-3" role="tablist">
+                    <li class="nav-item active" role="presentation">
+                      <a class="nav-link active" href="#tabsNavigation1" data-bs-toggle="tab" aria-selected="false" role="tab" tabindex="-1"><i class="fa-solid fa-note-sticky"></i> Deskripsi</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" href="#tabsNavigation2" data-bs-toggle="tab" aria-selected="false" role="tab" tabindex="-1"><i class="fa-solid fa-receipt"></i> Silabus</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" href="#tabsNavigation3" data-bs-toggle="tab" aria-selected="true" role="tab"><i class="fa-solid fa-dollar-sign"></i> Harga</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" href="#tabsNavigation4" data-bs-toggle="tab" aria-selected="false" role="tab" tabindex="-1"><i class="fa-solid fa-list-check"></i> Kualifikasi / Prasyarat</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" href="#tabsNavigation5" data-bs-toggle="tab" aria-selected="false" role="tab" tabindex="-1"><i class="fas fa-question"></i> Cara Pendaftaran</a>
+                    </li>
+                  </ul>
                 </div>
-                <div class="col-md-6 text-md-end">
-                  <p class="text-color-secondary font-weight-semi-bold text-3 line-height-1 mb-4 opacity-5">4 sections • 16 lectures • 17h 2m total length</p>
+              </div>
+              <div class="col-lg-9">
+                <div class="tab-pane tab-pane-navigation active show" id="tabsNavigation1" role="tabpanel">
+                  <h4>Deskripsi</h4>
+                  {!! $program->desc !!}
                 </div>
-              </div> --}}
-
-              {{-- <div class="accordion custom-accordion-style-1" id="accordion1">
-                <div class="card card-default">
-                  <div class="card-header" id="collapse1HeadingOne">
-                    <h4 class="card-title m-0">
-                      <a class="accordion-toggle text-color-dark font-weight-bold collapsed" data-bs-toggle="collapse" data-bs-target="#collapse1One" aria-expanded="false" aria-controls="collapse1One">
-                        Course Orientation <span class="text-color-default font-weight-regular opacity-6 text-1 d-inline-block ps-1 text-uppercase">- 4 Lectures - 12min</span>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapse1One" class="collapse" aria-labelledby="collapse1HeadingOne" data-bs-parent="#accordion1">
-                    <div class="card-body">
-
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
+                <div class="tab-pane tab-pane-navigation" id="tabsNavigation2" role="tabpanel">
+                  <h4>Silabus</h4>
+                  {!! $program->silabus !!}
                 </div>
-                <div class="card card-default">
-                  <div class="card-header" id="collapse2HeadingOne">
-                    <h4 class="card-title m-0">
-                      <a class="accordion-toggle text-color-dark font-weight-bold collapsed" data-bs-toggle="collapse" data-bs-target="#collapse2One" aria-expanded="false" aria-controls="collapse2One">
-                        Lesson 2 <span class="text-color-default font-weight-regular opacity-6 text-1 d-inline-block ps-1 text-uppercase">- 4 Lectures - 12min</span>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapse2One" class="collapse" aria-labelledby="collapse2HeadingOne" data-bs-parent="#accordion1">
-                    <div class="card-body">
-
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
+                <div class="tab-pane tab-pane-navigation" id="tabsNavigation3" role="tabpanel">
+                  <h4>Harga</h4>
+                  {!! $program->price_desc !!}
                 </div>
-                <div class="card card-default">
-                  <div class="card-header" id="collapse3HeadingOne">
-                    <h4 class="card-title m-0">
-                      <a class="accordion-toggle text-color-dark font-weight-bold collapsed" data-bs-toggle="collapse" data-bs-target="#collapse3One" aria-expanded="false" aria-controls="collapse3One">
-                        Lesson 3 <span class="text-color-default font-weight-regular opacity-6 text-1 d-inline-block ps-1 text-uppercase">- 4 Lectures - 12min</span>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapse3One" class="collapse" aria-labelledby="collapse1HeadingOne" data-bs-parent="#accordion1">
-                    <div class="card-body">
-
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
+                <div class="tab-pane tab-pane-navigation" id="tabsNavigation4" role="tabpanel">
+                  <h4>Kualifikasi / Prasyarat</h4>
+                  {!! $program->qualification !!}
                 </div>
-                <div class="card card-default">
-                  <div class="card-header" id="collapse4HeadingOne">
-                    <h4 class="card-title m-0">
-                      <a class="accordion-toggle text-color-dark font-weight-bold collapsed" data-bs-toggle="collapse" data-bs-target="#collapse4One" aria-expanded="false" aria-controls="collapse4One">
-                        Conclusion <span class="text-color-default font-weight-regular opacity-6 text-1 d-inline-block ps-1 text-uppercase">- 4 Lectures - 12min</span>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapse4One" class="collapse" aria-labelledby="collapse1HeadingOne" data-bs-parent="#accordion1">
-                    <div class="card-body">
-
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-                      <div class="row align-items-md-center py-1">
-                        <div class="col-md-9">
-                          <a href="#" class="text-color-secondary font-weight-semi-bold text-2 line-height-1 mb-4"><i class="far fa-play-circle d-inline-block me-2 text-4 p-relative top-1"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        </div>
-                        <div class="col-md-3 text-md-end">
-                          <p class="text-color-default font-weight-semi-bold text-2 line-height-1 mb-0 opacity-5">4:26</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
+                <div class="tab-pane tab-pane-navigation" id="tabsNavigation5" role="tabpanel">
+                  <h4>Cara Pendaftaran</h4>
+                  {!! $contact_us->how_to_register !!}
                 </div>
-              </div> --}}
-              {{--
-              <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-3 mt-5">Reviews</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{--
+        <div class="row d-flex justify-content-end">
+          <div class="col-lg-9">
+            <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-4 mt-4">Related Courses</h2>
 
-              <ul class="comments">
-                <li>
-                  <div class="comment pb-4">
-                    <div class="img-thumbnail border-0 p-0 d-none d-md-block">
-                      <img class="avatar rounded-circle" alt="" src="{{ url('') }}/img/avatars/avatar-2.jpg">
-                    </div>
-                    <div class="comment-block bg-transparent p-0">
-                      <span class="comment-by">
-                        <strong class="text-color-dark">Jack Doe</strong>
-                      </span>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="comment pb-4">
-                    <div class="img-thumbnail border-0 p-0 d-none d-md-block">
-                      <img class="avatar rounded-circle" alt="" src="{{ url('') }}/img/avatars/avatar.jpg">
-                    </div>
-                    <div class="comment-block bg-transparent p-0">
-                      <span class="comment-by">
-                        <strong class="text-color-dark">John Doe</strong>
-                      </span>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra odio, gravida urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                  </div>
-                </li>
-              </ul> --}}
-
-              <h2 class="text-color-secondary font-weight-semi-bold text-6 line-height-1 mb-4 mt-4">Related Courses</h2>
-
-              <div class="row">
-                <div class="col-md-4 mb-4 pb-1">
-                  <div class="card custom-card-courses border-radius-0 hover-effect-1">
-                    <div class="p-relative">
-                      <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-                        <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-1.jpg" alt="" />
-                      </a>
-                      <div class="custom-card-courses-author">
-                        <div class="img-thumbnail img-thumbnail-no-borders">
-                          <img src="{{ url('') }}/img/avatars/avatar.jpg" class="rounded-circle" alt="">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                      <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-                      <div class="float-end">
-                        <strong class="text-primary text-5">$79</strong>
-                      </div>
-
-                      <div class="text-2">
-                        <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-                        <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
+            <div class="row">
+              <div class="col-md-4 mb-4 pb-1">
+                <div class="card custom-card-courses border-radius-0 hover-effect-1">
+                  <div class="p-relative">
+                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                      <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-1.jpg" alt="" />
+                    </a>
+                    <div class="custom-card-courses-author">
+                      <div class="img-thumbnail img-thumbnail-no-borders">
+                        <img src="{{ url('') }}/img/avatars/avatar.jpg" class="rounded-circle" alt="">
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-4 mb-4 pb-1">
-                  <div class="card custom-card-courses border-radius-0 hover-effect-1">
-                    <div class="p-relative">
-                      <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-                        <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-2.jpg" alt="" />
-                      </a>
-                      <div class="custom-card-courses-author">
-                        <div class="img-thumbnail img-thumbnail-no-borders">
-                          <img src="{{ url('') }}/img/avatars/avatar-2.jpg" class="rounded-circle" alt="">
-                        </div>
-                      </div>
+                  <div class="card-body">
+                    <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
+                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+
+                    <div class="float-end">
+                      <strong class="text-primary text-5">$79</strong>
                     </div>
-                    <div class="card-body">
-                      <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                      <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
 
-                      <div class="float-end">
-                        <strong class="text-primary text-5">$59</strong>
-                      </div>
-
-                      <div class="text-2">
-                        <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-                        <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-4 pb-1">
-                  <div class="card custom-card-courses border-radius-0 hover-effect-1">
-                    <div class="p-relative">
-                      <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
-                        <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-3.jpg" alt="" />
-                      </a>
-                      <div class="custom-card-courses-author">
-                        <div class="img-thumbnail img-thumbnail-no-borders">
-                          <img src="{{ url('') }}/img/avatars/avatar-3.jpg" class="rounded-circle" alt="">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
-                      <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
-
-                      <div class="float-end">
-                        <strong class="text-primary text-5">$29</strong>
-                      </div>
-
-                      <div class="text-2">
-                        <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
-                        <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
-                      </div>
+                    <div class="text-2">
+                      <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
+                      <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="col-md-4 mb-4 pb-1">
+                <div class="card custom-card-courses border-radius-0 hover-effect-1">
+                  <div class="p-relative">
+                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                      <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-2.jpg" alt="" />
+                    </a>
+                    <div class="custom-card-courses-author">
+                      <div class="img-thumbnail img-thumbnail-no-borders">
+                        <img src="{{ url('') }}/img/avatars/avatar-2.jpg" class="rounded-circle" alt="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
+                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
 
+                    <div class="float-end">
+                      <strong class="text-primary text-5">$59</strong>
+                    </div>
+
+                    <div class="text-2">
+                      <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
+                      <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-4 pb-1">
+                <div class="card custom-card-courses border-radius-0 hover-effect-1">
+                  <div class="p-relative">
+                    <a href="demo-education-courses-details.html" class="text-color-secondary" title="">
+                      <img class="card-img-top border-radius-0" src="{{ url('') }}/img/demos/education/courses/course-3.jpg" alt="" />
+                    </a>
+                    <div class="custom-card-courses-author">
+                      <div class="img-thumbnail img-thumbnail-no-borders">
+                        <img src="{{ url('') }}/img/avatars/avatar-3.jpg" class="rounded-circle" alt="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <p class="mb-0 text-1 p-relative top-5 text-uppercase">John Doe</p>
+                    <h4 class="mb-3 text-color-secondary"><a href="demo-education-courses-details.html" class="text-color-secondary" title="">Course Name Example</a></h4>
+
+                    <div class="float-end">
+                      <strong class="text-primary text-5">$29</strong>
+                    </div>
+
+                    <div class="text-2">
+                      <span class="d-inline-block pe-2"><i class="far text-primary fa-user"></i> 123 </span>
+                      <span class="d-inline-block pe-2"><i class="far text-primary fa-comments"></i> 123</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </div> --}}
 
       </div>
     </section>
