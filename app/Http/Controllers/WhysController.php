@@ -15,7 +15,17 @@ class WhysController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Whys::select(['id', 'header', 'text', 'created_by', 'created_at']);
+            $data = Whys::select([
+                'whys.id',
+                'whys.header',
+                'whys.text',
+                'whys.created_by',
+                'users.username as created_by_username',
+                'whys.created_at'
+            ])
+                ->join('users', 'whys.created_by', '=', 'users.id')
+                ->get();
+
             $dataTable = DataTables::of($data)->make(true);
             return $dataTable;
         }
@@ -100,11 +110,23 @@ class WhysController extends Controller
      */
     public function show(string $id)
     {
+        $dataForm = Whys::select([
+            'whys.id',
+            'whys.header',
+            'whys.text',
+            'whys.image',
+            'users.username as created_by',
+            'whys.created_at'
+        ])
+            ->join('users', 'whys.created_by', '=', 'users.id')
+            ->where('whys.id', $id)
+            ->first();
+
         $data = [
             'module_path' => 'whys',
             'type'        => 'view',
             'title'       => 'Detail Why Choose Us',
-            'dataForm'    => Whys::where('id', $id)->first()
+            'dataForm'    => $dataForm
         ];
 
         return view('admin.home.form-why', $data);
@@ -115,11 +137,23 @@ class WhysController extends Controller
      */
     public function edit(string $id)
     {
+        $dataForm = Whys::select([
+            'whys.id',
+            'whys.header',
+            'whys.text',
+            'whys.image',
+            'users.username as created_by',
+            'whys.created_at'
+        ])
+            ->join('users', 'whys.created_by', '=', 'users.id')
+            ->where('whys.id', $id)
+            ->first();
+
         $data = [
             'module_path' => 'whys',
             'type'        => 'edit',
             'title'       => 'Edit Why Choose Us',
-            'dataForm'    => Whys::where('id', $id)->first()
+            'dataForm'    => $dataForm
         ];
 
         return view('admin.home.form-why', $data);

@@ -30,7 +30,7 @@ class ScheduleController extends Controller
                 'schedules.lokasi',
                 'schedules.seat_tersisa',
                 'lookup.lookup_value as status',
-                'schedules.created_by',
+                'users.username as created_by',
                 'schedules.created_at'
             ])
                 ->join('programs', 'schedules.program', '=', 'programs.id')
@@ -38,6 +38,7 @@ class ScheduleController extends Controller
                     $join->on('schedules.status', '=', 'lookup.lookup_id')
                         ->where('lookup.lookup_type', '=', 'schedule_status');
                 })
+                ->join('users', 'schedules.created_by', '=', 'users.id')
                 ->get();
 
             foreach ($data as $schedule) {

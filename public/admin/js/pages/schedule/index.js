@@ -18,7 +18,6 @@ $(document).ready(function() {
             { data: 'program_name', name: 'program_name' },
             { data: 'formatted_tanggal', name: 'formatted_tanggal' },
             { data: 'waktu', name: 'waktu' },
-            { data: 'harga', name: 'harga' },
             { data: 'lokasi', name: 'lokasi' },
             { data: 'seat_tersisa', name: 'seat_tersisa' },
             { data: 'status', name: 'status' },

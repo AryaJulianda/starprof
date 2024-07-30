@@ -14,7 +14,17 @@ class ProgramsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Programs::select(['id', 'prog_name', 'prog_category', 'created_by', 'created_at']);
+            $data = Programs::select([
+                'programs.id',
+                'programs.prog_name',
+                'programs_category.category_name as prog_category',
+                'users.username as created_by',
+                'programs.created_at'
+            ])
+                ->join('users', 'programs.created_by', '=', 'users.id')
+                ->join('programs_category', 'programs.prog_category', '=', 'programs_category.id')
+                ->get();
+
             return DataTables::of($data)->make(true);
         }
 

@@ -21,6 +21,17 @@
                   <input type="text" class="form-control" id="username" placeholder="Username" name="username" value="{{ isset($dataForm) ? $dataForm->username : '' }}" {{ $type == 'view' ? 'disabled' : 'required' }}>
                 </div>
               </div>
+              <div class="col-12">
+                <div class="mt-3">
+                  <label for="role" class="form-label">Role</label>
+                  <select class="form-select" name="role" id="role" {{ $type == 'view' ? 'disabled' : 'required' }}>
+                    <option value="">-- Select Role --</option>
+                    @foreach ($select_role as $item)
+                      <option value="{{ $item->lookup_id }}" {{ isset($dataForm) && $item->lookup_id == $dataForm->role ? 'selected' : '' }}>{{ $item->lookup_value }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
               @if ($type == 'create')
                 <div class="col-12">
                   <div class="mt-3">

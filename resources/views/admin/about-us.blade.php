@@ -20,7 +20,7 @@
                 <div class="mt-3">
                   <label for="image_file" class="form-label d-block">Image</label>
                   <img id="image-preview" src="{{ isset($dataForm) ? asset('storage/' . $dataForm->image) : '' }}" alt="Image" class="img-thumbnail mb-3" style="max-width: 200px;">
-                  <input type="file" class="form-control" id="image_file" placeholder="image_file" name="image_file" value="" onchange="previewImage(event)">
+                  <input type="file" class="form-control" id="image_file" accept="image/*" placeholder="image_file" name="image_file" value="" onchange="previewImage(event)">
                 </div>
               </div>
               <div class="col-12">
@@ -115,7 +115,7 @@
         </div>
         <div class="modal-body">
           <img id="image-preview-cl" src="" alt="Image" class="img-thumbnail mb-3" style="max-width: 200px; display:none;   ">
-          <input type="file" class="form-control" id="image_file_client" name="image_file_client" value="" onchange="previewImageCl(event)">
+          <input type="file" accept="image/*" class="form-control" id="image_file_client" name="image_file_client" value="" onchange="previewImageCl(event)">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>

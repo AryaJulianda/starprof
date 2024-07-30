@@ -34,7 +34,7 @@
                       <div class="text-end float-lg-start custom-slider-text-block">
                         <h2 class="text-color-secondary font-weight-extra-bold mb-4 custom-slider-text-1 p-relative z-index-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800"><em>#</em>{{ $item->text_1 }}</h2>
                         <h2 class="text-color-default font-weight-semi-bold mb-3 text-5 p-relative z-index-1 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1000">{{ $item->text_2 }}</h2>
-                        <a href="{{ url('') }}/#courses" data-hash data-hash-offset="0" data-hash-offset-lg="70" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200">GET STARTED</a>
+                        <a href="{{ url('') }}/contact-us" data-hash data-hash-offset="0" data-hash-offset-lg="70" class="btn btn-secondary font-weight-bold btn-px-5 btn-py-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200">GET STARTED</a>
                       </div>
                     </div>
                   </div>
@@ -132,16 +132,10 @@
                       <a href="{{ url('programs?category=' . Str::slug($category->category_name)) }}" class="text-color-secondary" title="">
                         <img class="card-img-top border-radius-0" src="{{ asset('storage/' . $category->category_image) }}" alt="Category Image" />
                       </a>
-                      {{-- <div class="custom-card-courses-author">
-                        <div class="img-thumbnail img-thumbnail-no-borders rounded-circle">
-                          <img src="{{ asset('storage/') }}" class="rounded-circle" alt="">
-                        </div>
-                      </div> --}}
                     </div>
                     <div class="card-body">
                       <p class="mb-0 text-1 p-relative top-5 text-uppercase">{{ $category->programs_count }} Programs</p>
                       <h4 class="mb-3 text-color-secondary"><a href="{{ url('programs?category=' . Str::slug($category->category_name)) }}" class="text-color-secondary" title="">{{ $category->category_name }}</a></h4>
-
                       <div class="float-end">
                         <a href="{{ url('programs?category=' . Str::slug($category->category_name)) }}" class="text-primary text-5 font-weight-semi-bold">Detail</a>
                       </div>
@@ -271,7 +265,7 @@
           <div class="col-lg-6 align-self-center pb-lg-5 order-1 order-lg-2 ps-5 ps-lg-0">
             <div class="testimonial testimonial-style-2 testimonial-with-quotes testimonial-remove-right-quote testimonial-quotes-dark custom-testimonial-quote-position-1 mb-0">
               <blockquote>
-                <p class="alternative-font-4 font-weight-medium text-start text-4 px-5 mb-0" data-plugin-animated-letters data-plugin-options="{'startDelay': 1000, 'minWindowWidth': 0, 'animationName': 'typeWriter', 'animationSpeed': 30}">{{$quotes->quotes_text}}</p>
+                <p class="alternative-font-4 font-weight-medium text-start text-4 px-5 mb-0" data-plugin-animated-letters data-plugin-options="{'startDelay': 1000, 'minWindowWidth': 0, 'animationName': 'typeWriter', 'animationSpeed': 30}">{{ $quotes->quotes_text }}</p>
               </blockquote>
               <div class="testimonial-author text-start ps-5 ms-2">
                 <strong class="text-4-5 negative-ls-1">{{ $quotes->quotes_by_name }}</strong>

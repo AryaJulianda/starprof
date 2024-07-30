@@ -17,6 +17,7 @@
               <tr>
                 <th>No</th>
                 <th>Username</th>
+                <th>Role</th>
                 <th>Created At</th>
                 <th>Updated At</th>
                 <th>Actions</th>

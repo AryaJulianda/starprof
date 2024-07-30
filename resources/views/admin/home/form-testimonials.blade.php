@@ -31,7 +31,7 @@
                 <div class="mt-3">
                   <label for="image_file" class="form-label d-block">Image</label>
                   <img id="image-preview" src="{{ isset($dataForm) && $dataForm->image ? asset('storage/' . $dataForm->image) : '#' }}" alt="Program Image" class="img-thumbnail mb-3" style="max-width: 200px; {{ isset($dataForm) && $dataForm->image ? '' : 'display:none;' }}">
-                  <input type="file" class="form-control" id="image_file" placeholder="image_file" name="image_file" value="" onchange="previewImage(event)" {{ $type == 'view' ? 'disabled' : '' }}>
+                  <input type="file" accept="image/*" class="form-control" id="image_file" placeholder="image_file" name="image_file" value="" onchange="previewImage(event)" {{ $type == 'view' ? 'disabled' : '' }}>
                 </div>
               </div>
               <div class="col-md-6 col-xl-3">

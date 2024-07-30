@@ -24,6 +24,7 @@ use App\Models\OurClient;
 use App\Models\Quotes;
 use App\Models\Schedule;
 use App\Models\Testimonials;
+use App\Models\Registration;
 use App\Models\Whys;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -210,7 +211,30 @@ Route::post('/submit-registration', [EmailController::class, 'submitForm']);
 // ADMIN
 Route::prefix('adm')->group(function () {
     Route::get('/', function () {
-        return view('admin.dashboard', ["title" => "Dashboard"]);
+
+        $schedules = Schedule::all();
+
+        $schedulesPerMonth = $schedules->groupBy('month_year')->map(function ($monthSchedules) {
+            return $monthSchedules->count();
+        });
+
+        $currentYear = Carbon::now()->year;
+        $months = collect();
+        for ($month = 1; $month <= 12; $month++) {
+            $monthYear = Carbon::create($currentYear, $month, 1)->format('Y-m');
+            $months->put($monthYear, $schedulesPerMonth->get($monthYear, 0));
+        }
+
+        return view('admin.dashboard', [
+            "title" => "Dashboard",
+            "total_categories" => ProgramsCategory::count(),
+            "total_programs" => Programs::count(),
+            "total_instructor" => Instructors::count(),
+            "total_registrations" => Registration::count(),
+            "programs_per_instructors" => Instructors::withCount('programs')->get(),
+            "programs_per_category" => ProgramsCategory::withCount('programs')->get(),
+            "schedules_per_month" => $months
+        ]);
     })->middleware('auth');
 
     Route::get('/home', function () {
@@ -222,10 +246,29 @@ Route::prefix('adm')->group(function () {
     })->middleware('auth');
 
     Route::get('/about-us', function () {
+        $dataForm = AboutUs::select([
+            'about_us.id',
+            'about_us.desc',
+            'about_us.image',
+            'about_us.quotes',
+            'about_us.quotes_by',
+            'about_us.vision',
+            'about_us.mission',
+            'about_us.why_us',
+            'about_us.our_trainer_desc',
+            'about_us.completed_course',
+            'about_us.active_student',
+            'about_us.total_training_hours',
+            'users.username as updated_by',
+            'about_us.updated_at'
+        ])
+            ->join('users', 'about_us.updated_by', '=', 'users.id')
+            ->first();
+
         $data = [
             "title" => "About Us",
             "module_path" => "about-us",
-            "dataForm" => AboutUs::first(),
+            "dataForm" => $dataForm,
             "total_instructor" => Instructors::count(),
             'our_clients' => OurClient::all()
         ];

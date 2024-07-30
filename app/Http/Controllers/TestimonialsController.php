@@ -15,7 +15,16 @@ class TestimonialsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Testimonials::select(['id', 'name', 'text', 'created_by', 'created_at']);
+            $data = Testimonials::select([
+                'testimonials.id',
+                'testimonials.name',
+                'testimonials.text',
+                'testimonials.created_by',
+                'users.username as created_by_username',
+                'testimonials.created_at'
+            ])
+                ->join('users', 'testimonials.created_by', '=', 'users.id')
+                ->get();
             $dataTable = DataTables::of($data)->make(true);
             return $dataTable;
         }
@@ -100,11 +109,23 @@ class TestimonialsController extends Controller
      */
     public function show(string $id)
     {
+        $dataForm = Testimonials::select([
+            'testimonials.id',
+            'testimonials.name',
+            'testimonials.text',
+            'testimonials.image',
+            'users.username as created_by',
+            'testimonials.created_at'
+        ])
+            ->join('users', 'testimonials.created_by', '=', 'users.id')
+            ->where('testimonials.id', $id)
+            ->first();
+
         $data = [
             'module_path' => 'testimonials',
             'type'        => 'view',
             'title'       => 'Detail Testimonial',
-            'dataForm'    => Testimonials::where('id', $id)->first()
+            'dataForm'    => $dataForm
         ];
 
         return view('admin.home.form-testimonials', $data);
@@ -115,11 +136,23 @@ class TestimonialsController extends Controller
      */
     public function edit(string $id)
     {
+        $dataForm = Testimonials::select([
+            'testimonials.id',
+            'testimonials.name',
+            'testimonials.text',
+            'testimonials.image',
+            'users.username as created_by',
+            'testimonials.created_at'
+        ])
+            ->join('users', 'testimonials.created_by', '=', 'users.id')
+            ->where('testimonials.id', $id)
+            ->first();
+
         $data = [
             'module_path' => 'testimonials',
             'type'        => 'edit',
             'title'       => 'Edit Testimonial',
-            'dataForm'    => Testimonials::where('id', $id)->first()
+            'dataForm'    => $dataForm
         ];
 
         return view('admin.home.form-testimonials', $data);

@@ -12,10 +12,6 @@ $(document).ready(function() {
 
         var url = $(this).attr("action");
         var formData = new FormData(this);
-        for (var pair of formData.entries()) {
-            console.log(pair[0]+ ': ' + pair[1]);
-        }
-        console.table(Array.from(formData.entries()));
 
         if (this.checkValidity() === false) {
             event.stopPropagation();
@@ -42,7 +38,7 @@ $(document).ready(function() {
                             });
                         },
                         error: function(xhr, status, error) {
-                            showAlert('error','Failed!',null, null);
+                            showAlert('error','Failed!',xhr.responseJSON.error, null);
                         }
                     });
                 }

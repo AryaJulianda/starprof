@@ -13,6 +13,7 @@ class Users extends Model
     protected $table = 'users';
     protected $fillable = [
         'username',
+        'role',
         'password',
         'created_by',
         'updated_by',

@@ -12,7 +12,15 @@ class ProgramsCategoryController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = ProgramsCategory::select(['id', 'category_name', 'created_by', 'created_at']);
+            $data = ProgramsCategory::select([
+                'programs_category.id',
+                'programs_category.category_name',
+                'users.username as created_by',
+                'programs_category.created_at'
+            ])
+                ->join('users', 'programs_category.created_by', '=', 'users.id')
+                ->get();
+
             $dataTable = DataTables::of($data)->make(true);
             return $dataTable;
         }

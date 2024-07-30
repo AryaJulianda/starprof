@@ -38,7 +38,7 @@ $(document).ready(function() {
                             });
                         },
                         error: function(xhr, status, error) {
-                            showAlert('error','Failed!',null, null);
+                            showAlert('error','Failed!',xhr.responseJSON.error, null);
                         }
                     });
                 }

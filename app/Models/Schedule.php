@@ -53,4 +53,12 @@ class Schedule extends Model
 
         return implode(', ', array_slice($formattedDates, 0, -1)) . ' & ' . end($formattedDates) . ' ' . $monthYear;
     }
+
+    public function getMonthYearAttribute()
+    {
+        $dates = explode(',', $this->tanggal);
+        $firstDate = Carbon::createFromFormat('Y/m/d', trim($dates[0]));
+
+        return $firstDate->format('Y-m');
+    }
 }

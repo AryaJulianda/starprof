@@ -130,7 +130,7 @@
                 <div class="mt-3">
                   <label for="image_file" class="form-label d-block">Image</label>
                   <img id="image-preview" src="{{ isset($quotes) ? asset('storage/' . $quotes->image) : '' }}" alt="Image" class="img-thumbnail mb-3" style="max-width: 200px;">
-                  <input type="file" class="form-control" id="image_file" placeholder="image_file" name="image_file" value="" onchange="previewImage(event)">
+                  <input type="file" accept="image/*" class="form-control" id="image_file" placeholder="image_file" name="image_file" value="" onchange="previewImage(event)">
                 </div>
               </div>
             </div>

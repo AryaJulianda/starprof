@@ -31,4 +31,9 @@ class Instructors extends Model
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
+
+    public function programs()
+    {
+        return $this->hasMany(Programs::class, 'instructor');
+    }
 }

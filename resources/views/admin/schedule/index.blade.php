@@ -19,7 +19,6 @@
                 <th>Program</th>
                 <th>Tanggal</th>
                 <th>Waktu</th>
-                <th>Harga</th>
                 <th>Lokasi</th>
                 <th>Seat Tersisa</th>
                 <th>Status</th>

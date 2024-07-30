@@ -16,8 +16,6 @@ $(document).ready(function() {
         var tanggal = $('.input-tanggal').val();
         formData.append('tanggal', tanggal);
 
-        console.table(Array.from(formData.entries()));
-
         if (this.checkValidity() === false) {
             event.stopPropagation();
         } else {

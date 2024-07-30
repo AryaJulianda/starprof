@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lookup;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,18 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Users::select(['id', 'username', 'created_at', 'updated_at']);
+            $data = Users::select([
+                'users.id',
+                'users.username',
+                'lookup.lookup_value as role',
+                'users.created_at',
+                'users.updated_at'
+            ])
+                ->join('lookup', function ($join) {
+                    $join->on('users.role', '=', 'lookup.lookup_id')
+                        ->where('lookup.lookup_type', '=', 'user_role');
+                })
+                ->get();
             $dataTable = DataTables::of($data)->make(true);
             return $dataTable;
         }
@@ -37,6 +49,7 @@ class UsersController extends Controller
             'module_path' => 'users',
             'type'  => 'create',
             'title' => 'Create User',
+            'select_role' => Lookup::where('lookup_type', 'user_role')->get(),
         ];
 
         return view('admin.users.form', $data);
@@ -51,6 +64,7 @@ class UsersController extends Controller
             $validatedData = $request->validate([
                 'username' => 'required|string|max:255',
                 'password' => 'required|string|min:6',
+                'role' => 'required|integer'
             ]);
 
             $validatedData['password'] = bcrypt($request['password']);
@@ -74,6 +88,7 @@ class UsersController extends Controller
 
             $validatedData = $request->validate([
                 'username' => 'required|string|max:255',
+                'role' => 'required|integer'
             ]);
 
             $validatedData['updated_by'] = Auth::id();
@@ -95,7 +110,8 @@ class UsersController extends Controller
             'module_path' => 'users',
             'type'  => 'view',
             'title' => 'Detail User',
-            'dataForm' => Users::select(['id', 'username', 'created_at', 'updated_at', 'created_by', 'updated_by'])->where('id', $id)->first()
+            'select_role' => Lookup::where('lookup_type', 'user_role')->get(),
+            'dataForm' => Users::select(['id', 'username', 'role', 'created_at', 'updated_at', 'created_by', 'updated_by'])->where('id', $id)->first()
         ];
 
         return view('admin.users.form', $data);
@@ -110,7 +126,8 @@ class UsersController extends Controller
             'module_path' => 'users',
             'type'  => 'edit',
             'title' => 'Edit User',
-            'dataForm'  => Users::select(['id', 'username', 'created_at', 'updated_at', 'created_by', 'updated_by'])->where('id', $id)->first()
+            'select_role' => Lookup::where('lookup_type', 'user_role')->get(),
+            'dataForm'  => Users::select(['id', 'username', 'role', 'created_at', 'updated_at', 'created_by', 'updated_by'])->where('id', $id)->first()
         ];
 
         return view('admin.users.form', $data);

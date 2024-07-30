@@ -15,7 +15,17 @@ class CarouselsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Carousels::select(['id', 'text_1', 'text_2', 'created_by', 'created_at']);
+            $data = Carousels::select([
+                'carousels.id',
+                'carousels.text_1',
+                'carousels.text_2',
+                'carousels.created_by',
+                'users.username as created_by_username',
+                'carousels.created_at'
+            ])
+                ->join('users', 'carousels.created_by', '=', 'users.id')
+                ->get();
+
             $dataTable = DataTables::of($data)->make(true);
             return $dataTable;
         }
@@ -100,11 +110,22 @@ class CarouselsController extends Controller
      */
     public function show(string $id)
     {
+        $dataForm = Carousels::select([
+            'carousels.id',
+            'carousels.text_1',
+            'carousels.text_2',
+            'carousels.image',
+            'users.username as created_by',
+            'carousels.created_at'
+        ])
+            ->join('users', 'carousels.created_by', '=', 'users.id')
+            ->where('carousels.id', $id)
+            ->first();
         $data = [
             'module_path' => 'carousels',
             'type'        => 'view',
             'title'       => 'Detail Carousel',
-            'dataForm'    => Carousels::where('id', $id)->first()
+            'dataForm'    => $dataForm
         ];
 
         return view('admin.home.form-carousels', $data);
@@ -115,11 +136,23 @@ class CarouselsController extends Controller
      */
     public function edit(string $id)
     {
+        $dataForm = Carousels::select([
+            'carousels.id',
+            'carousels.text_1',
+            'carousels.text_2',
+            'carousels.image',
+            'users.username as created_by',
+            'carousels.created_at'
+        ])
+            ->join('users', 'carousels.created_by', '=', 'users.id')
+            ->where('carousels.id', $id)
+            ->first();
+
         $data = [
             'module_path' => 'carousels',
             'type'        => 'edit',
             'title'       => 'Edit Carousel',
-            'dataForm'    => Carousels::where('id', $id)->first()
+            'dataForm'    => $dataForm
         ];
 
         return view('admin.home.form-carousels', $data);

@@ -16,7 +16,16 @@ class InstructorsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Instructors::select(['id', 'photo', 'full_name', 'created_by', 'created_at']);
+            $data = Instructors::select([
+                'instructors.id',
+                'instructors.photo',
+                'instructors.full_name',
+                'users.username as created_by',
+                'instructors.created_at'
+            ])
+                ->join('users', 'instructors.created_by', '=', 'users.id')
+                ->get();
+
             $dataTable = DataTables::of($data)->make(true);
             return $dataTable;
         }

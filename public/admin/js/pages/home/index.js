@@ -17,7 +17,7 @@ $(document).ready(function() {
             },
             { data: 'text_1', name: 'text_1' },
             { data: 'text_2', name: 'text_2' },
-            { data: 'created_by', name: 'created_by' },
+            { data: 'created_by_username', name: 'created_by_username' },
             { data: 'created_at', name: 'created_at' },
             {
                 data: null,
@@ -58,7 +58,7 @@ $(document).ready(function() {
             },
             { data: 'name', name: 'name' },
             { data: 'text', name: 'text' },
-            { data: 'created_by', name: 'created_by' },
+            { data: 'created_by_username', name: 'created_by_username' },
             { data: 'created_at', name: 'created_at' },
             {
                 data: null,
@@ -99,7 +99,7 @@ $(document).ready(function() {
             },
             { data: 'header', name: 'header' },
             { data: 'text', name: 'text' },
-            { data: 'created_by', name: 'created_by' },
+            { data: 'created_by_username', name: 'created_by_username' },
             { data: 'created_at', name: 'created_at' },
             {
                 data: null,

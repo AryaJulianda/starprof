@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\RegistrationEmail;
+use App\Models\Registration;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -26,10 +27,8 @@ class EmailController extends Controller
         ]);
 
         try {
-            // Mail::send('emails.contact', $validatedData, function ($message) {
-            //     $message->to('info@starprof.co.id')
-            //         ->subject('Registration form');
-            // });
+            Registration::create($validatedData);
+
             Mail::to('info@starprof.co.id')->send(new RegistrationEmail($validatedData));
 
             Log::info('Email sent successfully to info@starprof.co.id');

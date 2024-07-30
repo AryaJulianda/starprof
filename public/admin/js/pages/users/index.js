@@ -16,6 +16,7 @@ $(document).ready(function() {
                 }
             },
             { data: 'username', name: 'username' },
+            { data: 'role', name: 'role' },
             { data: 'created_at', name: 'created_at' },
             { data: 'updated_at', name: 'updated_at' },
             {

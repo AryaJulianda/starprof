@@ -9,7 +9,7 @@
           </span> --}}
           <span class="logo-lg">
             {{-- <img src="{{ url('admin/images/logo-dark.png') }}" alt="" height="17"> --}}
-            <h5 class="text-light px-3 pt-3">STARPROF | ADMIN</h5>
+            <h5 class="px-3 pt-3" style="color: white;">STARPROF | ADMIN</h5>
           </span>
         </a>
 
@@ -19,7 +19,7 @@
           </span> --}}
           <span class="logo-lg">
             {{-- <img src="{{ url('admin/images/logo-light.png') }}" alt="" height="19"> --}}
-            <h5 class="text-dark px-3 pt-3">STARPROF | ADMIN</h5>
+            <h5 class="px-3 pt-3" style="color: white;">STARPROF | ADMIN</h5>
           </span>
         </a>
       </div>
